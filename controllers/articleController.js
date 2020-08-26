@@ -1,4 +1,4 @@
-const { decodeBase64 } = require("bcryptjs")
+const db = require("../models")
 
 module.exports = {
   findAll: function(req, res) {
