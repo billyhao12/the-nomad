@@ -1,6 +1,6 @@
-import React, {useRef} from "react";
+import React, {useRef} from 'react';
 
-import { useLogin } from "../utils/auth";
+import { useLogin } from '../utils/auth';
 
 function Login() {
 
@@ -20,7 +20,7 @@ function Login() {
     // Auto Login after registration
     await login({ email, password });
 
-    window.location.href = "./";
+    window.location.href = './';
   };
 
   return (
