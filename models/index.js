@@ -1,5 +1,7 @@
 module.exports = {
-  User: require("./User")
+  User: require("./User"),
+  Article: require("./Article"),
+  Forum: require("./Forum")
 }
 
 // update mongoose info here
