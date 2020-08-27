@@ -1,7 +1,7 @@
 module.exports = {
   User: require("./User"),
   Article: require("./Article"),
-  Forum: require("./Forum"),
+  Comment: require("./Comment"),
 }
 
 // update mongoose info here

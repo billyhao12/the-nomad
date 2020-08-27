@@ -14,17 +14,20 @@ const ArticleSchema = new Schema({
     type: String,
     required: true,
   },
-  date: {
-    type: Date,
-    default: Date.now,
+  like: {
+    type: Integer,
   },
   lat: {
     type: Integer,
     default: NULL,
   },
-  lon: {
+  long: {
     type: Integer,
     default: NULL,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
   },
 });
 

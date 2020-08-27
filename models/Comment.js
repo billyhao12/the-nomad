@@ -1,7 +1,7 @@
 const mongoose = require ("mongoose");
 const Schema = mongoose.Schema;
 
-const ForumSchema = new Schema({
+const CommentSchema = new Schema({
     author:{
         type: String,
         required: true
@@ -11,14 +11,12 @@ const ForumSchema = new Schema({
         required: true
     },
     like: {
-        type: Boolean
+        type: Integer
     },
     date: {
         type: Date,
         default: Date.now 
-    },
-
-
+    }
 })
 
-module.exports = Forum = mongoose.model("forum", ForumSchema)
+module.exports = Forum = mongoose.model("comment", CommentSchema)
