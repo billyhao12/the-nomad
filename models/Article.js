@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ArticleSchema = new Schema({
@@ -15,15 +15,15 @@ const ArticleSchema = new Schema({
     required: true,
   },
   like: {
-    type: Integer,
+    type: Number,
   },
   lat: {
-    type: Integer,
-    default: NULL,
+    type: Number,
+    default: null,
   },
   long: {
-    type: Integer,
-    default: NULL,
+    type: Number,
+    default: null,
   },
   date: {
     type: Date,
@@ -31,4 +31,6 @@ const ArticleSchema = new Schema({
   },
 });
 
-module.exports = Article = mongoose.model("article", ArticleSchema)
+const Article = mongoose.model('Article', ArticleSchema);
+
+module.exports = Article;
