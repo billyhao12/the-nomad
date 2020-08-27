@@ -7,11 +7,10 @@ router
   .get(commentsController.findAll)
   .post(commentsController.create);
 
-
-//matches with "/api/posts/:id"
+//Matches with "/api/posts/:id"
 router
   .route('/:id')
-  .get(commentsController)
+  .get(commentsController.findById)
   .put(commentsController.update)
   .delete(commentsController.remove);
 
