@@ -17,7 +17,7 @@ const UserSchema = new Schema({
   },
   city: {
     type: String,
-  }
+  },
   date: {
     type: Date,
     default: Date.now
