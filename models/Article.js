@@ -27,8 +27,8 @@ const ArticleSchema = new Schema({
   },
   date: {
     type: Date,
-    default: Date.now,
-  },
+    default: Date.now
+  }
 });
 
 const Article = mongoose.model('Article', ArticleSchema);
