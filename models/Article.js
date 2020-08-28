@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ArticleSchema = new Schema({
+const articleSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -17,7 +17,7 @@ const ArticleSchema = new Schema({
   like: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
     },
   ],
   lat: {
@@ -37,6 +37,6 @@ const ArticleSchema = new Schema({
   },
 });
 
-const Article = mongoose.model('Article', ArticleSchema);
+const Article = mongoose.model('Article', articleSchema);
 
 module.exports = Article;

@@ -26,6 +26,7 @@ function Home(){
         setArticles(res.data)
       )
       .catch(err => console.log(err));
+      
   }
 
   
@@ -42,16 +43,16 @@ function Home(){
   //   <a href="/register">Register</a>
   // </div>
     <div>
-
+  
       <Map
-        style="mapbox://styles/mapbox/streets-v9"
+        style="mapbox://styles/mapbox/streets-v11"
         containerStyle={{
           height: '50vh',
           width: '100vw'
         }}
       >
         <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-          <Feature coordinates={[47.609722, -122.3330056]} />
+          <Feature coordinates={[-122.3330056, 47.609722]} />
         </Layer>
       </Map>
 

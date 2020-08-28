@@ -1,23 +1,23 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const passport = require("passport");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
 
 // Load input validation
-const validateRegisterInput = require("../config/validation/register");
-const validateLoginInput = require("../config/validation/login");
+const validateRegisterInput = require('../config/validation/register');
+const validateLoginInput = require('../config/validation/login');
 
 // Load User model
-const {User} = require("../models");
+const {User} = require('../models');
 
-router.post("/authenticated", passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/authenticated', passport.authenticate('jwt', { session: false }), (req, res) => {
 
   res.json( req.user );
 
 });
 
-router.post("/register", (req, res) => {
+router.post('/register', (req, res) => {
 
   // Form validation
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -31,7 +31,7 @@ router.post("/register", (req, res) => {
 
     if (user) {
 
-      return res.status(400).json({ email: "Email already exists" });
+      return res.status(400).json({ email: 'Email already exists' });
 
     } else {
 
@@ -59,7 +59,7 @@ router.post("/register", (req, res) => {
 
 });
 
-router.post("/login", (req, res) => {
+router.post('/login', (req, res) => {
 
   // Form validation
   const { errors, isValid } = validateLoginInput(req.body);
@@ -77,7 +77,7 @@ router.post("/login", (req, res) => {
 
     // Check if user exists
     if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
+      return res.status(404).json({ emailnotfound: 'Email not found' });
     }
 
     // Check password
@@ -99,14 +99,14 @@ router.post("/login", (req, res) => {
           (err, token) => {
             res.json({
               success: true,
-              token: "Bearer " + token
+              token: 'Bearer ' + token
             });
           }
         );
       } else {
         return res
           .status(400)
-          .json({ passwordincorrect: "Password incorrect" });
+          .json({ passwordincorrect: 'Password incorrect' });
       }
     });
 
