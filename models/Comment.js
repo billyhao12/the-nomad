@@ -10,9 +10,12 @@ const CommentSchema = new Schema({
     type: String,
     required: true
   },
-  like: {
-    type: Number
-  },
+  like: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ],
   date: {
     type: Date,
     default: Date.now 
