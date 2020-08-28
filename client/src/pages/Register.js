@@ -1,34 +1,34 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
 
-import api from "../utils/api";
-import { useLogin } from "../utils/auth";
+import api from '../utils/api';
+import { useLogin } from '../utils/auth';
 
 function Register() {
 
-        const nameInput = useRef();
-        const emailInput = useRef();
-        const passwordInput = useRef();
-        const password2Input = useRef();
+  const nameInput = useRef();
+  const emailInput = useRef();
+  const passwordInput = useRef();
+  const password2Input = useRef();
 
-           const login = useLogin();
+  const login = useLogin();
 
-           const handleSubmit = async (e) => {
-               e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-                const name= nameInput.current.value;
-                const email = emailInput.current.value; 
-                const password = passwordInput.current.value; 
-                const password2 = password2Input.current.value; 
+    const name= nameInput.current.value;
+    const email = emailInput.current.value; 
+    const password = passwordInput.current.value; 
+    const password2 = password2Input.current.value; 
 
-              await api.register({ name, email, password, password2 });
+    await api.register({ name, email, password, password2 });
 
-              // Auto Login after registration
-              await login( { email, password } );
+    // Auto Login after registration
+    await login( { email, password } );
 
-              window.location.href = "./";
+    window.location.href = './';
 
               
-           }
+  }
     
 
 

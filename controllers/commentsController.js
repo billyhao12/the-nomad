@@ -1,33 +1,33 @@
-const db = require("../models")
+const db = require('../models')
 
 module.exports = {
   findAll: function(req, res) {
-    db.Profile
-    .find(req.query)
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(422).json(err))
+    db.Comment
+      .find(req.query)
+      .sort({ date: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
   },
   findById: function(req, res) {
-    db.Profile
-    .find(req.params.id)
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(422).json(err))
+    db.Comment.findById(req.params.id)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
   },
   create: function(req, res) {
-    db.Profile
+    db.Comment
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
-  update: function(req, res) {
-    db.Profile
+  update: function(req, res){
+    db.Comment
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
-  remove: function(req, res) {
-    db.Profile
-      .findById({ _id: req.params.id})
+  remove: function(req, res){
+    db.Comment
+      .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))

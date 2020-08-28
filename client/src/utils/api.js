@@ -1,23 +1,23 @@
-import axios from "axios";
+import axios from 'axios';
 
 export default {
 
-    register( userData ) {
+  register( userData ) {
 
-        return axios.post("/api/register", userData);
+    return axios.post('/api/register', userData);
 
-    },
+  },
 
-    login( userData ) {
+  login( userData ) {
 
-        return axios.post("/api/login", userData);
+    return axios.post('/api/login', userData);
 
-    },
+  },
 
-    authenticated() {
+  authenticated() {
 
-        return axios.post("/api/authenticated");
+    return axios.post('/api/authenticated');
 
-    }
+  }
 
 }

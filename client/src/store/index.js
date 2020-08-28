@@ -1,51 +1,52 @@
-import React,{ createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer } from 'react';
 
 import {
-    LOGIN_USER,
-    LOGOUT_USER
-} from "./actions";
+  LOGIN_USER,
+  LOGOUT_USER
+} from './actions';
 
 const StoreContext = createContext({
-    userAuth: {},
+  userAuth: {},
 });
 
 const { Provider } = StoreContext;
 
 const reducer = ( state, { type, payload } ) => {
 
-    switch( type ) {
-        case LOGIN_USER:
+  switch( type ) {
+  case LOGIN_USER:
 
-            return { ...state, userAuth: payload };
+    return { ...state, userAuth: payload };
 
-        case LOGOUT_USER:
+  case LOGOUT_USER:
 
-            return { ...state, userAuth: undefined };
+    return { ...state, userAuth: undefined };
 
-        default:
-            return state;
-    }
+  default:
+    return state;
+  }
 
 }
 
 export const getStoreAction = ( type, payload ) => {
 
-    return { type, payload };
+  return { type, payload };
 
 }
 
+
 export const StoreProvider = ( { children } ) => {
 
-    const [ store, dispatch ] = useReducer( reducer, {
-        userAuth: undefined
-    } );
+  const [ store, dispatch ] = useReducer( reducer, {
+    userAuth: undefined
+  } );
 
-    return <Provider value={[store, dispatch]}>{ children }</Provider>
+  return <Provider value={[store, dispatch]}>{ children }</Provider>
 
 }
 
 export const useStoreContext = () => {
 
-    return useContext( StoreContext );
+  return useContext( StoreContext );
 
 }
