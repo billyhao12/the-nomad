@@ -1,10 +1,12 @@
 import React from 'react';
 import{useIsAuthenticated, useLogout } from '../utils/auth'
 
-function Home(){
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Card from 'react-bootstrap/Card';
 
-  const isAuth = useIsAuthenticated();
-  const logout = useLogout();
+function Home(){
 
   return (
   // <div>
@@ -17,53 +19,62 @@ function Home(){
   //   <br/>
   //   <a href="/register">Register</a>
   // </div>
-
-
-    <div> {/*main div*/}
-
-      <nav className="navbar navbar-light bg-dark"> {/** navbar div */}
-        {
-          isAuth ? <button onClick={logout}>Logout</button> : <a href="/register">Register</a>
-        }
-      </nav>
-
-      <div className="container"> {/** content container div*/}
-
-
-        <div className="col-sm-3"> {/** Article category links */}
+    <div>
+      <Row>
+        <Col xs={3}> {/** Article category links */}
 
           {/** fill with links (search?) to different types of articles */}
-          <ul className="list-group"> Categories {/** I would like to have this list be dynamic */}
-            <li className="list-group-item">Food</li>
-            <li className="list-group-item">Sports</li>
-            <li className="list-group-item">Travel</li>
-            <li className="list-group-item">Tech / Science</li>
-            <li className="list-group-item">Politics</li>
-            <li className="list-group-item">Entertainment</li>
-            <li className="list-group-item">Location</li>
-          </ul>
+          <ListGroup> Categories {/** I would like to have this list be dynamic */}
 
-        </div>
+            {
+              categories.map(category => (
+                // eslint-disable-next-line react/jsx-key
+                <ListGroup.Item><a href="#">{category}</a></ListGroup.Item>
+              ))
+            }
 
-        <div className="col-sm-9"> {/** List of articles */}
+          </ListGroup>
+
+        </Col>
+
+        <Col xs={9}> {/** List of articles */}
 
           {/** Start with a basic list of cards */}
-          <ul className="list-group">articles
+          <ListGroup className="list-group">articles
+            <ListGroup.Item>
 
-            <li className="list-group-item">
-              <div className="card">
-                <img src="..." className="card-img-top" alt="..."></img>
-              </div>
-            </li>
-          </ul>
+              {
+                articles.map(article => (
+                  // eslint-disable-next-line react/jsx-key
+                  <Card>
+                    <Card.Img src="..." className="card-img-top" alt="..."></Card.Img>
+                    <Card.Title>{article.name}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">Authored by: <a href='#'>{article.author}</a></Card.Subtitle>
+                  </Card>
+                ))
+              }
 
-        </div>
+              
+            </ListGroup.Item>
+            {/* </li> */}
+          </ListGroup>
 
-      </div>
+        </Col>
 
+      </Row>
     </div>
   );
 }
+
+const categories = [
+  'Food',
+  'Sports',
+  'Travel',
+  'Tech / Science',
+  'Politics',
+  'Entertainment',
+  'Location'
+];
 
 //placeholder article list
 const articles = [
@@ -79,8 +90,8 @@ const articles = [
   },
   {
     id: 3,
-    name: 'The Verge doesn\'t know how to build a PC!!',
-    author: 'Darrin Van Winkle'
+    name: 'Turns out, pitbuls are super nice!',
+    author: 'Elton Presely'
   }
 ];
 
