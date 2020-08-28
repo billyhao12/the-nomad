@@ -25,6 +25,9 @@ const ArticleSchema = new Schema({
     type: Number,
     default: null,
   },
+  image:{
+    type: String
+  },
   date: {
     type: Date,
     default: Date.now
