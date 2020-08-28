@@ -34,9 +34,9 @@ export const getStoreAction = ( type, payload ) => {
 
 }
 
-StoreProvider.propTypes = {
-  children: React.propTypes.node
-}
+// StoreProvider.propTypes = {
+//   children: React.propTypes.node
+// }
 
 export const StoreProvider = ( { children } ) => {
 
