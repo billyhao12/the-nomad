@@ -1,4 +1,4 @@
-import React,{ createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
 
 import {
   LOGIN_USER,
@@ -32,10 +32,6 @@ export const getStoreAction = ( type, payload ) => {
 
   return { type, payload };
 
-}
-
-StoreProvider.propTypes = {
-  children: React.propTypes.node
 }
 
 export const StoreProvider = ( { children } ) => {
