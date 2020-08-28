@@ -1,5 +1,4 @@
 import React from 'react';
-import{useIsAuthenticated, useLogout } from '../utils/auth'
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
