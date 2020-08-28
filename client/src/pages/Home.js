@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -6,12 +6,30 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import ReactMapboxGl, {Layer} from 'react-mapbox-gl';
 import {Feature} from 'react-mapbox-gl';
+import api from '../utils/api';
 
 const Map = ReactMapboxGl({
   accessToken: 'pk.eyJ1IjoiY2hyaXNqbTA5MyIsImEiOiJja2VkZHFsMjIwMnRrMnBud2J3YXVxcHJpIn0.8YUfTVkZw7oNUmkrJikDkQ'
 });
 
 function Home(){
+
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    loadArticles()
+  }, [])
+
+  function loadArticles() {
+    api.getArticles()
+      .then(res =>
+        setArticles(res.data)
+      )
+      .catch(err => console.log(err));
+      
+  }
+
+  
 
   return (
   // <div>
@@ -25,7 +43,7 @@ function Home(){
   //   <a href="/register">Register</a>
   // </div>
     <div>
-
+  
       <Map
         style="mapbox://styles/mapbox/streets-v11"
         containerStyle={{
@@ -66,8 +84,8 @@ function Home(){
                   // eslint-disable-next-line react/jsx-key
                   <Card>
                     <Card.Img src="..." className="card-img-top" alt="..."></Card.Img>
-                    <Card.Title>{article.name}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">Authored by: <a href='#'>{article.author}</a></Card.Subtitle>
+                    <Card.Title>{article.title}</Card.Title>
+                    {/** <Card.Subtitle className="mb-2 text-muted">Authored by: <a href='#'>{article.author}</a></Card.Subtitle>**/}
                   </Card>
                 ))
               }
@@ -92,25 +110,6 @@ const categories = [
   'Politics',
   'Entertainment',
   'Location'
-];
-
-//placeholder article list
-const articles = [
-  {
-    id: 1,
-    name: 'The Verge doesn\'t know how to build a PC!!',
-    author: 'Darrin Van Winkle'
-  },
-  {
-    id: 2,
-    name: 'Lawn work is much harder than expected',
-    author: 'Ozzie Osbourne'
-  },
-  {
-    id: 3,
-    name: 'Turns out, pitbuls are super nice!',
-    author: 'Elton Presely'
-  }
 ];
 
 export default Home; 

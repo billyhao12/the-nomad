@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ArticleSchema = new Schema({
+const articleSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -14,9 +14,12 @@ const ArticleSchema = new Schema({
     type: String,
     required: true,
   },
-  like: {
-    type: Number,
-  },
+  like: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
   lat: {
     type: Number,
     default: null,
@@ -25,15 +28,15 @@ const ArticleSchema = new Schema({
     type: Number,
     default: null,
   },
-  image:{
-    type: String
+  image: {
+    type: String,
   },
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-const Article = mongoose.model('Article', ArticleSchema);
+const Article = mongoose.model('Article', articleSchema);
 
 module.exports = Article;

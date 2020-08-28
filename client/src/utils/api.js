@@ -2,6 +2,10 @@ import axios from 'axios';
 
 export default {
 
+  getArticles() {
+    return axios.get('/api/articles');
+  },
+
   register( userData ) {
 
     return axios.post('/api/register', userData);
