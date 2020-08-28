@@ -25,7 +25,7 @@ function Login() {
 
   return (
     <div>
-      <h1>Register</h1>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <input type="email" name="email" placeholder="email" ref={emailInput} />
         <input
