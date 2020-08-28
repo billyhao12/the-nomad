@@ -13,6 +13,7 @@ const articleSeed = [
   like: false,
   lat: 0,
   long: 0,
+  image:'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/isCPhnrGifW0/v0/1000x-1.jpg',
   date: new Date(Date.now())
 }
 ]
