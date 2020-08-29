@@ -1,6 +1,5 @@
 import React, { useEffect, useState} from 'react';
 import{Col, Row, Container, ListGroup, Card} from 'react-bootstrap';
-import mapboxgl from 'mapbox-gl';
 import Map from '../components/Map';
 import api from '../utils/api';
 // import {Feature} from 'react-mapbox-gl';
@@ -28,7 +27,7 @@ function Home(){
     <div>
       <Container>
       <Map />
-      </Container>
+        </Container>
       <Row>
         <Col xs={3}> {/** Article category links */}
 
@@ -72,8 +71,7 @@ function Home(){
 
       </Row>
     </div>
-    )
-}
+  )}
 
 const categories = [
   'Food',
@@ -83,25 +81,6 @@ const categories = [
   'Politics',
   'Entertainment',
   'Location'
-];
-
-//placeholder article list
-const articles = [
-  {
-    id: 1,
-    name: 'The Verge doesn\'t know how to build a PC!!',
-    author: 'Darrin Van Winkle'
-  },
-  {
-    id: 2,
-    name: 'Lawn work is much harder than expected',
-    author: 'Ozzie Osbourne'
-  },
-  {
-    id: 3,
-    name: 'Turns out, pitbuls are super nice!',
-    author: 'Elton Presely'
-  }
 ];
 
 export default Home; 
