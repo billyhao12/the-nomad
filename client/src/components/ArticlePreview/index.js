@@ -7,15 +7,17 @@ import './style.css';
 function ArticlePreview({article}) {
 
   return (
-    <Card>
-      <Card.Img class="articleImages" variant="top" src={article.image} />
-      <Card.Body>
-        <Card.Title>{article.title}</Card.Title>
-        <Card.Text>
+    <a className="customCard" href="#">
+      <Card>
+        <Card.Img class="articleImages" variant="top" src={article.image} />
+        <Card.Body>
+          <Card.Title>{article.title}</Card.Title>
+          <Card.Text>
           Article Summary
-        </Card.Text>
-      </Card.Body>
-    </Card>
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    </a>
   );
 
 }
