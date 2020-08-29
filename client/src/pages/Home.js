@@ -1,19 +1,12 @@
 import React, { useEffect, useState} from 'react';
-
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Card from 'react-bootstrap/Card';
-import ReactMapboxGl, {Layer} from 'react-mapbox-gl';
-import {Feature} from 'react-mapbox-gl';
+import{Col, Row, Container, ListGroup, Card} from 'react-bootstrap';
+import Map from '../components/Map';
 import api from '../utils/api';
+// import {Feature} from 'react-mapbox-gl';
 
-const Map = ReactMapboxGl({
-  accessToken: 'pk.eyJ1IjoiY2hyaXNqbTA5MyIsImEiOiJja2VkZHFsMjIwMnRrMnBud2J3YXVxcHJpIn0.8YUfTVkZw7oNUmkrJikDkQ'
-});
+
 
 function Home(){
-
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -29,33 +22,12 @@ function Home(){
       
   }
 
-  
-
+ 
   return (
-  // <div>
-  //   <h1>Home Page</h1>
-  //   {
-  //     isAuth
-  //       ?<button onClick={logout}>Logout</button>
-  //       : <a href="/login">Login</a>
-  //   }
-  //   <br/>
-  //   <a href="/register">Register</a>
-  // </div>
     <div>
-  
-      <Map
-        style="mapbox://styles/mapbox/streets-v11"
-        containerStyle={{
-          height: '50vh',
-          width: '100vw'
-        }}
-      >
-        <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-          <Feature coordinates={[-122.3330056, 47.609722]} />
-        </Layer>
-      </Map>
-
+      <Container>
+        <Map />
+      </Container>
       <Row>
         <Col xs={3}> {/** Article category links */}
 
@@ -99,8 +71,7 @@ function Home(){
 
       </Row>
     </div>
-  );
-}
+  )}
 
 const categories = [
   'Food',

@@ -6,14 +6,13 @@ import registerServiceWorker from './registerServiceWorker';
 import { StoreProvider } from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-ReactDOM.render(
-  (
-    <StoreProvider>
-      <App />
-    </StoreProvider>
-  ),
 
-  document.getElementById('root')
+ReactDOM.render(
+  <StoreProvider>
+    <App />
+  </StoreProvider>,
+
+  document.getElementById('root'),
 );
 
 registerServiceWorker();
