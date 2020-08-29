@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import{Col, Row, Container, ListGroup, Card} from 'react-bootstrap';
 import mapboxgl from 'mapbox-gl';
 import Map from '../components/Map';
+import api from '../utils/api';
 // import {Feature} from 'react-mapbox-gl';
 
 
 
 function Home(){
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    loadArticles()
+  }, [])
+
+  function loadArticles() {
+    api.getArticles()
+      .then(res =>
+        setArticles(res.data)
+      )
+      .catch(err => console.log(err));
+      
+  }
+
  
   return (
     <div>
-      <Row>
       <Container>
       <Map />
       </Container>
+      <Row>
         <Col xs={3}> {/** Article category links */}
 
           {/** fill with links (search?) to different types of articles */}
@@ -41,8 +57,8 @@ function Home(){
                   // eslint-disable-next-line react/jsx-key
                   <Card>
                     <Card.Img src="..." className="card-img-top" alt="..."></Card.Img>
-                    <Card.Title>{article.name}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">Authored by: <a href='#'>{article.author}</a></Card.Subtitle>
+                    <Card.Title>{article.title}</Card.Title>
+                    {/** <Card.Subtitle className="mb-2 text-muted">Authored by: <a href='#'>{article.author}</a></Card.Subtitle>**/}
                   </Card>
                 ))
               }
