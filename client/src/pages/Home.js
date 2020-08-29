@@ -1,44 +1,19 @@
 import React from 'react';
+import{Col, Row, Container, ListGroup, Card} from 'react-bootstrap';
+import mapboxgl from 'mapbox-gl';
+import Map from '../components/Map';
+// import {Feature} from 'react-mapbox-gl';
 
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Card from 'react-bootstrap/Card';
-import ReactMapboxGl, {Layer} from 'react-mapbox-gl';
-import {Feature} from 'react-mapbox-gl';
 
-const Map = ReactMapboxGl({
-  accessToken: 'pk.eyJ1IjoiY2hyaXNqbTA5MyIsImEiOiJja2VkZHFsMjIwMnRrMnBud2J3YXVxcHJpIn0.8YUfTVkZw7oNUmkrJikDkQ'
-});
 
 function Home(){
-
+ 
   return (
-  // <div>
-  //   <h1>Home Page</h1>
-  //   {
-  //     isAuth
-  //       ?<button onClick={logout}>Logout</button>
-  //       : <a href="/login">Login</a>
-  //   }
-  //   <br/>
-  //   <a href="/register">Register</a>
-  // </div>
     <div>
-
-      <Map
-        style="mapbox://styles/mapbox/streets-v9"
-        containerStyle={{
-          height: '50vh',
-          width: '100vw'
-        }}
-      >
-        <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-          <Feature coordinates={[47.609722, -122.3330056]} />
-        </Layer>
-      </Map>
-
       <Row>
+      <Container>
+      <Map />
+      </Container>
         <Col xs={3}> {/** Article category links */}
 
           {/** fill with links (search?) to different types of articles */}
@@ -81,7 +56,7 @@ function Home(){
 
       </Row>
     </div>
-  );
+    )
 }
 
 const categories = [

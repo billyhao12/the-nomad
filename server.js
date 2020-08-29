@@ -30,7 +30,7 @@ app.get('*', function(req, res) {
 
 mongoose
   .connect(
-    process.env.MONGODB_URI || 'mongodb://localhost/MY_DATABASE_NAME',
+    process.env.MONGODB_URI || 'mongodb://localhost/nomad',
     { useNewUrlParser: true }
   )
   .then(() => console.log('MongoDB successfully connected'))
