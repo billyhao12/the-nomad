@@ -26,7 +26,7 @@ function Map(props){
       });
     });
     console.log(props.coordinates)
-  // eslint-disable-next-line react/prop-types
+  
   },[props.coordinates] )
 
 
