@@ -1,5 +1,7 @@
 import React, { useEffect, useState} from 'react';
-
+import {Link} from "react-router-dom";
+import Categories from '../components/Categories';
+import ArticlePreview from '../components/ArticlePreview';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -29,7 +31,6 @@ function Home(){
       
   }
 
-  
 
   return (
   // <div>
@@ -59,17 +60,7 @@ function Home(){
       <Row>
         <Col xs={3}> {/** Article category links */}
 
-          {/** fill with links (search?) to different types of articles */}
-          <ListGroup> Categories {/** I would like to have this list be dynamic */}
-
-            {
-              categories.map(category => (
-                // eslint-disable-next-line react/jsx-key
-                <ListGroup.Item><a href="#">{category}</a></ListGroup.Item>
-              ))
-            }
-
-          </ListGroup>
+          <Categories />
 
         </Col>
 
@@ -78,19 +69,15 @@ function Home(){
           {/** Start with a basic list of cards */}
           <ListGroup className="list-group">articles
             <ListGroup.Item>
-
               {
                 articles.map(article => (
                   // eslint-disable-next-line react/jsx-key
-                  <Card>
-                    <Card.Img src="..." className="card-img-top" alt="..."></Card.Img>
-                    <Card.Title>{article.title}</Card.Title>
-                    {/** <Card.Subtitle className="mb-2 text-muted">Authored by: <a href='#'>{article.author}</a></Card.Subtitle>**/}
-                  </Card>
-                ))
-              }
 
-              
+                  <ArticlePreview article={article} />
+
+                  
+                ))
+              }              
             </ListGroup.Item>
             {/* </li> */}
           </ListGroup>
@@ -101,15 +88,5 @@ function Home(){
     </div>
   );
 }
-
-const categories = [
-  'Food',
-  'Sports',
-  'Travel',
-  'Tech / Science',
-  'Politics',
-  'Entertainment',
-  'Location'
-];
 
 export default Home; 
