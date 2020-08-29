@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react';
 import{Col, Row, Container, ListGroup, Card} from 'react-bootstrap';
 import Map from '../components/Map';
 import api from '../utils/api';
+import propTypes from 'prop-types';
 // import {Feature} from 'react-mapbox-gl';
 
 
@@ -22,11 +23,18 @@ function Home(){
       
   }
 
+  const articlesCoordinates= articles.map((article) => ({
+    lat: article.lat,
+    long: article.long,
+    id: article._id
+  }))
+ 
+  console.log(articlesCoordinates)
  
   return (
     <div>
       <Container>
-        <Map />
+        <Map coordinates= {articlesCoordinates} />
       </Container>
       <Row>
         <Col xs={3}> {/** Article category links */}
@@ -82,5 +90,9 @@ const categories = [
   'Entertainment',
   'Location'
 ];
+
+Home.propTypes = {
+  children: propTypes.node,
+};
 
 export default Home; 
