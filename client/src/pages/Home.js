@@ -1,9 +1,10 @@
 import React, { useEffect, useState} from 'react';
 
+import ArticlePreview from '../components/ArticlePreview';
+
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Card from 'react-bootstrap/Card';
 import ReactMapboxGl, {Layer} from 'react-mapbox-gl';
 import {Feature} from 'react-mapbox-gl';
 import api from '../utils/api';
@@ -82,14 +83,11 @@ function Home(){
               {
                 articles.map(article => (
                   // eslint-disable-next-line react/jsx-key
-                  <Card>
-                    <Card.Img src="..." className="card-img-top" alt="..."></Card.Img>
-                    <Card.Title>{article.title}</Card.Title>
-                    {/** <Card.Subtitle className="mb-2 text-muted">Authored by: <a href='#'>{article.author}</a></Card.Subtitle>**/}
-                  </Card>
-                ))
-              }
+                  <ArticlePreview article={article}/>
 
+                ))
+
+              }
               
             </ListGroup.Item>
             {/* </li> */}

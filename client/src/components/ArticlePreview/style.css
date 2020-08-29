@@ -1,0 +1,38 @@
+@media only screen and (max-width: 480px) {
+    Card {
+      width: 360px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    Card {
+      width: 576px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    Card {
+      width: 768px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    Card {
+      width: 900px;
+    }
+}
+
+@media only screen and (min-width: 1201px) {
+    Card {
+      width: 900px;
+    }
+}
+
+.articleImages {
+    height: auto;
+    width: 50%;
+}
+
+.card {
+    margin-bottom: 15px;
+}
