@@ -26,8 +26,8 @@ function Home(){
   return (
     <div>
       <Container>
-      <Map />
-        </Container>
+        <Map />
+      </Container>
       <Row>
         <Col xs={3}> {/** Article category links */}
 
