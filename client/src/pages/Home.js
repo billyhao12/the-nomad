@@ -1,11 +1,12 @@
 import React, { useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 import Categories from '../components/Categories';
 import ArticlePreview from '../components/ArticlePreview';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 import ReactMapboxGl, {Layer} from 'react-mapbox-gl';
 import {Feature} from 'react-mapbox-gl';
 import api from '../utils/api';
@@ -44,12 +45,11 @@ function Home(){
   //   <a href="/register">Register</a>
   // </div>
     <div>
-  
       <Map
         style="mapbox://styles/mapbox/streets-v11"
         containerStyle={{
           height: '50vh',
-          width: '100vw'
+          width: 'auto'
         }}
       >
         <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
@@ -58,13 +58,13 @@ function Home(){
       </Map>
 
       <Row>
-        <Col xs={3}> {/** Article category links */}
+        <Col xs={3} className="px-0"> {/** Article category links */}
 
           <Categories />
 
         </Col>
 
-        <Col xs={9}> {/** List of articles */}
+        <Col xs={9} className="px-0"> {/** List of articles */}
 
           {/** Start with a basic list of cards */}
           <ListGroup className="list-group">articles
