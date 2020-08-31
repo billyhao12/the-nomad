@@ -1,6 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
+import PropTypes from 'prop-types';
+
+ArticlePreview.propTypes = {
+  article: PropTypes.object,
+  image: PropTypes.image,
+  _id: PropTypes.string,
+  title: PropTypes.string
+};
 
 function ArticlePreview(props) {
   return (

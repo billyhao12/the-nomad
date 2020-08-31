@@ -1,8 +1,8 @@
 import React, { useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
 import Categories from '../components/Categories';
 import ArticlePreview from '../components/ArticlePreview';
-import{Col, Row, Container, ListGroup, Card} from 'react-bootstrap';
+import{Col, Row, Container, ListGroup, /*Card*/} from 'react-bootstrap';
 import Map from '../components/Map';
 import api from '../utils/api';
 // import {Feature} from 'react-mapbox-gl';
@@ -43,10 +43,10 @@ function Home(){
           <ListGroup className="list-group">articles
             <ListGroup.Item>
               {
-                articles.map(article => (
+                articles.map((article, index) => (
                   // eslint-disable-next-line react/jsx-key
 
-                  <ArticlePreview article={article} />
+                  <ArticlePreview article={article} key={index} />
 
                   
                 ))
