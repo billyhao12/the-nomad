@@ -6,6 +6,10 @@ export default {
     return axios.get('/api/articles');
   },
 
+  getArticle( id ) {
+    return axios.get('/api/articles/'  + id);
+  },
+
   register( userData ) {
 
     return axios.post('/api/register', userData);

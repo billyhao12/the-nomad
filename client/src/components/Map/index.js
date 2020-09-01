@@ -10,17 +10,39 @@ class Map extends React.Component {
     this.state = {
       lng: 5,
       lat: 34,
-      zoom: 2
+      zoom: 5
     };
   }
   
   componentDidMount() {
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log('Latitude is :', position.coords.latitude);
+      console.log('Longitude is :', position.coords.longitude);
+    });
+
+    if ('geolocation' in navigator) {
+      console.log('GeoLocation is available');
+    } else {
+      console.log('GeoLocation is not available');
+    }
+
+    navigator.geolocation.watchPosition(
+      function(position) {
+        console.log(position)
+      },
+      function(error) {
+        console.error('Error Code = ' + error.code + ' - ' + error.message);
+      });
+
     const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [this.state.lng, this.state.lat],
       zoom: this.state.zoom
     });
+
+
     map.on('move', () => {
       this.setState({
         lng: map.getCenter().lng.toFixed(4),
