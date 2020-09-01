@@ -14,4 +14,6 @@ router
   .put(articlesController.update)
   .delete(articlesController.remove);
 
+// Potentially make the comment a subroute of the article
+
 module.exports = router;
