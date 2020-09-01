@@ -5,8 +5,9 @@ import ArticlePreview from '../components/ArticlePreview';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
-import ReactMapboxGl, {Layer} from 'react-mapbox-gl';
-import {Feature} from 'react-mapbox-gl';
+import Container from 'react-bootstrap/Container';
+import Map from '../components/Map';
+import Categories from '../components/Categories';
 import api from '../utils/api';
 // import {Feature} from 'react-mapbox-gl';
 
@@ -48,7 +49,7 @@ function Home(){
               {
                 articles.map((article, index) => (
                   // eslint-disable-next-line react/jsx-key
-                  <ArticlePreview article={article}/>
+                  <ArticlePreview article={article} key={index}/>
 
                 ))
 
