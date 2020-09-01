@@ -1,5 +1,8 @@
 import React, { useEffect, useState} from 'react';
-import{Col, Row, Container, ListGroup, Card} from 'react-bootstrap';
+//import {Link} from 'react-router-dom';
+import Categories from '../components/Categories';
+import ArticlePreview from '../components/ArticlePreview';
+import{Col, Row, Container, ListGroup, /*Card*/} from 'react-bootstrap';
 import Map from '../components/Map';
 import api from '../utils/api';
 // import {Feature} from 'react-mapbox-gl';
@@ -22,47 +25,32 @@ function Home(){
       
   }
 
- 
   return (
     <div>
       <Container>
         <Map />
       </Container>
       <Row>
-        <Col xs={3}> {/** Article category links */}
+        <Col xs={3} className="px-0"> {/** Article category links */}
 
-          {/** fill with links (search?) to different types of articles */}
-          <ListGroup> Categories {/** I would like to have this list be dynamic */}
-
-            {
-              categories.map(category => (
-                // eslint-disable-next-line react/jsx-key
-                <ListGroup.Item><a href="#">{category}</a></ListGroup.Item>
-              ))
-            }
-
-          </ListGroup>
+          <Categories />
 
         </Col>
 
-        <Col xs={9}> {/** List of articles */}
+        <Col xs={9} className="px-0"> {/** List of articles */}
 
           {/** Start with a basic list of cards */}
           <ListGroup className="list-group">articles
             <ListGroup.Item>
-
               {
-                articles.map(article => (
+                articles.map((article, index) => (
                   // eslint-disable-next-line react/jsx-key
-                  <Card>
-                    <Card.Img src="..." className="card-img-top" alt="..."></Card.Img>
-                    <Card.Title>{article.title}</Card.Title>
-                    {/** <Card.Subtitle className="mb-2 text-muted">Authored by: <a href='#'>{article.author}</a></Card.Subtitle>**/}
-                  </Card>
-                ))
-              }
 
-              
+                  <ArticlePreview article={article} key={index} />
+
+                  
+                ))
+              }              
             </ListGroup.Item>
             {/* </li> */}
           </ListGroup>
@@ -72,15 +60,5 @@ function Home(){
       </Row>
     </div>
   )}
-
-const categories = [
-  'Food',
-  'Sports',
-  'Travel',
-  'Tech / Science',
-  'Politics',
-  'Entertainment',
-  'Location'
-];
 
 export default Home; 
