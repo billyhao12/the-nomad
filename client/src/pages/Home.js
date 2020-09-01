@@ -8,13 +8,11 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import ReactMapboxGl, {Layer} from 'react-mapbox-gl';
 import {Feature} from 'react-mapbox-gl';
 import api from '../utils/api';
+// import {Feature} from 'react-mapbox-gl';
 
-const Map = ReactMapboxGl({
-  accessToken: 'pk.eyJ1IjoiY2hyaXNqbTA5MyIsImEiOiJja2VkZHFsMjIwMnRrMnBud2J3YXVxcHJpIn0.8YUfTVkZw7oNUmkrJikDkQ'
-});
+
 
 function Home(){
-
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -30,58 +28,25 @@ function Home(){
       
   }
 
-  
-
   return (
-  // <div>
-  //   <h1>Home Page</h1>
-  //   {
-  //     isAuth
-  //       ?<button onClick={logout}>Logout</button>
-  //       : <a href="/login">Login</a>
-  //   }
-  //   <br/>
-  //   <a href="/register">Register</a>
-  // </div>
     <div>
-  
-      <Map
-        style="mapbox://styles/mapbox/streets-v11"
-        containerStyle={{
-          height: '50vh',
-          width: '100vw'
-        }}
-      >
-        <Layer type="symbol" id="marker" layout={{ 'icon-image': 'marker-15' }}>
-          <Feature coordinates={[-122.3330056, 47.609722]} />
-        </Layer>
-      </Map>
-
+      <Container>
+        <Map />
+      </Container>
       <Row>
-        <Col xs={3}> {/** Article category links */}
+        <Col xs={3} className="px-0"> {/** Article category links */}
 
-          {/** fill with links (search?) to different types of articles */}
-          <ListGroup> Categories {/** I would like to have this list be dynamic */}
-
-            {
-              categories.map(category => (
-                // eslint-disable-next-line react/jsx-key
-                <ListGroup.Item><a href="#">{category}</a></ListGroup.Item>
-              ))
-            }
-
-          </ListGroup>
+          <Categories />
 
         </Col>
 
-        <Col xs={9}> {/** List of articles */}
+        <Col xs={9} className="px-0"> {/** List of articles */}
 
           {/** Start with a basic list of cards */}
           <ListGroup className="list-group">articles
             <ListGroup.Item>
-
               {
-                articles.map(article => (
+                articles.map((article, index) => (
                   // eslint-disable-next-line react/jsx-key
                   <ArticlePreview article={article}/>
 
@@ -97,17 +62,6 @@ function Home(){
 
       </Row>
     </div>
-  );
-}
-
-const categories = [
-  'Food',
-  'Sports',
-  'Travel',
-  'Tech / Science',
-  'Politics',
-  'Entertainment',
-  'Location'
-];
+  )}
 
 export default Home; 
