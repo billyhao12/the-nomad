@@ -42,7 +42,7 @@ function ArticleDetailView(props) {
       )
       .catch(err => console.log(err));
   }
-
+  
   console.log('article: ' + article);
 
   return (
@@ -56,5 +56,4 @@ function ArticleDetailView(props) {
     </Container>
   );
 }
-
 export default ArticleDetailView;

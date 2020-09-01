@@ -7,7 +7,7 @@ export default {
   },
 
   getArticle( id ) {
-    return axios.get('/api/articles/'  + id);
+    return axios.get('/api/articles/' + id);
   },
 
   register( userData ) {
