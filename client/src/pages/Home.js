@@ -1,9 +1,13 @@
 import React, { useEffect, useState} from 'react';
-//import {Link} from 'react-router-dom';
-import Categories from '../components/Categories';
+
 import ArticlePreview from '../components/ArticlePreview';
-import{Col, Row, Container, ListGroup, /*Card*/} from 'react-bootstrap';
+
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Container from 'react-bootstrap/Container';
 import Map from '../components/Map';
+import Categories from '../components/Categories';
 import api from '../utils/api';
 // import {Feature} from 'react-mapbox-gl';
 
@@ -45,12 +49,12 @@ function Home(){
               {
                 articles.map((article, index) => (
                   // eslint-disable-next-line react/jsx-key
+                  <ArticlePreview article={article} key={index}/>
 
-                  <ArticlePreview article={article} key={index} />
-
-                  
                 ))
-              }              
+
+              }
+              
             </ListGroup.Item>
             {/* </li> */}
           </ListGroup>

@@ -1,23 +1,27 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import {Link} from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import PropTypes from 'prop-types';
 
-ArticlePreview.propTypes = {
-  article: PropTypes.object,
-  image: PropTypes.image,
-  _id: PropTypes.string,
-  title: PropTypes.string
-};
+import { Link } from 'react-router-dom';
 
-function ArticlePreview(props) {
+import './style.css';
+
+function ArticlePreview({article}) {
+
   return (
-    <Card>
-      <Card.Img src={props.article.image} className="card-img-top" alt="..."></Card.Img>
-      <Card.Title><Link to={`/article/${props.article._id}`}>{props.article.title}</Link></Card.Title>
-      {/** <Card.Subtitle className="mb-2 text-muted">Authored by: <a href='#'>{article.author}</a></Card.Subtitle>**/}
-    </Card>
+    <Link className="customCard" to={`/article/${article._id}`}>
+      <Card>
+        <Card.Img class="articleImages" variant="top" src={article.image} />
+        <Card.Body>
+          <Card.Title>{article.title}</Card.Title>
+          <Card.Text>
+          Article Summary
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    </Link>
   );
+
 }
 
 export default ArticlePreview;
