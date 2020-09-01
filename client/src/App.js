@@ -5,6 +5,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ArticleDetailView from './pages/ArticleDetailView';
+
 import TopNav from './components/TopNav';
 import Categories from './components/Categories';
 import Row from 'react-bootstrap/Row';
@@ -26,6 +28,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
+            <Route path="/article" component={ArticleDetailView} />
           </Switch>
         </div>
       </Router>

@@ -37,6 +37,6 @@
     margin-bottom: 15px;
 }
 
-a.customCard, a.customCard:hover {
+.customCard, .customCard:hover {
   color: inherit;
 }

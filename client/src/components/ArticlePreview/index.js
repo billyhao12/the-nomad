@@ -2,12 +2,14 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
+import { Link } from 'react-router-dom';
+
 import './style.css';
 
 function ArticlePreview({article}) {
 
   return (
-    <a className="customCard" href="#">
+    <Link className="customCard" to={`/article/${article._id}`}>
       <Card>
         <Card.Img class="articleImages" variant="top" src={article.image} />
         <Card.Body>
@@ -17,7 +19,7 @@ function ArticlePreview({article}) {
           </Card.Text>
         </Card.Body>
       </Card>
-    </a>
+    </Link>
   );
 
 }
