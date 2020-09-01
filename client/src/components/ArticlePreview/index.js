@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 ArticlePreview.propTypes = {
   article: PropTypes.object,
-  image: PropTypes.image,
+  image: PropTypes.string,
   _id: PropTypes.string,
   title: PropTypes.string
 };

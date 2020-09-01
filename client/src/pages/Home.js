@@ -5,6 +5,7 @@ import ArticlePreview from '../components/ArticlePreview';
 import{Col, Row, Container, ListGroup, /*Card*/} from 'react-bootstrap';
 import Map from '../components/Map';
 import api from '../utils/api';
+import TopNav from '../components/TopNav';
 // import {Feature} from 'react-mapbox-gl';
 
 
@@ -30,6 +31,7 @@ function Home(){
       <Container>
         <Map />
       </Container>
+      <TopNav />
       <Row>
         <Col xs={3} className="px-0"> {/** Article category links */}
 
