@@ -5,19 +5,23 @@ import './style.css';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXNqbTA5MyIsImEiOiJja2VkZHFsMjIwMnRrMnBud2J3YXVxcHJpIn0.8YUfTVkZw7oNUmkrJikDkQ';
 
+
 function Map(props){
   const [state, setState] = useState({lng: 5, lat: 34, zoom: 2});
 
   const mapContainerRef = useRef()
 
   useEffect(() => {
-    
+
+
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [state.lng, state.lat],
       zoom: state.zoom
     });
+
+
     map.on('move', () => {
       setState({
         lng: map.getCenter().lng.toFixed(4),

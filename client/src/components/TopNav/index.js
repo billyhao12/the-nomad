@@ -6,8 +6,6 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 
-import './style.css';
-
 function TopNav() {
 
   return (
@@ -22,6 +20,7 @@ function TopNav() {
         </Form>
 
         <Nav className="ml-auto">
+          <Nav.Link href="/createArticle">Create Article</Nav.Link>
           <Nav.Link href="/login">Login</Nav.Link>
           <Nav.Link href="/register">Register</Nav.Link>
         </Nav>
