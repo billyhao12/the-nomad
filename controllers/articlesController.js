@@ -2,6 +2,7 @@ const db = require('../models')
 
 module.exports = {
   findAll: function(req, res) {
+    console.log(req.user)
     db.Article
       .find(req.query)
       .sort({ date: -1 })
@@ -9,10 +10,9 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
   create: function(req, res) {
-    db.Article
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err))
+    db.Article.create({...req.body, user: req.user._id} )
+        .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
   },
   update: function(req, res) {
     db.Article
