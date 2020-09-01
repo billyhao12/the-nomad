@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import propTypes from 'prop-types';
 import './style.css';
 
@@ -8,7 +9,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXNqbTA5MyIsImEiOiJja2VkZHFsMjIwMnRrMnBud
 function Map(props){
   
  
-  const [state, setState] = useState({lng: 24, lat: 34, zoom: 2});
+  const [state, setState] = useState({lng: -122.51, lat: 47.62, zoom: 7.89});
 
   const mapContainerRef = useRef()
 
@@ -22,6 +23,9 @@ function Map(props){
       zoom: state.zoom
     });
 
+    map.on('load', function() {
+      map.resize();
+    });
 
     map.on('move', () => {
       setState({
@@ -36,11 +40,12 @@ function Map(props){
 
 
   return(
-    <div>
+    <div className="map_box_container">
+      <div ref={mapContainerRef} className='mapContainer' />
       <div className='sidebarStyle'>
         <div>Longitude: {state.lng} | Latitude: {state.lat} | Zoom: {state.zoom}</div>
       </div>
-      <div ref={mapContainerRef} className='mapContainer' />
+    
     </div>
   )
 }

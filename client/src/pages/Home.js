@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 
 import ArticlePreview from '../components/ArticlePreview';
-
+import Jumbotron from 'react-bootstrap/Jumbotron';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -10,7 +10,6 @@ import Map from '../components/Map';
 import Categories from '../components/Categories';
 import api from '../utils/api';
 import propTypes from 'prop-types';
-import TopNav from '../components/TopNav';
 // import {Feature} from 'react-mapbox-gl';
 
 function Home(){
@@ -60,7 +59,6 @@ function Home(){
       <Container>
         <Map coordinates= {articlesCoordinates} />
       </Container>
-      <TopNav />
       <Row>
         <Col xs={3} className="px-0"> {/** Article category links */}
 
