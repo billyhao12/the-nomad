@@ -9,6 +9,7 @@ import Container from 'react-bootstrap/Container';
 import Map from '../components/Map';
 import Categories from '../components/Categories';
 import api from '../utils/api';
+import propTypes from 'prop-types';
 import TopNav from '../components/TopNav';
 // import {Feature} from 'react-mapbox-gl';
 
@@ -30,10 +31,19 @@ function Home(){
       
   }
 
+
+  const articlesCoordinates= articles.map((article) => ({
+    lat: article.lat,
+    long: article.long,
+    id: article._id
+  }))
+ 
+  console.log(articlesCoordinates)
+  
   return (
     <div>
       <Container>
-        <Map />
+        <Map coordinates= {articlesCoordinates} />
       </Container>
       <TopNav />
       <Row>
@@ -66,5 +76,10 @@ function Home(){
       </Row>
     </div>
   )}
+
+Home.propTypes = {
+  children: propTypes.node,
+};
+
 
 export default Home; 

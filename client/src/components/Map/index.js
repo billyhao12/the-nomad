@@ -1,68 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
+import propTypes from 'prop-types';
 import './style.css';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXNqbTA5MyIsImEiOiJja2VkZHFsMjIwMnRrMnBud2J3YXVxcHJpIn0.8YUfTVkZw7oNUmkrJikDkQ';
 
-class Map extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      lng: 5,
-      lat: 34,
-      zoom: 5
-    };
-  }
-  
-  componentDidMount() {
 
-    navigator.geolocation.getCurrentPosition(function(position) {
-      console.log('Latitude is :', position.coords.latitude);
-      console.log('Longitude is :', position.coords.longitude);
-    });
+function Map(props){
+  const [state, setState] = useState({lng: 5, lat: 34, zoom: 2});
 
-    if ('geolocation' in navigator) {
-      console.log('GeoLocation is available');
-    } else {
-      console.log('GeoLocation is not available');
-    }
+  const mapContainerRef = useRef()
 
-    navigator.geolocation.watchPosition(
-      function(position) {
-        console.log(position)
-      },
-      function(error) {
-        console.error('Error Code = ' + error.code + ' - ' + error.message);
-      });
+  useEffect(() => {
+
 
     const map = new mapboxgl.Map({
-      container: this.mapContainer,
+      container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom
+      center: [state.lng, state.lat],
+      zoom: state.zoom
     });
 
 
     map.on('move', () => {
-      this.setState({
+      setState({
         lng: map.getCenter().lng.toFixed(4),
         lat: map.getCenter().lat.toFixed(4),
         zoom: map.getZoom().toFixed(2)
       });
     });
-  }
+    console.log(props.coordinates)
+  // eslint-disable-next-line react/prop-types
+  },[props.coordinates] )
 
-  render() {
-    return (
-      <div>
-        <div className='sidebarStyle'>
-          <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
-        </div>
-        <div ref={el => this.mapContainer = el} className='mapContainer' />
+
+  return(
+    <div>
+      <div className='sidebarStyle'>
+        <div>Longitude: {state.lng} | Latitude: {state.lat} | Zoom: {state.zoom}</div>
       </div>
-    )
-  }
+      <div ref={mapContainerRef} className='mapContainer' />
+    </div>
+  )
 }
-
+Map.propTypes={
+  coordinates: propTypes.array
+}
 
 export default Map;
