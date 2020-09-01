@@ -4,15 +4,23 @@ import Map from '../components/Map';
 import api from '../utils/api';
 import propTypes from 'prop-types';
 // import {Feature} from 'react-mapbox-gl';
-
+var lat ;
+var long;
 
 
 function Home(){
   const [articles, setArticles] = useState([]);
+  const [position, setPosition] = useState([]);
 
   useEffect(() => {
     loadArticles()
   }, [])
+
+  useEffect(() => {
+    loadArticles()
+    loadPosition()
+  }, [])
+
 
   function loadArticles() {
     api.getArticles()
@@ -23,13 +31,39 @@ function Home(){
       
   }
 
-  const articlesCoordinates= articles.map((article) => ({
-    lat: article.lat,
-    long: article.long,
-    id: article._id
-  }))
+  const articlesCoordinates= articles.map((article) => (
+    {
+      lat: article.lat,
+      long: article.long,
+      id: article._id
+    }
+  ))
  
-  console.log(articlesCoordinates)
+  //User GPS location
+ 
+function loadPosition() {
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position);
+    }
+    function position(pos) {
+      setPosition(pos);
+    }
+  
+
+  if ('geolocation' in navigator) {
+    console.log('GeoLocation is available');
+  } else {
+    console.log('GeoLocation is not available');
+  }
+
+  navigator.geolocation.watchPosition(
+    function(position) {
+      console.log(position)
+    },
+    function(error) {
+      console.error('Error Code = ' + error.code + ' - ' + error.message);
+    });
+
  
   return (
     <div>
