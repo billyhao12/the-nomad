@@ -77,17 +77,6 @@ function Home(){
     </div>
   )}
 
-
-const categories = [
-  'Food',
-  'Sports',
-  'Travel',
-  'Tech / Science',
-  'Politics',
-  'Entertainment',
-  'Location'
-];
-
 Home.propTypes = {
   children: propTypes.node,
 };
