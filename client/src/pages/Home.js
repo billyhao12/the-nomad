@@ -13,24 +13,35 @@ import propTypes from 'prop-types';
 import TopNav from '../components/TopNav';
 // import {Feature} from 'react-mapbox-gl';
 
-
-
 function Home(){
   const [articles, setArticles] = useState([]);
+  const [position, setPosition] = useState([]);
 
   useEffect(() => {
     loadArticles()
-  }, [])
-
+    loadPosition()
+  },[])
+  
   function loadArticles() {
     api.getArticles()
       .then(res =>
         setArticles(res.data)
       )
       .catch(err => console.log(err));
-      
+  }
+  
+  function loadPosition() {
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position);
+    }
+  
+    function position(pos) {
+      setPosition({latitude: pos.coords.latitude, longitude: pos.coords.longitude});
+    }
   }
 
+  console.log(`Position lat: ${position.latitude}`);
+  console.log(`Position long: ${position.longitude}`);
 
   const articlesCoordinates= articles.map((article) => ({
     lat: article.lat,
