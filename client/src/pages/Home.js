@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from 'react';
 
 import ArticlePreview from '../components/ArticlePreview';
-
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -10,7 +9,6 @@ import Map from '../components/Map';
 import Categories from '../components/Categories';
 import api from '../utils/api';
 import propTypes from 'prop-types';
-import TopNav from '../components/TopNav';
 // import {Feature} from 'react-mapbox-gl';
 
 function Home(){
@@ -43,11 +41,15 @@ function Home(){
   console.log(`Position lat: ${position.latitude}`);
   console.log(`Position long: ${position.longitude}`);
 
-  const articlesCoordinates= articles.map((article) => ({
-    lat: article.lat,
-    long: article.long,
-    id: article._id
-  }))
+  const articlesCoordinates= articles.map((article) => (
+    {
+      lat: article.lat,
+      long: article.long,
+      id: article._id
+    }
+  ))
+ 
+  //User GPS location
  
   console.log(articlesCoordinates)
   
@@ -56,7 +58,6 @@ function Home(){
       <Container>
         <Map coordinates= {articlesCoordinates} />
       </Container>
-      <TopNav />
       <Row>
         <Col xs={3} className="px-0"> {/** Article category links */}
 
