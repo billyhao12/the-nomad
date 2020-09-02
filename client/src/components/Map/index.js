@@ -48,9 +48,9 @@ function Map(props){
         zoom: map.getZoom().toFixed(2)
       });
     });
-    console.log(props.coordinates)
+    console.log(props.articlesCoordinates)
   
-  },[props.coordinates] )
+  },[props.articlesCoordinates] )
 
 
   return(
