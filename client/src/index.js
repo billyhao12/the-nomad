@@ -5,7 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { StoreProvider } from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import 'react-bulma-components/dist/react-bulma-components.min.css';
 
 ReactDOM.render(
   <StoreProvider>

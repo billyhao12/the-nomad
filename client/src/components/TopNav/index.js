@@ -1,32 +1,42 @@
 import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
-
+import {Navbar} from 'react-bulma-components';
 
 function TopNav() {
 
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="/">The Nomad</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-
-        <Form inline className="ml-auto">
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-success">Search</Button>
-        </Form>
-
-        <Nav className="ml-auto">
-          <Nav.Link href="/createArticle">Create Article</Nav.Link>
-          <Nav.Link href="/login">Login</Nav.Link>
-          <Nav.Link href="/register">Register</Nav.Link>
-        </Nav>
-
-      </Navbar.Collapse>
+    <Navbar>
+      <Navbar.Brand>
+        <Navbar.Item renderAs="a" href="#">
+          <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28" />
+        </Navbar.Item>
+        <Navbar.Burger />
+      </Navbar.Brand>
+      <Navbar.Menu >
+        <Navbar.Container>
+          <Navbar.Item dropdown hoverable href="#">
+            <Navbar.Link>
+                First
+            </Navbar.Link>
+            <Navbar.Dropdown>
+              <Navbar.Item href="#">
+                  Subitem 1
+              </Navbar.Item>
+              <Navbar.Item href="#">
+                  Subitem 2
+              </Navbar.Item>
+            </Navbar.Dropdown>
+          </Navbar.Item>
+          <Navbar.Item href="#">
+              Second
+          </Navbar.Item>
+        </Navbar.Container>
+        <Navbar.Container position="end">
+          <Navbar.Item href="#">
+                  At the end
+          </Navbar.Item>
+        </Navbar.Container>
+      </Navbar.Menu>
     </Navbar>
   )
 
