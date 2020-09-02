@@ -11,7 +11,7 @@ module.exports = {
   },
   create: function(req, res) {
     db.Article.create({...req.body, user: req.user._id} )
-        .then((dbModel) => res.json(dbModel))
+      .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
   update: function(req, res) {
