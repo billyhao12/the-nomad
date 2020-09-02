@@ -14,8 +14,8 @@ function Map(props){
   console.log(articlesCoordinates);
   const [state, setState] = useState({lng: -122.51, lat: 47.62, zoom: 7.89});
  
-
   const mapContainerRef = useRef()
+
   useEffect(() =>{
     if(!props.userLatitude){
       return
@@ -28,6 +28,7 @@ function Map(props){
       zoom: 8
     });
 
+  
     map.on('load',  function() { 
 
       new mapboxgl.Marker()
@@ -162,6 +163,7 @@ function Map(props){
         'waterway-label'
       );
     });
+
 
     map.on('move', () => {
       setState({

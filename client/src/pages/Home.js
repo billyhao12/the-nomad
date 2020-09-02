@@ -39,10 +39,14 @@ function Home(){
   }
 
   const articlesCoordinates= articles.map((article) => (
-    {
-      lat: article.lat,
-      long: article.long,
-      id: article._id
+    { 'type': 'Feature',
+      'properties': {id: article._id},
+      'geometry':
+      {
+        type: 'Point',
+        coordinates: [article.long, article.lat],
+        
+      }
     }
   ))
  
