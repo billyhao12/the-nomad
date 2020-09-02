@@ -8,7 +8,10 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXNqbTA5MyIsImEiOiJja2VkZHFsMjIwMnRrMnBud
 
 function Map(props){
   
- 
+  let userLatitude = props.userLatitude
+  let userLongitude = props.userLongitude
+  let articlesCoordinates = [props.articlesCoordinates]
+
   const [state, setState] = useState({lng: -122.51, lat: 47.62, zoom: 7.89});
 
   const mapContainerRef = useRef()
@@ -23,7 +26,17 @@ function Map(props){
       zoom: state.zoom
     });
 
-    map.on('load', function() {
+    
+    // var articleMarker = new mapboxgl.Marker()
+    //     .setLngLat([{}])
+
+    map.on('load',  function() { 
+      setState({
+        lng: userLongitude,
+        lat: userLatitude
+      })
+      //  new mapboxgl.Marker().setLngLat({lng: userLongitude, lat: userLatitude})
+      //   .addTo(map)
       map.resize();
     });
 
@@ -50,7 +63,9 @@ function Map(props){
   )
 }
 Map.propTypes={
-  coordinates: propTypes.array
+  coordinates: propTypes.array,
+  userLongitude: propTypes.number,
+  userLatitude: propTypes.number
 }
 
 export default Map;
