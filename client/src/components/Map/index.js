@@ -8,23 +8,31 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXNqbTA5MyIsImEiOiJja2VkZHFsMjIwMnRrMnBud
 
 function Map(props){
   
- 
+
+  let articlesCoordinates = [props.articlesCoordinates]
+
+  console.log(articlesCoordinates);
   const [state, setState] = useState({lng: -122.51, lat: 47.62, zoom: 7.89});
+ 
 
   const mapContainerRef = useRef()
-
-  useEffect(() => {
-
+  useEffect(() =>{
+    if(!props.userLatitude){
+      return
+    }
 
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [state.lng, state.lat],
-      zoom: state.zoom
+      center: [props.userLongitude, props.userLatitude],
+      zoom: 8
     });
 
-    map.on('load', function() {
-      map.resize();
+    map.on('load',  function() { 
+
+      new mapboxgl.Marker()
+        .setLngLat({lon: props.userLongitude, lat: props.userLatitude})
+        .addTo(map)
     });
 
     map.on('move', () => {
@@ -34,9 +42,8 @@ function Map(props){
         zoom: map.getZoom().toFixed(2)
       });
     });
-    console.log(props.coordinates)
-  
-  },[props.coordinates] )
+
+  },[props])
 
 
   return(
@@ -50,7 +57,9 @@ function Map(props){
   )
 }
 Map.propTypes={
-  coordinates: propTypes.array
+  articlesCoordinates: propTypes.array,
+  userLongitude: propTypes.number,
+  userLatitude: propTypes.number
 }
 
 export default Map;
