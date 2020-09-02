@@ -8,37 +8,31 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXNqbTA5MyIsImEiOiJja2VkZHFsMjIwMnRrMnBud
 
 function Map(props){
   
-  let userLatitude = props.userLatitude
-  let userLongitude = props.userLongitude
+
   let articlesCoordinates = [props.articlesCoordinates]
 
   console.log(articlesCoordinates);
   const [state, setState] = useState({lng: -122.51, lat: 47.62, zoom: 7.89});
+ 
 
   const mapContainerRef = useRef()
-
-  useEffect(() => {
-
+  useEffect(() =>{
+    if(!props.userLatitude){
+      return
+    }
 
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [state.lng, state.lat],
-      zoom: state.zoom
+      center: [props.userLongitude, props.userLatitude],
+      zoom: 8
     });
 
-    
-    // var articleMarker = new mapboxgl.Marker()
-    //     .setLngLat([{}])
-
     map.on('load',  function() { 
-      setState({
-        lng: userLongitude,
-        lat: userLatitude
-      })
-      //  new mapboxgl.Marker().setLngLat({lng: userLongitude, lat: userLatitude})
-      //   .addTo(map)
-      map.resize();
+
+      new mapboxgl.Marker()
+        .setLngLat({lon: props.userLongitude, lat: props.userLatitude})
+        .addTo(map)
     });
 
     map.on('move', () => {
@@ -48,9 +42,8 @@ function Map(props){
         zoom: map.getZoom().toFixed(2)
       });
     });
-    console.log(props.articlesCoordinates)
-  
-  },[props.articlesCoordinates] )
+
+  },[props])
 
 
   return(
