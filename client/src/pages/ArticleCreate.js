@@ -1,18 +1,23 @@
 import React, {/*useState,*/ Component} from 'react';
 
-//import api from '../utils/api';
-
+import api from '../utils/api';
+import {Redirect} from 'react-router';
+import {withRouter} from 'react-router-dom';
 // example image url that is free and won't cause an error linking to it: https://images.unsplash.com/photo-1598143167992-f211e206b2d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80
 
 import {Form,  Button, Container, Jumbotron, Image, Navbar} from 'react-bootstrap';
+import ArticleDetailView from './ArticleDetailView';
 
 class ArticleCreate extends Component {
+
 
   state = {
     articleTitle: '',
     categories: [],
     articleBody: '',
-    image: ''
+    image: '',
+    created: false,
+    newArticleId: '',
   };
 
   handleFormSubmit = event => {
@@ -25,6 +30,16 @@ class ArticleCreate extends Component {
     console.log(`Image: ${this.state.image}`);
     console.log(`Categories: ${this.state.categories}`);
     console.log(`Body: ${this.state.articleBody}`);
+
+    api.createArticle({title: this.state.articleTitle, category: this.state.categories, body: this.state.articleBody, image: this.state.image})
+      .then(res =>
+        this.setState({newArticleId: res.data._id}, () => {
+          this.setState({created: true}, () => {
+            console.log(`Success! ${res.data._id}, ${this.state.newArticleId}`)}
+          )
+        })
+      )
+      .catch(err => console.log(err));
   }
 
   handleInputChange = event => {
@@ -71,6 +86,11 @@ class ArticleCreate extends Component {
 
   render() {
     
+    if(this.state.created) {
+      console.log(`created: ${this.state.created}, articleId: ${this.state.newArticleId}`);
+      return <Redirect to={`/article/${this.state.newArticleId}`} component={ArticleDetailView}/>
+    }
+
     return(
       <div>
         <Container>
@@ -137,4 +157,4 @@ const categoriesList = [
   'Location'
 ];
 
-export default ArticleCreate;
+export default withRouter(ArticleCreate);
