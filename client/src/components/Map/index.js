@@ -12,6 +12,7 @@ function Map(props){
   let userLongitude = props.userLongitude
   let articlesCoordinates = [props.articlesCoordinates]
 
+  console.log(articlesCoordinates);
   const [state, setState] = useState({lng: -122.51, lat: 47.62, zoom: 7.89});
 
   const mapContainerRef = useRef()
@@ -63,7 +64,7 @@ function Map(props){
   )
 }
 Map.propTypes={
-  coordinates: propTypes.array,
+  articlesCoordinates: propTypes.array,
   userLongitude: propTypes.number,
   userLatitude: propTypes.number
 }
