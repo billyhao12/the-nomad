@@ -10,6 +10,10 @@ export default {
     return axios.get('/api/articles/' + id);
   },
 
+  createArticle( data ) {
+    return axios.post('/api/articles', data);
+  },
+
   register( userData ) {
 
     return axios.post('/api/register', userData);
