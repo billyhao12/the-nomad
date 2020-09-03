@@ -38,25 +38,27 @@ function Home(){
     }
   }
 
-  console.log(`Position lat: ${position.latitude}`);
-  console.log(`Position long: ${position.longitude}`);
-
   const articlesCoordinates= articles.map((article) => (
-    {
-      lat: article.lat,
-      long: article.long,
-      id: article._id
+    { 'type': 'Feature',
+      'properties': {'id': article._id},
+      'geometry':
+      {
+        'type': 'Point',
+        'coordinates': [article.long, article.lat, 0],
+      }
     }
   ))
  
   //User GPS location
- 
-  console.log(articlesCoordinates)
   
   return (
     <div>
       <Container>
-        <Map coordinates= {articlesCoordinates} />
+        <Map 
+          userLatitude={position.latitude}
+          userLongitude={position.longitude}
+          articlesCoordinates={articlesCoordinates}
+        />
       </Container>
       <Row>
         <Col xs={3} className="px-0"> {/** Article category links */}

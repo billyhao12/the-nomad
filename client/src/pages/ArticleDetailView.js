@@ -48,7 +48,7 @@ function ArticleDetailView(props) {
   return (
     <Container>
       <Jumbotron>
-        <h1>{article.title}</h1>
+        <h1 style={{textAlign: 'center'}}>{article.title}</h1>
         <Image src={article.image} rounded />
         <Navbar bg="light">Category: {article.category} Publication date: {article.date} lat: {article.lat} lon: {article.long} </Navbar>
         <p><br></br><br></br>{article.body}</p>
