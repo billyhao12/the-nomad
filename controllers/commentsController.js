@@ -14,10 +14,16 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
   create: function(req, res) {
-    db.Comment
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err))
+    db.Comment.create({ ...req.body, user: req.user._id })
+      .then((dbModel) => {
+        User.findOneAndUpdate(req.user._id, {
+          $push: { comments: dbModel._id },
+        }).then(() => res.json(dbModel));
+      })
+
+      // article id is being provided by the react application 
+
+      .catch((err) => res.status(422).json(err));
   },
   update: function(req, res){
     db.Comment
