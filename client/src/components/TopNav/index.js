@@ -1,43 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import {Navbar} from 'react-bulma-components';
+import { Navbar } from 'react-bulma-components';
+import { Form } from 'react-bulma-components';
+import { Button } from 'react-bulma-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './style.css';
+
+const { Field, Control, Input } = Form;
 
 function TopNav() {
 
+  const [search, setSearch] = useState();
+
   return (
+
     <Navbar>
+
       <Navbar.Brand>
-        <Navbar.Item renderAs="a" href="#">
-          <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28" />
+        <Navbar.Item renderAs="a" href="/">
+          The Nomad
         </Navbar.Item>
-        <Navbar.Burger />
+        <Navbar.Burger>
+        </Navbar.Burger>
       </Navbar.Brand>
-      <Navbar.Menu >
+
+      <Navbar.Menu>
+
         <Navbar.Container>
-          <Navbar.Item dropdown hoverable href="#">
-            <Navbar.Link>
-                First
-            </Navbar.Link>
-            <Navbar.Dropdown>
-              <Navbar.Item href="#">
-                  Subitem 1
-              </Navbar.Item>
-              <Navbar.Item href="#">
-                  Subitem 2
-              </Navbar.Item>
-            </Navbar.Dropdown>
-          </Navbar.Item>
-          <Navbar.Item href="#">
-              Second
+          <Navbar.Item renderAs='div'>
+            <Field className="has-addons">
+              <Control className="is-expanded">
+                <Input
+                  className="is-info is-fullwidth"
+                  placeholder="Search"
+                  type="text"
+                  value={search}
+                  onChange={e => setSearch(e.target.value)}
+                />
+              </Control>
+              <Control>
+                <Button className="is-info" type="primary">
+                  <FontAwesomeIcon icon="search" />
+                </Button>
+              </Control>
+            </Field>
           </Navbar.Item>
         </Navbar.Container>
+
         <Navbar.Container position="end">
-          <Navbar.Item href="#">
-                  At the end
+          <Navbar.Item href="/createArticle">
+            Create Article
+          </Navbar.Item>
+          <Navbar.Item href="/login">
+            Login
+          </Navbar.Item>
+          <Navbar.Item href="/register">
+            Register
           </Navbar.Item>
         </Navbar.Container>
+
       </Navbar.Menu>
+
     </Navbar>
+    
   )
 
 }
