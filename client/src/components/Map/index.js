@@ -112,6 +112,7 @@ function Map(props){
         }
       });
 
+      //User location marker
       new mapboxgl.Marker()
         .setLngLat({lon: props.userLongitude, lat: props.userLatitude})
         .addTo(map)
@@ -240,6 +241,40 @@ function Map(props){
       );
     });
 
+    // inspect a cluster on click
+    map.on('click', 'clusters', function(e) {
+      var features = map.queryRenderedFeatures(e.point, {
+        layers: ['clusters']
+      });
+      var clusterId = features[0].properties.cluster_id;
+      map.getSource('articles').getClusterExpansionZoom(
+        clusterId,
+        function(err, zoom) {
+          if (err) return;
+   
+          map.easeTo({
+            center: features[0].geometry.coordinates,
+            zoom: zoom
+          });
+        }
+      );
+    });
+   
+    // When a click event occurs on a feature in
+    // the unclustered-point layer, open a popup at
+    // the location of the feature, with
+    // description HTML from its properties.
+    // this will link an article to an on click event
+
+    // map.on('click', 'unclustered-point', function(e) {
+    //   var coordinates = e.features[0].geometry.coordinates.slice();
+   
+    map.on('mouseenter', 'clusters', function() {
+      map.getCanvas().style.cursor = 'pointer';
+    });
+    map.on('mouseleave', 'clusters', function() {
+      map.getCanvas().style.cursor = '';
+    });
 
     map.on('move', () => {
       
