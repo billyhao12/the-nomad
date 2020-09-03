@@ -40,7 +40,10 @@ function Home(){
 
   const articlesCoordinates= articles.map((article) => (
     { 'type': 'Feature',
-      'properties': {'id': article._id},
+      'properties': {
+        'id': article._id,
+        'details': '<strong>'+ article.title + '</strong> <br><img src="'+ article.image +'" width="100">'
+      },
       'geometry':
       {
         'type': 'Point',
