@@ -10,10 +10,6 @@ const CommentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Article",
   },
-  author: {
-    type: String,
-    required: true,
-  },
   content: {
     type: String,
     required: true,
