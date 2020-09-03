@@ -40,12 +40,11 @@ function Home(){
 
   const articlesCoordinates= articles.map((article) => (
     { 'type': 'Feature',
-      'properties': {id: article._id},
+      'properties': {'id': article._id},
       'geometry':
       {
-        type: 'Point',
-        coordinates: [article.long, article.lat],
-        
+        'type': 'Point',
+        'coordinates': [article.long, article.lat, 0],
       }
     }
   ))
@@ -59,7 +58,6 @@ function Home(){
           userLatitude={position.latitude}
           userLongitude={position.longitude}
           articlesCoordinates={articlesCoordinates}
-
         />
       </Container>
       <Row>
