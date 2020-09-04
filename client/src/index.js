@@ -4,8 +4,13 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { StoreProvider } from './store';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
+import 'react-bulma-components/dist/react-bulma-components.min.css';
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faSearch);
 
 ReactDOM.render(
   <StoreProvider>

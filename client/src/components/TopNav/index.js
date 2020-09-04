@@ -1,33 +1,68 @@
-import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import React, { useState } from 'react';
 
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
+import { Navbar } from 'react-bulma-components';
+import { Form } from 'react-bulma-components';
+import { Button } from 'react-bulma-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './style.css';
 
+const { Field, Control, Input } = Form;
 
 function TopNav() {
 
+  const [search, setSearch] = useState();
+
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="/">The Nomad</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
 
-        <Form inline className="ml-auto">
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-success">Search</Button>
-        </Form>
+    <Navbar>
 
-        <Nav className="ml-auto">
-          <Nav.Link href="/createArticle">Create Article</Nav.Link>
-          <Nav.Link href="/login">Login</Nav.Link>
-          <Nav.Link href="/register">Register</Nav.Link>
-        </Nav>
+      <Navbar.Brand>
+        <Navbar.Item renderAs="a" href="/">
+          The Nomad
+        </Navbar.Item>
+        <Navbar.Burger>
+        </Navbar.Burger>
+      </Navbar.Brand>
 
-      </Navbar.Collapse>
+      <Navbar.Menu>
+
+        <Navbar.Container>
+          <Navbar.Item renderAs='div'>
+            <Field className="has-addons">
+              <Control className="is-expanded">
+                <Input
+                  className="is-info is-fullwidth"
+                  placeholder="Search"
+                  type="text"
+                  value={search}
+                  onChange={e => setSearch(e.target.value)}
+                />
+              </Control>
+              <Control>
+                <Button className="is-info" type="primary">
+                  <FontAwesomeIcon icon="search" />
+                </Button>
+              </Control>
+            </Field>
+          </Navbar.Item>
+        </Navbar.Container>
+
+        <Navbar.Container position="end">
+          <Navbar.Item href="/createArticle">
+            Create Article
+          </Navbar.Item>
+          <Navbar.Item href="/login">
+            Login
+          </Navbar.Item>
+          <Navbar.Item href="/register">
+            Register
+          </Navbar.Item>
+        </Navbar.Container>
+
+      </Navbar.Menu>
+
     </Navbar>
+    
   )
 
 }
