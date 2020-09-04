@@ -15,8 +15,6 @@ module.exports = {
           User.findOneAndUpdate(req.user._id, {$push: {articles: dbModel._id}})
           .then(()=> res.json(dbModel));
         })
-    
-       
       .catch((err) => res.status(422).json(err));
   },
   update: function(req, res) {

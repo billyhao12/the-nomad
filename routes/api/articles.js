@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const articlesController = require('../../controllers/articlesController');
-const passport = require("passport")
+const passport = require('passport')
 
 //Matches with "/api/articles"
 router.route('/')
