@@ -52,11 +52,11 @@ function Home(){
   
   return (
     <div>
-        <Map 
-          userLatitude={position.latitude}
-          userLongitude={position.longitude}
-          articlesCoordinates={articlesCoordinates}
-        />
+      <Map 
+        userLatitude={position.latitude}
+        userLongitude={position.longitude}
+        articlesCoordinates={articlesCoordinates}
+      />
 
       <Categories />
 
