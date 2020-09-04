@@ -7,6 +7,14 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  articles:[{
+    type: Schema.Types.ObjectId,
+    ref:"Article"
+  }],
+  comments:[{
+    type: Schema.Types.ObjectId,
+    ref:"Comment"
+  }],
   email: {
     type: String,
     required: true

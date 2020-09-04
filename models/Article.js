@@ -5,7 +5,7 @@ const articleSchema = new Schema({
   user: 
     {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
     },
   title: {
     type: String,
@@ -13,10 +13,10 @@ const articleSchema = new Schema({
   },
   category: [
     {
-    type: String,
-    required: true,
-  }
-],
+      type: String,
+      required: true,
+    }
+  ],
   body: {
     type: String,
     required: true,
@@ -24,7 +24,7 @@ const articleSchema = new Schema({
   like: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
     },
   ],
   lat: {

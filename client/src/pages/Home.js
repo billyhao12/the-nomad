@@ -34,24 +34,29 @@ function Home(){
     }
   }
 
-  console.log(`Position lat: ${position.latitude}`);
-  console.log(`Position long: ${position.longitude}`);
-
   const articlesCoordinates= articles.map((article) => (
-    {
-      lat: article.lat,
-      long: article.long,
-      id: article._id
+    { 'type': 'Feature',
+      'properties': {
+        'id': article._id,
+        'details': '<strong>'+ article.title + '</strong> <br><img src="'+ article.image +'" width="100">'
+      },
+      'geometry':
+      {
+        'type': 'Point',
+        'coordinates': [article.long, article.lat, 0],
+      }
     }
   ))
  
   //User GPS location
- 
-  console.log(articlesCoordinates)
   
   return (
     <div>
-      <Map coordinates= {articlesCoordinates} />
+        <Map 
+          userLatitude={position.latitude}
+          userLongitude={position.longitude}
+          articlesCoordinates={articlesCoordinates}
+        />
 
       <Categories />
 
