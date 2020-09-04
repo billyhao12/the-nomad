@@ -11,6 +11,11 @@ const articleSchema = new Schema({
     type: String,
     required: true,
   },
+  byline:{
+    type:String,
+    max: 250,
+    required: true
+  },
   category: [
     {
       type: String,
