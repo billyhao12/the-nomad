@@ -5,10 +5,12 @@ import Map from '../components/Map';
 import Categories from '../components/Categories';
 import api from '../utils/api';
 import propTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
 function Home(){
   const [articles, setArticles] = useState([]);
   const [position, setPosition] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     loadArticles()
@@ -33,11 +35,18 @@ function Home(){
     }
   }
 
+  //constructed React router url link to article from mapbox popup
+  window.goToArticle = (event, articleId) =>{
+    event.preventDefault()
+    history.push(`/article/${articleId}`)
+  }
+
+  //Article Feature portion of GeoJSON obj
   const articlesCoordinates= articles.map((article) => (
     { 'type': 'Feature',
       'properties': {
         'id': article._id,
-        'details': '<strong><a href="/article/'+ article._id + '">'+ article.title + '</strong><br><img src="'+ article.image +'" width="100">'
+        'details': '<strong><a href="#" onclick="goToArticle(event,\''+ article._id +'\')">'+ article.title + '</strong><br><img src="'+ article.image +'" width="100">'
       },
       'geometry':
       {
@@ -46,8 +55,6 @@ function Home(){
       }
     }
   ))
- 
-  //User GPS location
   
   return (
     <div>

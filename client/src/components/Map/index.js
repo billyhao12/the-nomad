@@ -117,7 +117,7 @@ function Map(props){
         .setLngLat({lon: props.userLongitude, lat: props.userLatitude})
         .addTo(map)
 
-     
+      //heatmap layer
       map.addLayer(
         {
           'id': 'articles-heat',
@@ -312,9 +312,8 @@ function Map(props){
       });
     
     });
-
+   
   },[props])
-
 
   return(
     <div className="map_box_container">
