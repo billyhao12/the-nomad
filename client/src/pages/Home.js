@@ -9,7 +9,6 @@ import Map from '../components/Map';
 import Categories from '../components/Categories';
 import api from '../utils/api';
 import propTypes from 'prop-types';
-// import {Feature} from 'react-mapbox-gl';
 
 function Home(){
   const [articles, setArticles] = useState([]);
@@ -42,7 +41,7 @@ function Home(){
     { 'type': 'Feature',
       'properties': {
         'id': article._id,
-        'details': '<strong>'+ article.title + '</strong> <br><img src="'+ article.image +'" width="100">'
+        'details': '<strong><a href="/article/'+ article._id + '">'+ article.title + '</strong><br><img src="'+ article.image +'" width="100">'
       },
       'geometry':
       {

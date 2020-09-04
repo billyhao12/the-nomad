@@ -260,16 +260,11 @@ function Map(props){
       );
     });
    
-  
-    // When a click event occurs on a feature in
-    // the unclustered-point layer, open a popup at
-    // the location of the feature, with
-    // description HTML from its properties.
-    // this will link an article to an on click event
+    // Popup of article with title and image
 
     const popup = new mapboxgl.Popup({
-      closeButton: false,
-      closeOnClick: false
+      closeButton: true,
+      closeOnClick: true
     });
 
     map.on('mouseenter', 'unclustered-point', function(event) {
@@ -293,7 +288,7 @@ function Map(props){
 
     });
 
-    map.on('mouseleave', 'unclustered-point', function() {
+    map.on('click', 'unclustered-point', function() {
       map.getCanvas().style.cursor = '';
       popup.remove();
     });
