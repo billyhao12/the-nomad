@@ -4,6 +4,21 @@ const db = require('../models')
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/nomad');
 
+const userSeed = [
+  {
+    name: "Trenton Creamer ",
+    email: "seed@gmail.com",
+    password: "123456789",
+    date: new Date(Date.now()),
+  },
+  {
+    name: "Billy Chris  ",
+    email: "billychris@gmail.com",
+    password: "123456789",
+    date: new Date(Date.now()),
+  },
+];
+
 const articleSeed = [
   {
     title: "Seattle police clear CHOP protest zone",
@@ -81,7 +96,7 @@ const articleSeed = [
 
 const commentSeed = [
   {
-    author: 'Tcreamy',
+    user: "",
     content: 'Wow, what a well written article!',
     like: [],
     date: new Date(Date.now()),
@@ -112,10 +127,75 @@ const commentSeed = [
   },
 ];
 
-db.Article
+// on the user.then function create the createSeedArticles 
+// runseedfunction 
+
+// Clear 
+// Get
+// Insert 
+
+function createUserSeed(){
+  db.User.remove({})
+    .then(() => db.User.collection.insertMany(userSeed))
+    .then((data) => {
+      //db.articles.find push them into the comment data
+      console.log(data.result.n + " records inserted!");
+      console.log(data);
+      //console.log(data._id)
+      return createSeedArticles();
+    })
+    .then(() => {
+      process.exit(0);
+    })
+    .catch((err) => {
+      console.error(err);
+      process.exit(1);
+    });
+}
+createUserSeed();
+
+async function createSeedArticles(){
+
+  const users = await db.User.find({})
+  
+console.log(users)
+
+  return db.Article.remove({})
+    .then(() =>
+      db.Article.collection.insertMany(
+        // const userIds = users.map( user =>user._id)
+        // const get RandomUserId(){
+          //return userIds[Math.floor(Natg.random() * userIds.length)]
+          //const articleSeed = [];
+          //articleSeed.map (article => ({...artcle, user: getRandomUserId()}))
+        //}
+        // map over article seed data and insert a random user id - articleSeed.map 
+        articleSeed
+      )
+    )
+    .then((data) => {
+      console.log(data.result.n + " records inserted!");
+      return createCommentSeed();
+
+      //access to all of the article ids here
+    })
+    .then(() => {
+      process.exit(0);
+    })
+    .catch((err) => {
+      console.error(err);
+      process.exit(1);
+    });
+
+}
+
+function createCommentSeed(){
+  db.Comment
   .remove({})
-  .then(() => db.Article.collection.insertMany(articleSeed))
+  .then(() => db.Comment.collection.insertMany(commentSeed))
   .then((data) => {
+    //db.articles.find push them into the comment data 
+ 
     console.log(data.result.n + ' records inserted!');
     process.exit(0);
   })
@@ -124,14 +204,5 @@ db.Article
     process.exit(1);
   });
 
-db.Comment
-  .remove({})
-  .then(() => db.Comment.collection.insertMany(commentSeed))
-  .then((data) => {
-    console.log(data.result.n + ' records inserted!');
-    process.exit(0);
-  })
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+}
+
