@@ -1,10 +1,6 @@
 import React, { useEffect, useState} from 'react';
 
 import ArticlePreview from '../components/ArticlePreview';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Container from 'react-bootstrap/Container';
 import Map from '../components/Map';
 import Categories from '../components/Categories';
 import api from '../utils/api';
@@ -55,41 +51,24 @@ function Home(){
   
   return (
     <div>
-      <Container>
-        <Map 
-          userLatitude={position.latitude}
-          userLongitude={position.longitude}
-          articlesCoordinates={articlesCoordinates}
-        />
-      </Container>
-      <Row>
-        <Col xs={3} className="px-0"> {/** Article category links */}
+      <Map 
+        userLatitude={position.latitude}
+        userLongitude={position.longitude}
+        articlesCoordinates={articlesCoordinates}
+      />
 
-          <Categories />
+      <Categories />
 
-        </Col>
+      {/** Start with a basic list of cards */}
+      {
+        articles.map((article, index) => (
+          // eslint-disable-next-line react/jsx-key
+          <ArticlePreview article={article} key={index}/>
 
-        <Col xs={9} className="px-0"> {/** List of articles */}
+        ))
 
-          {/** Start with a basic list of cards */}
-          <ListGroup className="list-group">articles
-            <ListGroup.Item>
-              {
-                articles.map((article, index) => (
-                  // eslint-disable-next-line react/jsx-key
-                  <ArticlePreview article={article} key={index}/>
-
-                ))
-
-              }
+      }
               
-            </ListGroup.Item>
-            {/* </li> */}
-          </ListGroup>
-
-        </Col>
-
-      </Row>
     </div>
   )}
 
