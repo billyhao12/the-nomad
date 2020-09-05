@@ -6,6 +6,7 @@ import Categories from '../components/Categories';
 import api from '../utils/api';
 import propTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import UserCheckIn from '../components/UserCheckIn';
 
 function Home(){
   const [articles, setArticles] = useState([]);
@@ -65,7 +66,7 @@ function Home(){
       />
 
       <Categories />
-
+      <UserCheckIn />
       {/** Start with a basic list of cards */}
       {
         articles.map((article, index) => (
