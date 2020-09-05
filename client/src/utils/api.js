@@ -10,6 +10,10 @@ export default {
     return axios.get('/api/articles/' + id);
   },
 
+  getArticleCat( cat ) {
+    return axios.get('/api/articles/category/' + cat);
+  },
+
   createArticle( data ) {
     return axios.post('/api/articles', data);
   },

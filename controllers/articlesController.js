@@ -11,10 +11,10 @@ module.exports = {
   },
   create: function(req, res) {
     db.Article.create({...req.body, user: req.user._id} )
-        .then((dbModel) => {
-          User.findOneAndUpdate(req.user._id, {$push: {articles: dbModel._id}})
+      .then((dbModel) => {
+        User.findOneAndUpdate(req.user._id, {$push: {articles: dbModel._id}})
           .then(()=> res.json(dbModel));
-        })
+      })
       .catch((err) => res.status(422).json(err));
   },
   update: function(req, res) {
@@ -27,6 +27,13 @@ module.exports = {
     db.Article
       .findById(req.params.id)
       .then(dbModel=> res.json(dbModel))
+      .catch(err => res.status(422).json(err))
+  },
+  findByCat: function(req, res) {
+    console.log();
+    db.Article
+      .find({category: [req.params.cat]})
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
   remove: function(req, res) {
