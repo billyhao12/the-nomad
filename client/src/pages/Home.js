@@ -7,7 +7,9 @@ import api from '../utils/api';
 import propTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
-function Home(){
+import { Columns } from 'react-bulma-components';
+
+function Home() {
   const [articles, setArticles] = useState([]);
   const [position, setPosition] = useState([]);
   const history = useHistory();
@@ -15,8 +17,8 @@ function Home(){
   useEffect(() => {
     loadArticles()
     loadPosition()
-  },[])
-  
+  },[]);
+
   function loadArticles() {
     api.getArticles()
       .then(res =>
@@ -57,6 +59,7 @@ function Home(){
   ))
   
   return (
+
     <div>
       <Map 
         userLatitude={position.latitude}
@@ -64,24 +67,27 @@ function Home(){
         articlesCoordinates={articlesCoordinates}
       />
 
-      <Categories />
+      <Columns>
+        <Columns.Column size={3}>
+          <Categories />
+        </Columns.Column>
 
-      {/** Start with a basic list of cards */}
-      {
-        articles.map((article, index) => (
-          // eslint-disable-next-line react/jsx-key
-          <ArticlePreview article={article} key={index}/>
-
-        ))
-
-      }
-              
+        <Columns.Column size={9}>
+          {
+            articles.map((article, index) => (
+              // eslint-disable-next-line react/jsx-key
+              <ArticlePreview article={article} key={index}/>
+            ))
+          }
+        </Columns.Column>
+      </Columns>
     </div>
-  )}
+
+  )
+}
 
 Home.propTypes = {
   children: propTypes.node,
-};
+}
 
-
-export default Home; 
+export default Home;
