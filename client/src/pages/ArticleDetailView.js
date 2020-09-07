@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 // import ReactMapboxGl, {Layer} from 'react-mapbox-gl';
 // import {Feature} from 'react-mapbox-gl';
 import api from '../utils/api';
-import {Container, Image, Box, Hero, Heading, Navbar, Tile} from 'react-bulma-components';
+import {Container, Image, Box, Hero, Heading, Tile, Level, Content} from 'react-bulma-components';
 import PropTypes from 'prop-types';
 
 import Related from '../components/Related';
@@ -53,12 +53,10 @@ function ArticleDetailView(props) {
   // }, [idString])
 
   function getArticleCategories(art) {
-    console.log(art);
     if(art) {
       art.category.forEach(cat => {
         api.getArticleCat(cat)
           .then(res => {
-            console.log(res.data);
             setArticle(art);
             setRelated(related.concat(res.data));
           })
@@ -68,10 +66,10 @@ function ArticleDetailView(props) {
 
   if(article)
   {
-    console.log('ArticleDetailView ifArticle: ', article);
     let date;
     if(date) {
       date = article.date.split('T')
+      date = date[0];
     } else {
       date = 'no date';
     }
@@ -93,28 +91,37 @@ function ArticleDetailView(props) {
                     </Hero>
                     <Image src={article.image} />
                     <Box>
+                      <Box>
+                        <Level renderAs="nav">
+                          <Level.Side align="left">
+                            <Level.Item>
+                              <Heading size={5} subtitle>
+                              Categories: 
+                              </Heading>
+                            </Level.Item>
 
-                      <Navbar color={colors.light}>
-                        <Navbar.Container>
-                          <Navbar.Item> 
-                            Categories: {
+                            {
                               article.category.map((category, index) => (
-                                <Link to='/' key={index}> {category}</Link>
+                                <Level.Item renderAs="button" key={index}>
+                                  <Link to='/'>{category}</Link>
+                                </Level.Item>
                               ))
                             }
-                          </Navbar.Item>
-                          <Navbar.Item>
-                            Published: {date[0]}
-                          </Navbar.Item>
-                          <Navbar.Item>
-                            Latitued: {article.lat}
-                          </Navbar.Item>
-                          <Navbar.Item>
-                            Longitude: {article.long}
-                          </Navbar.Item>
-                        </Navbar.Container>
-                      </Navbar>
-                      {article.body}
+
+                        
+                          </Level.Side>
+
+                          <Level.Side align="right">
+                            <Level.Item><Heading size={5} subtitle><strong>Published: </strong>{date}</Heading></Level.Item>
+                            <Level.Item><Heading size={5} subtitle><strong>Lat: </strong>{article.lat}</Heading></Level.Item>
+                            <Level.Item><Heading size={5} subtitle><strong>Long: </strong>{article.long}</Heading></Level.Item>
+                          </Level.Side>
+                        </Level>
+                      </Box>
+                      
+                      <Content>
+                        {article.body}
+                      </Content>
                     </Box>
                   </Container>
                 </Tile>
@@ -141,7 +148,6 @@ function ArticleDetailView(props) {
 
                     { related.length > 0 &&
                       <div>
-                        {console.log('inside related > 0')}
                         <Related articles={related} thisArticleId={idString} />
                       </div>
                     }

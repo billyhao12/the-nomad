@@ -29,13 +29,6 @@ function Related(props) {
   
   const [pageToDisplay, setDisplay] = useState([]);
 
-  // useEffect(() => {
-
-  // });
-
-  console.log('numPages: ', numPages);
-  console.log('pageRemainder: ', pageRemainder);
-
   function handleLeft() {
     if(page > 0) {
       setPage(page - 1);
@@ -52,9 +45,6 @@ function Related(props) {
     let newPageToDisplay = [];
     let numToDisplay = numRelatedToDisplay;
     
-    console.log('current page: ', pageNum);
-    console.log('numToDisplay: ', numToDisplay);
-    
     if(pageNum === numPages && pageRemainder) {
       numToDisplay = pageRemainder;
     }
@@ -63,13 +53,10 @@ function Related(props) {
       newPageToDisplay.push(relatedArticles[(page * numRelatedToDisplay)  + i]);
     }
 
-    console.log('newPageToDisplay: ', newPageToDisplay);
     setDisplay([...newPageToDisplay]);
   }
 
   if(relatedArticles.length > 0) {
-    console.log('pageToDisplay: ', pageToDisplay);
-
     return (
       <div>
 
@@ -81,8 +68,7 @@ function Related(props) {
             <FontAwesomeIcon icon={faArrowRight} />
           </Button>
         </Button.Group>
-
-        { console.log('if render ran') }
+        
         {
           pageToDisplay.map((article, index) => (
             <ArticlePreview article={article} key={index} />
@@ -94,7 +80,6 @@ function Related(props) {
   else {
     return (
       <div>
-        {console.log('else render ran')}
         <p>Pending Related Articles</p>
       </div>
     );
