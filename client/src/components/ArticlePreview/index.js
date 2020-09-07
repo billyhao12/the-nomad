@@ -15,7 +15,7 @@ function ArticlePreview({article}) {
         <Card.Body>
           <Card.Title>{article.title}</Card.Title>
           <Card.Text>
-          Article Summary
+            Article Summary
           </Card.Text>
         </Card.Body>
       </Card>
