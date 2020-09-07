@@ -1,7 +1,11 @@
 import React, {useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
+
 import ArticlePreview from '../ArticlePreview';
+import { Button } from 'react-bulma-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 
 Related.propTypes = {
@@ -12,50 +16,77 @@ Related.propTypes = {
 const numRelatedToDisplay = 5;
 
 function Related(props) {
-
-  console.log('related props: ', props);
   const relatedArticles = props.articles.filter(article => article._id !== props.thisArticleId);
-  let relatedArticlesToDisplay = [];
+  const numPages = Math.floor(parseInt(relatedArticles.length) / parseInt(numRelatedToDisplay));
+  const pageRemainder = parseInt(relatedArticles.length) % parseInt(numRelatedToDisplay);
 
-  // function getRelatedToDisplay() {
-  for(let i = 0; i < numRelatedToDisplay; i++) {
-    relatedArticlesToDisplay.push(relatedArticles[i]);
-    console.log('push');
+  
+  const [page, setPage] = useState(0);
+  
+  useEffect(() => {
+    setPageToDisplay(page);
+  }, [page]);
+  
+  const [pageToDisplay, setDisplay] = useState([]);
+
+  // useEffect(() => {
+
+  // });
+
+  console.log('numPages: ', numPages);
+  console.log('pageRemainder: ', pageRemainder);
+
+  function handleLeft() {
+    if(page > 0) {
+      setPage(page - 1);
+    }
   }
-  // }
 
-  // if(relatedArticlesToDisplay > 0) {
-  //   console.log('if relatedArticlesToDisplay: ', relatedArticlesToDisplay)
-  //   return (
-  //     <div>
-  //       {
-  //         relatedArticlesToDisplay.map((related, index) => (
-  //           <ArticlePreview article={related} key={index} />
-  //         ))
-  //       }
-  //     </div>
-  //   );
-  // }
-  // else {
-  //   console.log('inside related else: ', relatedArticlesToDisplay);
-  //   return(<p>stupid</p>);
-  // }
+  function handleRight() {
+    if(page + 1 <= numPages) {
+      setPage(page + 1);
+    }
+  }
 
+  function setPageToDisplay(pageNum) {
+    let newPageToDisplay = [];
+    let numToDisplay = numRelatedToDisplay;
+    
+    console.log('current page: ', pageNum);
+    console.log('numToDisplay: ', numToDisplay);
+    
+    if(pageNum === numPages && pageRemainder) {
+      numToDisplay = pageRemainder;
+    }
 
-  console.log('thing before render ran');
+    for(let i = 0; i < numToDisplay; i++) {
+      newPageToDisplay.push(relatedArticles[(page * numRelatedToDisplay)  + i]);
+    }
 
-  console.log('Related Articles before render: ', relatedArticles);
-  console.log('relatatedArticlesToDisplay before render: ', relatedArticlesToDisplay);
+    console.log('newPageToDisplay: ', newPageToDisplay);
+    setDisplay([...newPageToDisplay]);
+  }
 
-  console.log('relatedArticlesToDisplay.length: ', relatedArticlesToDisplay.length);
+  if(relatedArticles.length > 0) {
+    console.log('pageToDisplay: ', pageToDisplay);
 
-  if(relatedArticlesToDisplay.length > 0) {
     return (
       <div>
+
+        <Button.Group>
+          <Button renderAs='span' onClick={handleLeft}>
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </Button>
+          <Button renderAs='span' onClick={handleRight}>
+            <FontAwesomeIcon icon={faArrowRight} />
+          </Button>
+        </Button.Group>
+
         { console.log('if render ran') }
-        {relatedArticlesToDisplay.map((article, index) => (
-          <ArticlePreview article={article} key={index} />
-        ))
+        {
+          pageToDisplay.map((article, index) => (
+            <ArticlePreview article={article} key={index} />
+          ))
         }
       </div>
     )

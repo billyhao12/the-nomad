@@ -73,7 +73,7 @@ function ArticleDetailView(props) {
     if(date) {
       date = article.date.split('T')
     } else {
-      date = "no date";
+      date = 'no date';
     }
     return (
       <div>
