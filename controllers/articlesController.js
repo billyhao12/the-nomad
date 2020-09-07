@@ -2,7 +2,8 @@ const db = require('../models')
 
 module.exports = {
   findAll: function(req, res) {
-    console.log(req.user)
+    console.log(req);
+    console.log(req.query);
     db.Article
       .find(req.query)
       .sort({ date: -1 })
@@ -10,11 +11,14 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
   create: function(req, res) {
+    console.log(req.body);
+    console.log(req.user._id);
     db.Article.create({...req.body, user: req.user._id} )
-      .then((dbModel) => {
-        User.findOneAndUpdate(req.user._id, {$push: {articles: dbModel._id}})
-          .then(()=> res.json(dbModel));
-      })
+      .then(dbModel => res.json(dbModel))
+      // .then((dbModel) => {
+      //   db.User.findOneAndUpdate(req.user._id, {$push: {articles: dbModel._id}})
+      //     .then(()=> res.json(dbModel));
+      // })
       .catch((err) => res.status(422).json(err));
   },
   update: function(req, res) {
@@ -30,7 +34,7 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
   findByCat: function(req, res) {
-    console.log();
+    console.log('findByCat: ', req.params);
     db.Article
       .find({category: [req.params.cat]})
       .then(dbModel => res.json(dbModel))

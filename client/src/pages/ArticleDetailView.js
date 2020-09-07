@@ -11,7 +11,7 @@ import api from '../utils/api';
 import {Container, Image, Box, Hero, Heading, Navbar, Tile} from 'react-bulma-components';
 import PropTypes from 'prop-types';
 
-import ArticlePreview from '../components/ArticlePreview';
+import Related from '../components/Related';
 
 ArticleDetailView.propTypes = {
   location: PropTypes.object,
@@ -34,13 +34,13 @@ function ArticleDetailView(props) {
   function loadArticle(id) {
     api.getArticle(id)
       .then(res =>{
-        setArticle(res.data)
+        //setArticle(res.data)
 
-        async function blah(data) {
+        async function waitForCategories(data) {
           await getArticleCategories(data);
         }
 
-        blah(res.data)
+        waitForCategories(res.data);
 
       })
       .catch(err => console.log(err));
@@ -48,9 +48,9 @@ function ArticleDetailView(props) {
   
   const [related, setRelated] = useState([]);
 
-  useEffect(() => {
-    getArticleCategories()
-  }, [idString])
+  // useEffect(() => {
+  //   getArticleCategories()
+  // }, [idString])
 
   function getArticleCategories(art) {
     console.log(art);
@@ -59,6 +59,7 @@ function ArticleDetailView(props) {
         api.getArticleCat(cat)
           .then(res => {
             console.log(res.data);
+            setArticle(art);
             setRelated(related.concat(res.data));
           })
       });
@@ -67,7 +68,13 @@ function ArticleDetailView(props) {
 
   if(article)
   {
-    let date = article.date.split('T');
+    console.log('ArticleDetailView ifArticle: ', article);
+    let date;
+    if(date) {
+      date = article.date.split('T')
+    } else {
+      date = "no date";
+    }
     return (
       <div>
         <Tile kind="ancestor">
@@ -132,11 +139,11 @@ function ArticleDetailView(props) {
                   <div className="content">
                     <Heading subtitle>Related</Heading>
 
-                    { related &&
-                      related.map((relate, index) => (
-                        relate._id !== article._id &&
-                        <ArticlePreview article={relate} key={index}/>
-                      ))
+                    { related.length > 0 &&
+                      <div>
+                        {console.log('inside related > 0')}
+                        <Related articles={related} thisArticleId={idString} />
+                      </div>
                     }
 
                     <div className="content" />

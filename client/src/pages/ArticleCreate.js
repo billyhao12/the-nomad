@@ -31,7 +31,7 @@ class ArticleCreate extends Component {
     console.log(`Categories: ${this.state.categories}`);
     console.log(`Body: ${this.state.articleBody}`);
 
-    api.createArticle({title: this.state.articleTitle, category: this.state.categories, body: this.state.articleBody, image: this.state.image})
+    api.createArticle({title: this.state.articleTitle, byline:'this is a byline', category: this.state.categories, body: this.state.articleBody, image: this.state.image})
       .then(res =>
         this.setState({newArticleId: res.data._id}, () => {
           this.setState({created: true}, () => {
