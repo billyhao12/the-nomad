@@ -26,6 +26,7 @@ const articleSeed = [
     body:
       'But the tents, the graffitied barricades, and the co-op shops that have marked the Capitol Hill Organized Protest (CHOP) — or the Capitol Hill Autonomous Zone, aka CHAZ, as it was named at the start of the occupation — were gone. After about 3 1/2 weeks, after the protest zone became the subject of heated national debate and the scene of violence and tragedy, Seattle police and other agencies swept in early Wednesday with heavily equipped officers and tactical vehicles, clearing the area with threats to arrest anyone who stayed behind.',
     like: [],
+    dislike: [],
     lat: 47.619,
     long: -122.3217,
     image:
@@ -40,6 +41,7 @@ const articleSeed = [
     body:
       "I don't know what it is about cheaper beach backpacking areas that brings out the lunatics in the younger backpacking group but for some reason everyone seems to think the world just became their playground and that you can just do whatever you want. In many situations you actually can get away with this attitude but I am one of those people that knows that certain areas are already borderline anti-backpacker because of the low amount of money that they tend to spend (which is the entire idea behind backpacking, don't think I am calling anyone stingy) but when people spend no money and also act like fools in public, the local community starts to loathe their presence and I hate to see this.",
     like: [],
+    dislike: [],
     lat: 47.4904,
     long: -121.9563,
     image:
@@ -54,6 +56,7 @@ const articleSeed = [
     body:
       'President Donald Trump will ask Americans to return him to office in a speech Thursday closing the Republican convention, arguing that voters can’t trust Joe Biden or the Democratic Party to navigate the coronavirus pandemic or salve the nation’s racial divisions.',
     like: [],
+    dislike: [],
     lat: 47.0463,
     long: -122.888,
     image:
@@ -67,6 +70,7 @@ const articleSeed = [
     body:
       "Imagine a burger with mashed potatoes, mushrooms and chicken with sour-cream. That's exactly the mixture which i found in this very burger, guys. It looks like Russian food. We have a traditional Russian dish like that stuff!",
     like: [],
+    dislike: [],
     lat: 47.5788,
     long: -122.4129,
     image:
@@ -82,6 +86,7 @@ const articleSeed = [
     body:
       'Democratic presidential nominee Joe Biden said Thursday he plans to campaign in person during the final two months before Election Day, after months staying close to his Delaware home out of concerns about the coronavirus.',
     like: [],
+    dislike: [],
     lat: 47.6551,
     long: -122.3041,
     image:
@@ -96,6 +101,7 @@ const articleSeed = [
     body:
       'Hop aromatic taste with clear bitterness, hints of passion fruit, grapefruit, apricot, honey, lime and light bread. Served at 8-10 ° C as a companion drink or with dishes of lamb and beef.',
     like: [],
+    dislike: [],
     lat: 47.2655,
     long: -122.447,
     image:
@@ -109,30 +115,35 @@ const commentSeed = [
     user: '',
     content: 'Wow, what a well written article!',
     like: [],
+    dislike: [],
     date: new Date(Date.now()),
   },
   {
     author: 'codesvillain',
     content: "It's magical not just minimal!",
     like: [],
+    dislike: [],
     date: new Date(Date.now()),
   },
   {
     author: 'georgecrispy',
     content: 'Let me take a nap... great colour, anyway.',
     like: [],
+    dislike: [],
     date: new Date(Date.now()),
   },
   {
     author: 'startleeavesdrop',
     content: 'Minimal mate I like the use of playfulness and typography!',
     like: [],
+    dislike: [],
     date: new Date(Date.now()),
   },
   {
     author: 'choopybreath',
     content: "I think I'm crying. It's that admirable.",
     like: [],
+    dislike: [],
     date: new Date(Date.now()),
   },
 ];
