@@ -14,6 +14,9 @@ router
   .put(articlesController.update)
   .delete(articlesController.remove);
 
+
+router.route('/category/:cat')
+  .get(articlesController.findByCat)
 // Potentially make the comment a subroute of the article
 
 module.exports = router;

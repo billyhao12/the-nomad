@@ -51,7 +51,6 @@ function ArticlePreview({article}) {
       </Box>
     </Section>
   )
-
 }
 
 ArticlePreview.propTypes = {
