@@ -6,6 +6,7 @@ import Categories from '../components/Categories';
 import api from '../utils/api';
 import propTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import UserCheckIn from '../components/UserCheckIn';
 
 import { Columns } from 'react-bulma-components';
 
@@ -61,17 +62,22 @@ function Home() {
   return (
 
     <div>
+    
+      <UserCheckIn />
+    
       <Map 
         userLatitude={position.latitude}
         userLongitude={position.longitude}
         articlesCoordinates={articlesCoordinates}
       />
 
+
       <Columns>
+    
         <Columns.Column size={3}>
           <Categories />
         </Columns.Column>
-
+    
         <Columns.Column size={9}>
           {
             articles.map((article, index) => (
@@ -80,10 +86,13 @@ function Home() {
             ))
           }
         </Columns.Column>
+
       </Columns>
+
     </div>
 
   )
+  
 }
 
 Home.propTypes = {
