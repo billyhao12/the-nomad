@@ -1,22 +1,26 @@
 import React from 'react';
-import Col from 'react-bootstrap/Col';
+
+import { Section, Box, Heading } from 'react-bulma-components';
+
 import './style.css';
 
 function Categories() {
 
   return (
-    <Col md={3}>
-      <h1>Categories</h1>
-      <ul>
-        <li><a href="/">Food</a></li>
-        <li><a href="/">Sports</a></li>
-        <li><a href="/">Travel</a></li>
-        <li><a href="/">Tech/Science</a></li>
-        <li><a href="/">Politics</a></li>
-        <li><a href="/">Entertainment</a></li>
-        <li><a href="/">Location</a></li>
-      </ul>
-    </Col>
+    <Section>
+      <Box>
+        <Heading>Categories</Heading>
+        <ul>
+          <li><a href="/">Food</a></li>
+          <li><a href="/">Sports</a></li>
+          <li><a href="/">Travel</a></li>
+          <li><a href="/">Tech/Science</a></li>
+          <li><a href="/">Politics</a></li>
+          <li><a href="/">Entertainment</a></li>
+          <li><a href="/">Location</a></li>
+        </ul>
+      </Box>
+    </Section>
   );
 
 }

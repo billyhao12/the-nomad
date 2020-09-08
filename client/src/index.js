@@ -7,10 +7,10 @@ import { StoreProvider } from './store';
 
 import 'react-bulma-components/dist/react-bulma-components.min.css';
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSearch, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faSearch);
+library.add(faSearch, faArrowUp, faArrowDown);
 
 ReactDOM.render(
   <StoreProvider>
