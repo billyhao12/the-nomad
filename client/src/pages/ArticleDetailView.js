@@ -1,4 +1,5 @@
 import React, { useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
 
 // import Col from 'react-bootstrap/Col';
 // import Row from 'react-bootstrap/Row';
@@ -7,11 +8,10 @@ import React, { useEffect, useState} from 'react';
 // import ReactMapboxGl, {Layer} from 'react-mapbox-gl';
 // import {Feature} from 'react-mapbox-gl';
 import api from '../utils/api';
-import Container from 'react-bootstrap/Container';
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Image from 'react-bootstrap/Image';
-import Navbar from 'react-bootstrap/Navbar';
+import {Container, Image, Box, Hero, Heading, Tile, Level, Content} from 'react-bulma-components';
 import PropTypes from 'prop-types';
+
+import Related from '../components/Related';
 
 ArticleDetailView.propTypes = {
   location: PropTypes.object,
@@ -19,41 +19,170 @@ ArticleDetailView.propTypes = {
 }
 
 function ArticleDetailView(props) {
-  console.log(props);
+  const [article, setArticle] = useState();
+
   const pathname = props.location.pathname;
 
   const articleid = pathname.split('/');
 
   const idString = articleid[2];
 
-  console.log(pathname);
-  console.log(idString);
-
-  const [article, setArticle] = useState([]);
-
   useEffect(() => {
     loadArticle(idString)
-  }, [])
+  }, [idString]);
 
   function loadArticle(id) {
     api.getArticle(id)
-      .then(res =>
-        setArticle(res.data)
-      )
+      .then(res =>{
+        //setArticle(res.data)
+
+        async function waitForCategories(data) {
+          await getArticleCategories(data);
+        }
+
+        waitForCategories(res.data);
+
+      })
       .catch(err => console.log(err));
   }
   
-  console.log('article: ' + article);
+  const [related, setRelated] = useState([]);
 
+  // useEffect(() => {
+  //   getArticleCategories()
+  // }, [idString])
+
+  function getArticleCategories(art) {
+    if(art) {
+      art.category.forEach(cat => {
+        api.getArticleCat(cat)
+          .then(res => {
+            setArticle(art);
+            setRelated(related.concat(res.data));
+          })
+      });
+    }
+  }
+
+  if(article)
+  {
+    let date;
+    if(date) {
+      date = article.date.split('T')
+      date = date[0];
+    } else {
+      date = 'no date';
+    }
+    return (
+      <div>
+        <Tile kind="ancestor">
+          <Tile size={9} vertical>
+            <Tile>
+              <Tile kind="parent">
+                <Tile renderAs="article" kind="child">
+                  <Container>
+                    <Hero style={{textAlign: 'center'}} color={colors.light}>
+                      <Hero.Body>
+                        <Heading>
+
+                          {article.title}
+                        </Heading>
+                      </Hero.Body>
+                    </Hero>
+                    <Image src={article.image} />
+                    <Box>
+                      <Box>
+                        <Level renderAs="nav">
+                          <Level.Side align="left">
+                            <Level.Item>
+                              <Heading size={5} subtitle>
+                              Categories: 
+                              </Heading>
+                            </Level.Item>
+
+                            {
+                              article.category.map((category, index) => (
+                                <Level.Item renderAs="button" key={index}>
+                                  <Link to='/'>{category}</Link>
+                                </Level.Item>
+                              ))
+                            }
+
+                        
+                          </Level.Side>
+
+                          <Level.Side align="right">
+                            <Level.Item><Heading size={5} subtitle><strong>Published: </strong>{date}</Heading></Level.Item>
+                            <Level.Item><Heading size={5} subtitle><strong>Lat: </strong>{article.lat}</Heading></Level.Item>
+                            <Level.Item><Heading size={5} subtitle><strong>Long: </strong>{article.long}</Heading></Level.Item>
+                          </Level.Side>
+                        </Level>
+                      </Box>
+                      
+                      <Content>
+                        {article.body}
+                      </Content>
+                    </Box>
+                  </Container>
+                </Tile>
+              </Tile>
+              
+            </Tile>
+            <Tile kind="parent">
+              <Tile renderAs="article" kind="child">
+                <Container>
+                  <Box>
+                    <Heading subtitle>Comments</Heading>
+                    <div className="content" />
+                  </Box>
+                </Container>
+              </Tile>
+            </Tile>
+          </Tile>
+          <Tile kind="parent">
+            <Tile renderAs="article" kind="child" >
+              <Container>
+                <Box>
+                  <div className="content">
+                    <Heading subtitle>Related</Heading>
+
+                    { related.length > 0 &&
+                      <div>
+                        <Related articles={related} thisArticleId={idString} />
+                      </div>
+                    }
+
+                    <div className="content" />
+                  </div>
+                </Box>
+              </Container>
+            </Tile>
+          </Tile>
+        </Tile>
+
+      </div>
+    );
+  }
   return (
-    <Container>
-      <Jumbotron>
-        <h1 style={{textAlign: 'center'}}>{article.title}</h1>
-        <Image src={article.image} rounded />
-        <Navbar bg="light">Category: {article.category} Publication date: {article.date} lat: {article.lat} lon: {article.long} </Navbar>
-        <p><br></br><br></br>{article.body}</p>
-      </Jumbotron>
-    </Container>
+    <div>
+      
+      <p>ArticleDetailView</p>
+    </div>
   );
+  
 }
 export default ArticleDetailView;
+
+const colors = {
+  Default: '',
+  primary: 'primary',
+  info: 'info',
+  danger: 'danger',
+  warning: 'warning',
+  success: 'success',
+  white: 'white',
+  black: 'black',
+  light: 'light',
+  dark: 'dark',
+  link: 'link',
+};

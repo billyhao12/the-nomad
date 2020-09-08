@@ -10,7 +10,7 @@ function Map(props){
   
   const [state, setState] = useState({lng: -122.51, lat: 47.62, zoom: 7.89});
  
-  const mapContainerRef = useRef()
+  const mapContainerRef = useRef();
 
   useEffect(() =>{
     if(!props.userLatitude || !props.articlesCoordinates){
@@ -38,6 +38,7 @@ function Map(props){
       zoom: 8
     });
 
+    //track current user location
     map.addControl(new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true

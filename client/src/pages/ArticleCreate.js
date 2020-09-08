@@ -5,17 +5,17 @@ import {Redirect} from 'react-router';
 import {withRouter} from 'react-router-dom';
 // example image url that is free and won't cause an error linking to it: https://images.unsplash.com/photo-1598143167992-f211e206b2d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80
 
-import {Form,  Button, Container, Jumbotron, Image, Navbar} from 'react-bootstrap';
+import {Form, Button, Container, Box, Hero, Image, Heading, Section, Level, Content} from 'react-bulma-components';
+
 import ArticleDetailView from './ArticleDetailView';
 
 class ArticleCreate extends Component {
-
-
   state = {
     articleTitle: '',
     categories: [],
     articleBody: '',
     image: '',
+    byLine: '',
     created: false,
     newArticleId: '',
   };
@@ -31,7 +31,7 @@ class ArticleCreate extends Component {
     console.log(`Categories: ${this.state.categories}`);
     console.log(`Body: ${this.state.articleBody}`);
 
-    api.createArticle({title: this.state.articleTitle, category: this.state.categories, body: this.state.articleBody, image: this.state.image})
+    api.createArticle({title: this.state.articleTitle, byline: this.state.byLine, category: this.state.categories, body: this.state.articleBody, image: this.state.image})
       .then(res =>
         this.setState({newArticleId: res.data._id}, () => {
           this.setState({created: true}, () => {
@@ -43,7 +43,7 @@ class ArticleCreate extends Component {
   }
 
   handleInputChange = event => {
-    const id = event.target.id;
+    const id = event.target.name;
     const value = event.target.value;
 
     console.log(event.target.id);
@@ -53,6 +53,8 @@ class ArticleCreate extends Component {
       this.setState({articleTitle: value}, () => console.log(`Article Title: ${this.state.articleTitle}`));
     } else if(id === 'image') {
       this.setState({image: value}, () => console.log(`Image URL: ${this.state.image}`));
+    } else if(id === 'byline') {
+      this.setState({byLine: value}, () => console.log(`Byline: ${this.state.byLine}`))
     } else {
       this.setState({articleBody: value}, () => console.log(`Body: ${this.state.articleBody}`));
     }
@@ -94,55 +96,111 @@ class ArticleCreate extends Component {
     return(
       <div>
         <Container>
-          <Form onSubmit={this.handleFormSubmit}>
-            <Form.Group controlId="title" onChange={this.handleInputChange}>
+          <Box>
+
+            <Section>
+              <Hero color='light' className='has-text-centered'>
+                <Heading size={2}>Create A New Article</Heading>
+              </Hero>
+            </Section>
+
+            <Form.Field>
               <Form.Label>Title</Form.Label>
-              <Form.Control type="text" placeholder="Enter Article Title" />
-            </Form.Group>
+              <Form.Control>
+                <Form.Input type={'text'} placeholder={'Enter Article Title'}  name='title' onChange={this.handleInputChange} value={this.state.articleTitle}/>
+              </Form.Control>
+            </Form.Field>
 
-            <Form.Group controlId="image" onChange={this.handleInputChange}>
-              <Form.Label>Title</Form.Label>
-              <Form.Control type="text" placeholder="Enter Image URL" />
-            </Form.Group>
+            <Form.Field>
+              <Form.Label>Image</Form.Label>
+              <Form.Control>
+                <Form.Input type={'text'} placeholder={'Enter Image URL'} name='image' onChange={this.handleInputChange} value={this.state.image} />
+              </Form.Control>
+            </Form.Field>
 
-            <Form.Group controlId="category">
-              {
-                categoriesList.map((category, index) => (
-                  <Form.Check
-                    type='checkbox'
-                    label={`${category}`}
-                    value={`${category}`}
-                    key={index}
-                    onChange={this.handleSelectChange}
-                  />
-                ))
-              }
-            </Form.Group>
+            <Form.Field>
+              <Form.Label>Byline</Form.Label>
+              <Form.Control>
+                <Form.Input type={'text'} placeholder={'Enter Article Byline'} name='byline' onChange={this.handleInputChange} value={this.state.byLine} />
+              </Form.Control>
+            </Form.Field>
 
-            <Form.Group controlId="body" onChange={this.handleInputChange}>
+            <Form.Field>
+              <Form.Label>Categories</Form.Label>
+              
+              <Form.Control name='category'>
+                {categoriesList.map((category, index) => (
+                  <div key={index}>
+                    <Form.Checkbox key={index} value={`${category}`} onChange={this.handleSelectChange} >
+                      {' ' + category}
+                    </Form.Checkbox>
+                  </div>
+                ))}
+              </Form.Control>
+            </Form.Field>
+
+            <Form.Field>
               <Form.Label>Article Body</Form.Label>
-              <Form.Control as="textarea" rows="3" />
-            </Form.Group>
+              <Form.Control>
+                <Form.Textarea name='body' onChange={this.handleInputChange} placeholder='Enter Article Body Here' value={this.state.articleBody}/>
+              </Form.Control>
+            </Form.Field>
 
-            <Button variant="dark" type="submit">
-              Submit Article
-            </Button>
-          </Form>
-        </Container>
+            <Form.Field>
+              <Form.Control>
+                <Button type='light' onClick={this.handleFormSubmit}>Submit</Button>
+              </Form.Control>
+            </Form.Field>
+          </Box>
 
-        <Container className='mt-5'>
-          <Container>
-            <Jumbotron>
-              <h1 style={{textAlign: 'center'}}>Article Preview</h1>
-              <h1>(Title:) {this.state.articleTitle}</h1>
-              <Image src={this.state.image} rounded />
-              <Navbar bg="light">(Details)    Category: {this.state.categories} Publication date: lat: lon: </Navbar>
-              <p><br></br><br></br>(Body:) {this.state.articleBody}</p>
-            </Jumbotron>
-          </Container>
+          <Box>
+            <Container>
+              <Hero className='has-text-centered' color='light'>
+                <Hero.Body>
+                  <Heading>
+
+                    {this.state.articleTitle}
+                  </Heading>
+                </Hero.Body>
+              </Hero>
+              <Image src={this.state.image} />
+              <Box>
+                <Box>
+                  <Level renderAs="nav">
+                    <Level.Side align="left">
+                      <Level.Item>
+                        <Heading size={5} subtitle>
+                              Categories: 
+                        </Heading>
+                      </Level.Item>
+
+                      {
+                        this.state.categories.map((category, index) => (
+                          <Level.Item renderAs="button" key={index}>
+                            {category}
+                          </Level.Item>
+                        ))
+                      }
+
+                        
+                    </Level.Side>
+
+                    <Level.Side align="right">
+                      <Level.Item><Heading size={5} subtitle><strong>Published: </strong></Heading></Level.Item>
+                      <Level.Item><Heading size={5} subtitle><strong>Lat: </strong></Heading></Level.Item>
+                      <Level.Item><Heading size={5} subtitle><strong>Long: </strong></Heading></Level.Item>
+                    </Level.Side>
+                  </Level>
+                </Box>
+                      
+                <Content>
+                  {this.state.articleBody}
+                </Content>
+              </Box>
+            </Container>
+          </Box>
         </Container>
       </div>
-
     );
   }
 }
