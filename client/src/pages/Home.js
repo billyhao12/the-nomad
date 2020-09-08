@@ -8,7 +8,9 @@ import propTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import UserCheckIn from '../components/UserCheckIn';
 
-function Home(){
+import { Columns } from 'react-bulma-components';
+
+function Home() {
   const [articles, setArticles] = useState([]);
   const [position, setPosition] = useState([]);
   const history = useHistory();
@@ -16,8 +18,8 @@ function Home(){
   useEffect(() => {
     loadArticles()
     loadPosition()
-  },[])
-  
+  },[]);
+
   function loadArticles() {
     api.getArticles()
       .then(res =>
@@ -58,31 +60,43 @@ function Home(){
   ))
   
   return (
+
     <div>
+    
+      <UserCheckIn />
+    
       <Map 
         userLatitude={position.latitude}
         userLongitude={position.longitude}
         articlesCoordinates={articlesCoordinates}
       />
 
-      <Categories />
-      <UserCheckIn />
-      {/** Start with a basic list of cards */}
-      {
-        articles.map((article, index) => (
-          // eslint-disable-next-line react/jsx-key
-          <ArticlePreview article={article} key={index}/>
 
-        ))
+      <Columns>
+    
+        <Columns.Column size={3}>
+          <Categories />
+        </Columns.Column>
+    
+        <Columns.Column size={9}>
+          {
+            articles.map((article, index) => (
+              // eslint-disable-next-line react/jsx-key
+              <ArticlePreview article={article} key={index}/>
+            ))
+          }
+        </Columns.Column>
 
-      }
-              
+      </Columns>
+
     </div>
-  )}
+
+  )
+  
+}
 
 Home.propTypes = {
   children: propTypes.node,
-};
+}
 
-
-export default Home; 
+export default Home;
