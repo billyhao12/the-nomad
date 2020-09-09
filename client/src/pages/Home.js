@@ -84,7 +84,6 @@ function Home() {
         <Columns.Column size={9}>
           {
             articles.map((article, index) => (
-              // eslint-disable-next-line react/jsx-key
               <ArticlePreview article={article} key={index}/>
             ))
           }
