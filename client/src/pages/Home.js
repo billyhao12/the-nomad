@@ -38,7 +38,7 @@ function Home() {
     }
   }
 
-  //constructed React router url link to article from mapbox popup
+  // Constructed React router url link to article from mapbox popup
   window.goToArticle = (event, articleId) =>{
     event.preventDefault()
     history.push(`/article/${articleId}`)
@@ -51,14 +51,13 @@ function Home() {
         'id': article._id,
         'details': '<strong><a href="#" onclick="goToArticle(event,\''+ article._id +'\')">'+ article.title + '</strong><br><img src="'+ article.image +'" width="100">'
       },
-      'geometry':
-      {
+      'geometry': {
         'type': 'Point',
         'coordinates': [article.long, article.lat, 0],
       }
     }
-  ))
-  
+  ));
+
   return (
 
     <div>
@@ -74,7 +73,6 @@ function Home() {
         articlesCoordinates={articlesCoordinates}
       />
 
-
       <Columns>
     
         <Columns.Column size={3}>
@@ -84,7 +82,6 @@ function Home() {
         <Columns.Column size={9}>
           {
             articles.map((article, index) => (
-              // eslint-disable-next-line react/jsx-key
               <ArticlePreview article={article} key={index}/>
             ))
           }

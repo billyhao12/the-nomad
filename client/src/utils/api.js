@@ -18,6 +18,10 @@ export default {
     return axios.post('/api/articles', data);
   },
 
+  getUser( id ) {
+    return axios.get('/api/profiles/' + id);
+  },
+
   register( userData ) {
 
     return axios.post('/api/register', userData);
