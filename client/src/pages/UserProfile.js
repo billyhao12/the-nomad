@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {useStoreContext} from '../store';
 
 import api from '../utils/api';
 
 
 
-function UserProfile(props) {
+function UserProfile() {
   const [user, setUser] = useState(null);
   const [{userAuth}] = useStoreContext();
 
