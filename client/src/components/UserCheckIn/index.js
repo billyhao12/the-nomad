@@ -9,14 +9,19 @@ import API from '../../utils/api'
 function UserCheckIn(props) {
   
   const[modalState, setModalState] = useState({show: false})
-  
-  const checkinCoordinates = [props.userLongitude, props.userLatitude];
  
   function open(){  setModalState({ show: true })}
   function close() { setModalState({ show: false })}
 
-  function storeCoordinates(){
-    console.log(checkinCoordinates);
+  function storeCoordinates( event ){
+    event.preventDefault();
+    API.createCheckIn({
+      lat: props.userLatitude,
+      long: props.userLongitude,
+      date: Date.now
+    })
+      .then(() => close())
+      .catch( err => console.log(err))
   }
 
   return (

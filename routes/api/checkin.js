@@ -14,7 +14,6 @@ router
 router
   .route('/:id')
   .get(checkinController.findById)
-  .put(checkinController.update)
   .delete(checkinController.remove);
 
 module.exports = router;
