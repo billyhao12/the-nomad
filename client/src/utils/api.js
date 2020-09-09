@@ -8,15 +8,29 @@ export default {
     return axios.post('/api/comments', data);
   },
   getComment(id) {
-    return axios.get('/api/comments' + id);
+    return axios.get('/api/comments/' + id);
   },
-   updateComment(id) {
-    return axios.get('/api/comments' + id);
+  updateComment(id, data) {
+    return axios.put('/api/comments/' + id, data);
   },
-   deleteComment(id) {
-    return axios.delete('/api/comments' + id);
+  deleteComment(id) {
+    return axios.delete('/api/comments/' + id);
   },
 
+  getCheckIn() {
+    return axios.get('/api/checkin');
+  },
+  createCheckIn(data) {
+    return axios.post('/api/checkin', data);
+  },
+
+  getCheckIn(id) {
+    return axios.get('/api/checkin/' + id);
+  },
+
+  deleteCheckIn(id) {
+    return axios.delete('/api/checkin/' + id);
+  },
 
   getArticles() {
     return axios.get('/api/articles');
