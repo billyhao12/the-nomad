@@ -1,7 +1,8 @@
 import React, {useState}from 'react';
 import PropTypes from 'prop-types';
 import {Container, Section, Button, Modal} from 'react-bulma-components';
-import './style.css'
+import './style.css';
+// import axios from 'axios';
 
 
 
@@ -13,6 +14,7 @@ function UserCheckIn(props) {
  
   function open(){  setModalState({ show: true })}
   function close() { setModalState({ show: false })}
+
   function storeCoordinates(){
     console.log(checkinCoordinates);
   }
