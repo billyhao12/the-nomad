@@ -13,7 +13,7 @@ function Map(props){
   const mapContainerRef = useRef();
 
   useEffect(() =>{
-    if(!props.userLatitude || !props.articlesDetails){
+    if(!props.userLatitude || !props.articlesCoordinates){
       return
     }
 
@@ -25,7 +25,7 @@ function Map(props){
           'name': 'TheNomadArticles'
         }
       },
-      'features':props.articlesDetails
+      'features':props.articlesCoordinates
     }
    
 
@@ -327,7 +327,7 @@ function Map(props){
   )
 }
 Map.propTypes={
-  articlesDetails: propTypes.array,
+  articlesCoordinates: propTypes.array,
   userLongitude: propTypes.number,
   userLatitude: propTypes.number
 }

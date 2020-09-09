@@ -44,10 +44,9 @@ function Home() {
     history.push(`/article/${articleId}`)
   }
 
-  // Article Feature portion of GeoJSON obj
-  const articlesDetails = articles.map((article) => (
-    {
-      'type': 'Feature',
+  //Article Feature portion of GeoJSON obj
+  const articlesCoordinates= articles.map((article) => (
+    { 'type': 'Feature',
       'properties': {
         'id': article._id,
         'details': '<strong><a href="#" onclick="goToArticle(event,\''+ article._id +'\')">'+ article.title + '</strong><br><img src="'+ article.image +'" width="100">'
@@ -71,7 +70,7 @@ function Home() {
       <Map 
         userLatitude={position.latitude}
         userLongitude={position.longitude}
-        articlesCoordinates={articlesDetails}
+        articlesCoordinates={articlesCoordinates}
       />
 
       <Columns>
