@@ -2,7 +2,7 @@ import React, {useState}from 'react';
 import PropTypes from 'prop-types';
 import {Container, Section, Button, Modal} from 'react-bulma-components';
 import './style.css';
-// import axios from 'axios';
+import API from '../../utils/api'
 
 
 
@@ -18,6 +18,7 @@ function UserCheckIn(props) {
   function storeCoordinates(){
     console.log(checkinCoordinates);
   }
+
   return (
     <div>
       <Container className='checkinContainer has-text-centered '>
