@@ -25,7 +25,7 @@ function UserCheckIn(props) {
         <Modal.Content>
           <Section >
             <Container className='has-text-centered'>
-              <Button onClick={storeCoordinates} className='is-large' rounded='true' color='success'>Save Location for Later</Button>
+              <Button onClick={storeCoordinates} className='is-large' rounded={true} color='success'>Save Location for Later</Button>
               <a href='/createArticle' className='is-success is-large is-rounded button'>Write Article Now</a>
             </Container>
           </Section>
@@ -36,9 +36,8 @@ function UserCheckIn(props) {
 }
 
 UserCheckIn.propTypes = {
-  modal: PropTypes.object,
-  children: PropTypes.node.isRequired,
   userLongitude: PropTypes.number,
   userLatitude: PropTypes.number
 }
+
 export default UserCheckIn;
