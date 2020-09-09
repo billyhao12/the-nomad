@@ -39,7 +39,7 @@ const articleSeed = [
       'But when people spend no money and also act like fools in public, the local community starts to loathe their presence and I hate to see this.',
     category: ['Travel'],
     body:
-      "I don't know what it is about cheaper beach backpacking areas that brings out the lunatics in the younger backpacking group but for some reason everyone seems to think the world just became their playground and that you can just do whatever you want. In many situations you actually can get away with this attitude but I am one of those people that knows that certain areas are already borderline anti-backpacker because of the low amount of money that they tend to spend (which is the entire idea behind backpacking, don't think I am calling anyone stingy) but when people spend no money and also act like fools in public, the local community starts to loathe their presence and I hate to see this.",
+      'I don\'t know what it is about cheaper beach backpacking areas that brings out the lunatics in the younger backpacking group but for some reason everyone seems to think the world just became their playground and that you can just do whatever you want. In many situations you actually can get away with this attitude but I am one of those people that knows that certain areas are already borderline anti-backpacker because of the low amount of money that they tend to spend (which is the entire idea behind backpacking, don\'t think I am calling anyone stingy) but when people spend no money and also act like fools in public, the local community starts to loathe their presence and I hate to see this.',
     like: [],
     dislike: [],
     lat: 47.4904,
@@ -64,11 +64,11 @@ const articleSeed = [
     date: new Date(Date.now()),
   },
   {
-    title: "An Extremely Strange Burger. What's Inside?",
+    title: 'An Extremely Strange Burger. What\'s Inside?',
     byline: '',
     category: ['Food', 'Travel'],
     body:
-      "Imagine a burger with mashed potatoes, mushrooms and chicken with sour-cream. That's exactly the mixture which i found in this very burger, guys. It looks like Russian food. We have a traditional Russian dish like that stuff!",
+      'Imagine a burger with mashed potatoes, mushrooms and chicken with sour-cream. That\'s exactly the mixture which i found in this very burger, guys. It looks like Russian food. We have a traditional Russian dish like that stuff!',
     like: [],
     dislike: [],
     lat: 47.5788,
@@ -120,7 +120,7 @@ const commentSeed = [
   },
   {
     author: 'codesvillain',
-    content: "It's magical not just minimal!",
+    content: 'It\'s magical not just minimal!',
     like: [],
     dislike: [],
     date: new Date(Date.now()),
@@ -141,7 +141,7 @@ const commentSeed = [
   },
   {
     author: 'choopybreath',
-    content: "I think I'm crying. It's that admirable.",
+    content: 'I think I\'m crying. It\'s that admirable.',
     like: [],
     dislike: [],
     date: new Date(Date.now()),

@@ -7,18 +7,14 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  articles: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Article',
-    },
-  ],
-  comments: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Comment',
-    },
-  ],
+  articles:[{
+    type: Schema.Types.ObjectId,
+    ref:'Article'
+  }],
+  comments:[{
+    type: Schema.Types.ObjectId,
+    ref:'Comment'
+  }],
   email: {
     type: String,
     required: true,
@@ -30,17 +26,6 @@ const UserSchema = new Schema({
   city: {
     type: String,
   },
-  checkIns: [
-    {
-      coordinate: {
-        type: [Schema.Types.Mixed],
-      },
-      checkInDate: {
-        type: Date,
-        default: Date.now,
-      },
-    },
-  ],
   date: {
     type: Date,
     default: Date.now,

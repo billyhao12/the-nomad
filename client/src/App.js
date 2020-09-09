@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import ArticleDetailView from './pages/ArticleDetailView';
 import ArticleCreate from './pages/ArticleCreate';
 import TopNav from './components/TopNav';
+import UserProfile from './pages/UserProfile';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             <Route exact path="/register" component={Register} />
             <Route path="/article" component={ArticleDetailView} />
             <Route exact path="/createArticle" component={ArticleCreate} />
+            <Route path="/user" component={UserProfile} />
           </Switch>
         </div>
       </Router>
