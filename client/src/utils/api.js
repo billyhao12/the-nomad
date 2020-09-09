@@ -17,9 +17,6 @@ export default {
     return axios.delete('/api/comments/' + id);
   },
 
-  getCheckIn() {
-    return axios.get('/api/checkin');
-  },
   createCheckIn(data) {
     return axios.post('/api/checkin', data);
   },
