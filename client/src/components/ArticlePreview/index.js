@@ -37,11 +37,11 @@ function ArticlePreview({article}) {
             </Content>
             <Level breakpoint="mobile">
               <Level.Side align="left">
-                <Button link className='mr-2'>
+                <Button className='mr-2'>
                   <FontAwesomeIcon icon="arrow-up" />
                 </Button>
                 <p>net upvotes</p>
-                <Button link className='ml-2'>
+                <Button className='ml-2'>
                   <FontAwesomeIcon icon="arrow-down" />
                 </Button>
               </Level.Side>
@@ -54,7 +54,7 @@ function ArticlePreview({article}) {
 }
 
 ArticlePreview.propTypes = {
-  article: PropTypes.array
+  article: PropTypes.object
 };
 
 export default ArticlePreview;
