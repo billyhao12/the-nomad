@@ -17,4 +17,4 @@ router
   .put(checkinController.update)
   .delete(checkinController.remove);
 
-
+module.exports = router;
