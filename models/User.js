@@ -5,31 +5,46 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
-  articles:[{
-    type: Schema.Types.ObjectId,
-    ref:"Article"
-  }],
-  comments:[{
-    type: Schema.Types.ObjectId,
-    ref:"Comment"
-  }],
+  articles: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Article',
+    },
+  ],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+  ],
   email: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   city: {
     type: String,
   },
+  checkIns: [
+    {
+      coordinate: {
+        type: [Schema.Types.Mixed],
+      },
+      checkInDate: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 const User = mongoose.model('User', UserSchema);
