@@ -1,11 +1,8 @@
 import React, {useState}from 'react';
 import PropTypes from 'prop-types';
-import {Container, Section, Button, Modal, Tag} from 'react-bulma-components';
+import {Container, Section, Button, Modal} from 'react-bulma-components';
 import './style.css';
-import API from '../../utils/api'
-import ReactDOM from 'react-dom';
-
-
+import API from '../../utils/api';
 
 function UserCheckIn(props) {
   
