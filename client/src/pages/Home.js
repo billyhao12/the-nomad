@@ -38,27 +38,27 @@ function Home() {
     }
   }
 
-  //constructed React router url link to article from mapbox popup
+  // Constructed React router url link to article from mapbox popup
   window.goToArticle = (event, articleId) =>{
     event.preventDefault()
     history.push(`/article/${articleId}`)
   }
 
-  //Article Feature portion of GeoJSON obj
-  const articlesDetails= articles.map((article) => (
-    { 'type': 'Feature',
+  // Article Feature portion of GeoJSON obj
+  const articlesDetails = articles.map((article) => (
+    {
+      'type': 'Feature',
       'properties': {
         'id': article._id,
         'details': '<strong><a href="#" onclick="goToArticle(event,\''+ article._id +'\')">'+ article.title + '</strong><br><img src="'+ article.image +'" width="100">'
       },
-      'geometry':
-      {
+      'geometry': {
         'type': 'Point',
         'coordinates': [article.long, article.lat, 0],
       }
     }
-  ))
-  
+  ));
+
   return (
 
     <div>
@@ -73,7 +73,6 @@ function Home() {
         userLongitude={position.longitude}
         articlesCoordinates={articlesDetails}
       />
-
 
       <Columns>
     
