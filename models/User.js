@@ -9,11 +9,11 @@ const UserSchema = new Schema({
   },
   articles:[{
     type: Schema.Types.ObjectId,
-    ref:"Article"
+    ref:'Article'
   }],
   comments:[{
     type: Schema.Types.ObjectId,
-    ref:"Comment"
+    ref:'Comment'
   }],
   email: {
     type: String,

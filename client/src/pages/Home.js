@@ -45,7 +45,7 @@ function Home() {
   }
 
   //Article Feature portion of GeoJSON obj
-  const articlesCoordinates= articles.map((article) => (
+  const articlesDetails= articles.map((article) => (
     { 'type': 'Feature',
       'properties': {
         'id': article._id,
@@ -63,12 +63,15 @@ function Home() {
 
     <div>
     
-      <UserCheckIn />
+      <UserCheckIn 
+        userLatitude={position.latitude}
+        userLongitude={position.longitude}
+      />
     
       <Map 
         userLatitude={position.latitude}
         userLongitude={position.longitude}
-        articlesCoordinates={articlesCoordinates}
+        articlesCoordinates={articlesDetails}
       />
 
 
