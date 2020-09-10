@@ -5,7 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { StoreProvider } from './store';
 
-import 'bulma/css/bulma.min.css';
+import './App.sass';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch, faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
