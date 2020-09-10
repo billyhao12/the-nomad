@@ -26,6 +26,10 @@ const UserSchema = new Schema({
   city: {
     type: String,
   },
+  checkIn: [{
+      type: Schema.Types.ObjectId,
+    ref: 'CheckIn',
+  }],
   date: {
     type: Date,
     default: Date.now,
