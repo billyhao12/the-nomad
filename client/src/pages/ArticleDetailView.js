@@ -12,6 +12,7 @@ import {Container, Image, Box, Hero, Heading, Tile, Level, Content} from 'react-
 import PropTypes from 'prop-types';
 
 import Related from '../components/Related';
+const QueryString = require('querystring');
 
 ArticleDetailView.propTypes = {
   location: PropTypes.object,
@@ -32,35 +33,33 @@ function ArticleDetailView(props) {
   }, [idString]);
 
   function loadArticle(id) {
-    api.getArticle(id)
-      .then(res =>{
-        //setArticle(res.data)
-
-        async function waitForCategories(data) {
-          await getArticleCategories(data);
-        }
-
-        waitForCategories(res.data);
-
-      })
-      .catch(err => console.log(err));
+    if(id) {
+      api.getArticle(id)
+        .then(res =>{
+  
+          setArticle(res.data);
+        })
+        .catch(err => console.log(err));
+    }
+    else {
+      console.log(`id: ${id}`)
+    }
   }
   
   const [related, setRelated] = useState([]);
 
-  // useEffect(() => {
-  //   getArticleCategories()
-  // }, [idString])
+  useEffect(() => {
+    getArticleCategories(article)
+  }, [article])
 
   function getArticleCategories(art) {
     if(art) {
-      art.category.forEach(cat => {
-        api.getArticleCat(cat)
-          .then(res => {
-            setArticle(art);
-            setRelated(related.concat(res.data));
-          })
-      });
+      //console.log(`query string: ${QueryString.stringify({array: [...art.category]})}`)
+      api.getArticleCat(QueryString.stringify({array: [...art.category]}))
+        .then(res => {
+          setRelated(res.data);
+          //console.log('res: ', res);
+        })
     }
   }
 

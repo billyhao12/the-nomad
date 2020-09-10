@@ -1,4 +1,5 @@
 const db = require('../models');
+const QueryString = require('querystring');
 
 module.exports = {
   findAll: function(req, res) {
@@ -28,8 +29,9 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByCat: function(req, res) {
+    const {array} = QueryString.parse(req.params.cat);
     db.Article
-      .find({category: [req.params.cat]})
+      .find({category: { $in: [...array]}})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },

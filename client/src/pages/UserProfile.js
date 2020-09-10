@@ -15,7 +15,6 @@ function UserProfile() {
 
   function loadUser(auth) {
     if(auth) {
-      console.log(auth);
       api.getUser(auth.id)
         .then(res => setUser(res.data))
         .catch(err => console.log(err));
@@ -25,7 +24,6 @@ function UserProfile() {
   }
 
   if(user) {
-    console.log(user);
     return (
       <div>
         <Box>
@@ -65,7 +63,6 @@ function UserProfile() {
     )
   }
   else {
-    console.log(user);
     return (
       <p>User Profile Page</p>
     );
