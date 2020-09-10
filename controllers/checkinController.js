@@ -10,7 +10,10 @@ module.exports = {
   },
   create: function(req, res) {
     db.CheckIn.create({ ...req.body, user: req.user._id })
-      .then(dbModel => res.json(dbModel))
+      .then((dbModel) => {
+        db.User.updateOne({ _id: req.user._id }, { $push: { checkIn: dbModel._id } }
+        ).then(() => res.json(dbModel));
+      })
       .catch((err) => res.status(422).json(err));
   }, 
   findById: function (req, res) {
