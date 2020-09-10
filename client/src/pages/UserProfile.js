@@ -60,6 +60,9 @@ function UserProfile() {
               // ))
             } */}
           </Container>
+          <Container>
+            My Check-Ins:
+          </Container>
         </Box>
       </div>
     )
