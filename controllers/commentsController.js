@@ -22,8 +22,6 @@ module.exports = {
       })
       .catch((err) => res.status(422).json(err));
 
-    
-
   },
   update: function(req, res){
     db.Comment
