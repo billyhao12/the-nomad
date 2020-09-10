@@ -14,7 +14,7 @@ function TopNav() {
 
   return (
 
-    <Navbar>
+    <Navbar className='is-primary'>
 
       <Navbar.Brand>
         <Navbar.Item renderAs="a" href="/">
