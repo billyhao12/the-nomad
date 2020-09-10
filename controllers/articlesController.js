@@ -9,10 +9,10 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   create: function(req, res) {
+    console.log(req.user._id);
     db.Article.create({...req.body, user: req.user._id} )
-      .then(dbModel => res.json(dbModel))
       .then((dbModel) => {
-        db.User.findOneAndUpdate(req.user._id, {$push: {articles: dbModel._id}})
+        db.User.updateOne({_id: req.user._id}, {$push: {articles: dbModel._id}})
           .then(()=> res.json(dbModel));
       })
       .catch((err) => res.status(422).json(err));
