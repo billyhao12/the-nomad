@@ -57,6 +57,9 @@ function TopNav() {
           <Navbar.Item href="/register">
             Register
           </Navbar.Item>
+          <Navbar.Item href='/user'>
+            <img src={require('../../icons/nomadIcon5.png')} />
+          </Navbar.Item>
         </Navbar.Container>
 
       </Navbar.Menu>
