@@ -12,6 +12,7 @@ import {Container, Image, Box, Hero, Heading, Tile, Level, Content} from 'react-
 import PropTypes from 'prop-types';
 
 import Related from '../components/Related';
+import CommentCreate from '../components/CommentCreate';
 const QueryString = require('querystring');
 
 ArticleDetailView.propTypes = {
@@ -55,16 +56,31 @@ function ArticleDetailView(props) {
   function getArticleCategories(art) {
     if(art) {
       //console.log(`query string: ${QueryString.stringify({array: [...art.category]})}`)
-      api.getArticleCat(QueryString.stringify({array: [...art.category]}))
-        .then(res => {
-          setRelated(res.data);
-          //console.log('res: ', res);
-        })
+
+      if(art.category.length === 1) {
+        api.getArticleCategoriesSingle(art.category[0])
+          .then(res => {
+            setRelated(res.data);
+          })
+          .catch(err => console.log(err));
+      }
+      else if(art.category.length >= 1) {
+        api.getArticleCategoriesArray(QueryString.stringify({array: [...art.category]}))
+          .then(res => {
+            setRelated(res.data);
+            //console.log('res: ', res);
+          })
+          .catch(err => console.log(err));
+      }
+      else {
+        console.log("no related categories found");
+      }
     }
   }
 
   if(article)
   {
+    console.log(article);
     let date;
     if(date) {
       date = article.date.split('T')
@@ -132,7 +148,8 @@ function ArticleDetailView(props) {
                 <Container>
                   <Box>
                     <Heading subtitle>Comments</Heading>
-                    <div className="content" />
+
+                    <CommentCreate article={article} />    
                   </Box>
                 </Container>
               </Tile>

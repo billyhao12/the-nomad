@@ -37,6 +37,10 @@ const articleSchema = new Schema({
       ref: 'User',
     },
   ],
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Comment',
+  }],
   lat: {
     type: Number,
     default: null,

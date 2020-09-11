@@ -4,6 +4,7 @@ import api from '../utils/api';
 
 import {Container, Heading, Hero, Box} from 'react-bulma-components';
 import UserArticle from '../components/UserArticle';
+import CommentView from '../components/CommentView';
 
 function UserProfile() {
   const [user, setUser] = useState();
@@ -24,6 +25,7 @@ function UserProfile() {
   }
 
   if(user) {
+    console.log(user);
     return (
       <div>
         <Box>
@@ -51,12 +53,12 @@ function UserProfile() {
           </Container>
           <Container>
             Your Comments:
-            {/* {
+            {
               user.comments > 0 &&
-              // user.articles.map((article, index) => (
-
-              // ))
-            } */}
+              user.comments.map((comment, index) => (
+                <CommentView comment={comment} key={index} />
+              ))
+            }
           </Container>
         </Box>
       </div>

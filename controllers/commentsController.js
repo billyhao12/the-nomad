@@ -18,7 +18,11 @@ module.exports = {
       .then((dbModel) => {
         db.User.findOneAndUpdate(req.user._id, {
           $push: { comments: dbModel._id },
-        }).then(() => res.json(dbModel))
+        })
+          .then((dbModel) => {
+            db.Article.findOneAndUpdate(dbModel.article, {$push: {comments: dbModel._id}})
+          })
+          .then(() => res.json(dbModel))
       })
       .catch((err) => res.status(422).json(err));
 

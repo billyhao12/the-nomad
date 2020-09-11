@@ -28,10 +28,19 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  findByCat: function(req, res) {
-    const {array} = QueryString.parse(req.params.cat);
+  findByCategoryArray: function(req, res) {
+    console.log('categories: ', req.params.categories);
+    const {array} = QueryString.parse(req.params.categories);
+    console.log(array);
     db.Article
       .find({category: { $in: [...array]}})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
+  },
+  findByCategorySingle: function(req, res) {
+    console.log('category: ', req.params.category);
+    db.Article
+      .find({category: [req.params.category]})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
