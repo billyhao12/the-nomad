@@ -4,6 +4,7 @@ import api from '../utils/api';
 
 import {Container, Heading, Hero, Box} from 'react-bulma-components';
 import UserArticle from '../components/UserArticle';
+import CommentView from '../components/CommentView';
 import CheckinDisplay from '../components/CheckinDisplay';
 
 function UserProfile() {
@@ -20,12 +21,9 @@ function UserProfile() {
         .then(res => setUser(res.data))
         .catch(err => console.log(err));
     }
-    else
-      console.log('undef');
   }
   
   if(user) {
-    console.log(user);
     return (
       <div>
         <Box>
@@ -53,12 +51,12 @@ function UserProfile() {
           </Container>
           <Container>
             Your Comments:
-            {/* {
-              user.comments > 0 &&
-              // user.articles.map((article, index) => (
-
-              // ))
-            } */}
+            {
+              user.comments.length > 0 &&
+              user.comments.map((comment, index) => (
+                <CommentView commentId={comment} key={index} />
+              ))
+            }
           </Container>
           <Container>
             My Check-Ins:

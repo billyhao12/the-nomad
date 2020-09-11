@@ -15,8 +15,11 @@ router
   .delete(articlesController.remove);
 
 
-router.route('/category/:cat')
-  .get(articlesController.findByCat)
+router.route('/categorySingle/:category')
+  .get(articlesController.findByCategorySingle);
+
+router.route('/categoryArray/:categories')
+  .get(articlesController.findByCategoryArray);
 // Potentially make the comment a subroute of the article
 
 module.exports = router;
