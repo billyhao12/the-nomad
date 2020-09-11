@@ -16,6 +16,7 @@ module.exports = {
         db.User.updateOne({_id: req.user._id}, {$push: {articles: dbModel._id}})
           .then(()=> res.json(dbModel));
       })
+<<<<<<< HEAD
       .catch((err) => res.status(422).json(err));
   },
   update: function (req, res) {
@@ -32,6 +33,31 @@ module.exports = {
     const {array} = QueryString.parse(req.params.cat);
     db.Article
       .find({category: { $in: [...array]}})
+=======
+      .catch((err) => res.status(422).json(err));
+  },
+  update: function (req, res) {
+    db.Article.findOneAndUpdate({ _id: req.params.id }, req.body)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  findById: function (req, res) {
+    db.Article.findById(req.params.id)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  findByCategoryArray: function(req, res) {
+    const {array} = QueryString.parse(req.params.categories);
+    console.log(array);
+    db.Article
+      .find({category: { $in: [...array]}})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
+  },
+  findByCategorySingle: function(req, res) {
+    db.Article
+      .find({category: [req.params.category]})
+>>>>>>> 5c08781f523f91d2ccb29698821a43e4d9dd0728
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },

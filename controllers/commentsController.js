@@ -14,11 +14,19 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
   create: function(req, res) {
-    db.Comment.create({ ...req.body, user: req.user._id })
+    db.Comment.create({ ...req.body, user: req.user._id})
       .then((dbModel) => {
+<<<<<<< HEAD
         db.User.findOneAndUpdate(req.user._id, {
           $push: { comments: dbModel._id },
         }).then(() => res.json(dbModel))
+=======
+        db.Article.updateOne({_id: dbModel.article}, {$push: {comments: dbModel._id}})
+          .then(() => {
+            db.User.updateOne({_id: req.user._id}, {$push: {comments: dbModel._id}})
+              .then(() => res.json(dbModel));
+          })
+>>>>>>> 5c08781f523f91d2ccb29698821a43e4d9dd0728
       })
       .catch((err) => res.status(422).json(err));
 

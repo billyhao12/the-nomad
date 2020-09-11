@@ -26,8 +26,13 @@ const UserSchema = new Schema({
   city: {
     type: String,
   },
+<<<<<<< HEAD
   checkIn: [{
       type: Schema.Types.ObjectId,
+=======
+  checkIns: [{
+    type: Schema.Types.ObjectId,
+>>>>>>> 5c08781f523f91d2ccb29698821a43e4d9dd0728
     ref: 'CheckIn',
   }],
   date: {
