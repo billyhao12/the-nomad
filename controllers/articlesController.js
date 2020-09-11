@@ -29,7 +29,6 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByCategoryArray: function(req, res) {
-    console.log('categories: ', req.params.categories);
     const {array} = QueryString.parse(req.params.categories);
     console.log(array);
     db.Article
@@ -38,7 +37,6 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
   findByCategorySingle: function(req, res) {
-    console.log('category: ', req.params.category);
     db.Article
       .find({category: [req.params.category]})
       .then(dbModel => res.json(dbModel))

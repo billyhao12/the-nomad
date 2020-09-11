@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import propTypes from 'prop-types';
-import {Box, Container, Form, Button} from 'react-bulma-components';
+import {Container, Form, Button} from 'react-bulma-components';
 import api from '../../utils/api';
 
 function CommentCreate(props) {
@@ -20,34 +20,37 @@ function CommentCreate(props) {
   }
 
   function handleFormSubmit(e) {
+    e.preventDefault();
     console.log(e);
 
     api.createComment({content: comment, article: props.articleId})
-      .then(res => console.log(res))
+      .then(res => {
+        setComment('');
+        props.onComment(res.data._id);
+      })
       .catch(err => console.log(err))
   }
 
   return (
     <Container>
-      <Box>
-        <Form.Field>
-          <Form.Label>Comment</Form.Label>
-          <Form.Control>
-            <Form.Textarea placeholder="Enter your comment" onChange={handleInputChange} value={comment}/>
-          </Form.Control>
-        </Form.Field>
-        <Form.Field>
-          <Form.Control>
-            <Button type='primary' onClick={handleFormSubmit}>Submit</Button>
-          </Form.Control>
-        </Form.Field>
-      </Box>
+      <Form.Field>
+        <Form.Label>Comment</Form.Label>
+        <Form.Control>
+          <Form.Textarea placeholder="Enter your comment" onChange={handleInputChange} value={comment}/>
+        </Form.Control>
+      </Form.Field>
+      <Form.Field>
+        <Form.Control>
+          <Button type='primary' onClick={handleFormSubmit}>Submit</Button>
+        </Form.Control>
+      </Form.Field>
     </Container>
   );
 }
 
 CommentCreate.propTypes= {
   articleId: propTypes.string,
+  onComment: propTypes.func,
 }
 
 export default CommentCreate;

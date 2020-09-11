@@ -20,12 +20,9 @@ function UserProfile() {
         .then(res => setUser(res.data))
         .catch(err => console.log(err));
     }
-    else
-      console.log('undef');
   }
 
   if(user) {
-    console.log(user);
     return (
       <div>
         <Box>
@@ -54,9 +51,9 @@ function UserProfile() {
           <Container>
             Your Comments:
             {
-              user.comments > 0 &&
+              user.comments.length > 0 &&
               user.comments.map((comment, index) => (
-                <CommentView comment={comment} key={index} />
+                <CommentView commentId={comment} key={index} />
               ))
             }
           </Container>
