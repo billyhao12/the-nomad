@@ -3,9 +3,10 @@ import React, {/*useState,*/ Component} from 'react';
 import api from '../utils/api';
 import {Redirect} from 'react-router';
 import {withRouter} from 'react-router-dom';
+import DropDown from '../components/DropDown';
 // example image url that is free and won't cause an error linking to it: https://images.unsplash.com/photo-1598143167992-f211e206b2d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80
 
-import {Form, Button, Container, Box, Hero, Image, Heading, Section, Level, Content} from 'react-bulma-components';
+import {Form, Button, Container, Box, Hero, Image, Heading, Section, Level, Content, Dropdown} from 'react-bulma-components';
 
 import ArticleDetailView from './ArticleDetailView';
 
@@ -93,11 +94,10 @@ class ArticleCreate extends Component {
       return <Redirect to={`/article/${this.state.newArticleId}`} component={ArticleDetailView}/>
     }
 
-    return(
+    return (
       <div>
         <Container>
           <Box>
-
             <Section>
               <Hero color='light' className='has-text-centered'>
                 <Heading size={2}>Create A New Article</Heading>
@@ -107,31 +107,53 @@ class ArticleCreate extends Component {
             <Form.Field>
               <Form.Label>Title</Form.Label>
               <Form.Control>
-                <Form.Input type={'text'} placeholder={'Enter Article Title'}  name='title' onChange={this.handleInputChange} value={this.state.articleTitle}/>
+                <Form.Input
+                  type={'text'}
+                  placeholder={'Enter Article Title'}
+                  name='title'
+                  onChange={this.handleInputChange}
+                  value={this.state.articleTitle}
+                />
               </Form.Control>
             </Form.Field>
 
             <Form.Field>
               <Form.Label>Image</Form.Label>
               <Form.Control>
-                <Form.Input type={'text'} placeholder={'Enter Image URL'} name='image' onChange={this.handleInputChange} value={this.state.image} />
+                <Form.Input
+                  type={'text'}
+                  placeholder={'Enter Image URL'}
+                  name='image'
+                  onChange={this.handleInputChange}
+                  value={this.state.image}
+                />
               </Form.Control>
             </Form.Field>
 
             <Form.Field>
               <Form.Label>Byline</Form.Label>
               <Form.Control>
-                <Form.Input type={'text'} placeholder={'Enter Article Byline'} name='byline' onChange={this.handleInputChange} value={this.state.byLine} />
+                <Form.Input
+                  type={'text'}
+                  placeholder={'Enter Article Byline'}
+                  name='byline'
+                  onChange={this.handleInputChange}
+                  value={this.state.byLine}
+                />
               </Form.Control>
             </Form.Field>
 
             <Form.Field>
               <Form.Label>Categories</Form.Label>
-              
+
               <Form.Control name='category'>
                 {categoriesList.map((category, index) => (
                   <div key={index}>
-                    <Form.Checkbox key={index} value={`${category}`} onChange={this.handleSelectChange} >
+                    <Form.Checkbox
+                      key={index}
+                      value={`${category}`}
+                      onChange={this.handleSelectChange}
+                    >
                       {' ' + category}
                     </Form.Checkbox>
                   </div>
@@ -142,13 +164,32 @@ class ArticleCreate extends Component {
             <Form.Field>
               <Form.Label>Article Body</Form.Label>
               <Form.Control>
-                <Form.Textarea name='body' onChange={this.handleInputChange} placeholder='Enter Article Body Here' value={this.state.articleBody}/>
+                <Form.Textarea
+                  name='body'
+                  onChange={this.handleInputChange}
+                  placeholder='Enter Article Body Here'
+                  value={this.state.articleBody}
+                />
+              </Form.Control>
+            </Form.Field>
+
+            <Form.Field>
+              <Form.Label>Article Radius</Form.Label>
+              <Form.Control>
+                <Dropdown trigger='Open Dropdown' >
+                  <a className='dropdown-item'>1 Mile</a>
+                  <a className='dropdown-item'>5 Miles</a>
+                  <a className='dropdown-item'>25 Miles</a>
+                  <a className='dropdown-item'>50 Miles</a>
+                </Dropdown>
               </Form.Control>
             </Form.Field>
 
             <Form.Field>
               <Form.Control>
-                <Button type='light' onClick={this.handleFormSubmit}>Submit</Button>
+                <Button type='light' onClick={this.handleFormSubmit}>
+                  Submit
+                </Button>
               </Form.Control>
             </Form.Field>
           </Box>
@@ -157,45 +198,47 @@ class ArticleCreate extends Component {
             <Container>
               <Hero className='has-text-centered' color='light'>
                 <Hero.Body>
-                  <Heading>
-
-                    {this.state.articleTitle}
-                  </Heading>
+                  <Heading>{this.state.articleTitle}</Heading>
                 </Hero.Body>
               </Hero>
               <Image src={this.state.image} />
               <Box>
                 <Box>
-                  <Level renderAs="nav">
-                    <Level.Side align="left">
+                  <Level renderAs='nav'>
+                    <Level.Side align='left'>
                       <Level.Item>
                         <Heading size={5} subtitle>
-                              Categories: 
+                          Categories:
                         </Heading>
                       </Level.Item>
 
-                      {
-                        this.state.categories.map((category, index) => (
-                          <Level.Item renderAs="button" key={index}>
-                            {category}
-                          </Level.Item>
-                        ))
-                      }
-
-                        
+                      {this.state.categories.map((category, index) => (
+                        <Level.Item renderAs='button' key={index}>
+                          {category}
+                        </Level.Item>
+                      ))}
                     </Level.Side>
 
-                    <Level.Side align="right">
-                      <Level.Item><Heading size={5} subtitle><strong>Published: </strong></Heading></Level.Item>
-                      <Level.Item><Heading size={5} subtitle><strong>Lat: </strong></Heading></Level.Item>
-                      <Level.Item><Heading size={5} subtitle><strong>Long: </strong></Heading></Level.Item>
+                    <Level.Side align='right'>
+                      <Level.Item>
+                        <Heading size={5} subtitle>
+                          <strong>Published: </strong>
+                        </Heading>
+                      </Level.Item>
+                      <Level.Item>
+                        <Heading size={5} subtitle>
+                          <strong>Lat: </strong>
+                        </Heading>
+                      </Level.Item>
+                      <Level.Item>
+                        <Heading size={5} subtitle>
+                          <strong>Long: </strong>
+                        </Heading>
+                      </Level.Item>
                     </Level.Side>
                   </Level>
                 </Box>
-                      
-                <Content>
-                  {this.state.articleBody}
-                </Content>
+                <Content>{this.state.articleBody}</Content>
               </Box>
             </Container>
           </Box>
