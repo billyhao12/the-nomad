@@ -41,6 +41,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "prop-types": "^15.7.2",
+    "react-bulma-components": "^3.4.0",
     "react-mapbox-gl": "^4.8.6",
     "validator": "^13.1.1"
   }
