@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 // import ReactMapboxGl, {Layer} from 'react-mapbox-gl';
 // import {Feature} from 'react-mapbox-gl';
 import api from '../utils/api';
-import {Container, Image, Box, Hero, Heading, Tile, Level, Content} from 'react-bulma-components';
+import {Container, Image, Box, Hero, Heading, Tile, Level, Content, Media} from 'react-bulma-components';
 import PropTypes from 'prop-types';
 
 import Related from '../components/Related';
@@ -160,19 +160,17 @@ function ArticleDetailView(props) {
               <Tile renderAs="article" kind="child">
                 <Container>
                   <Box>
-                    <Heading subtitle>Comments</Heading>
-                    <Box>
-                      <p>number of comments {comments.length}</p>
-                      {comments.length > 0 &&
+                    <Heading subtitle><strong><big>Comments</big></strong></Heading>
+                    {comments.length > 0 &&
                         comments.map((comment, index) => (
-                          
                           <CommentView commentId={comment} key={index} />
                         ))
-                      }
-                    </Box>
-                    <Box>
-                      <CommentCreate articleId={article._id} onComment={handleNewComment}/>    
-                    </Box>
+                    }
+                    <Media>
+                      <Media.Item>
+                        <CommentCreate articleId={article._id} onComment={handleNewComment}/>    
+                      </Media.Item>
+                    </Media>
                   </Box>
                 </Container>
               </Tile>
