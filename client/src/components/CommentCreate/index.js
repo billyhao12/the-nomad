@@ -1,11 +1,15 @@
-import React, {useState} from 'react';
-
+import React, {useState, useEffect} from 'react';
+import propTypes from 'prop-types';
 import {Box, Container, Form, Button} from 'react-bulma-components';
 import api from '../../utils/api';
 
 function CommentCreate(props) {
 
   const [comment, setComment] = useState();
+
+  useEffect(() => {
+
+  },[])
 
   function handleInputChange(e) {
     const value = e.target.value;
@@ -16,7 +20,11 @@ function CommentCreate(props) {
   }
 
   function handleFormSubmit(e) {
-    //api.
+    console.log(e);
+
+    api.createComment({content: comment, article: props.articleId})
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
   }
 
   return (
@@ -36,6 +44,10 @@ function CommentCreate(props) {
       </Box>
     </Container>
   );
+}
+
+CommentCreate.propTypes= {
+  articleId: propTypes.string,
 }
 
 export default CommentCreate;

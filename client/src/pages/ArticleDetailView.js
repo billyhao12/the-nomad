@@ -73,7 +73,7 @@ function ArticleDetailView(props) {
           .catch(err => console.log(err));
       }
       else {
-        console.log("no related categories found");
+        console.log('no related categories found');
       }
     }
   }
@@ -149,7 +149,7 @@ function ArticleDetailView(props) {
                   <Box>
                     <Heading subtitle>Comments</Heading>
 
-                    <CommentCreate article={article} />    
+                    <CommentCreate articleId={article._id} />    
                   </Box>
                 </Container>
               </Tile>
