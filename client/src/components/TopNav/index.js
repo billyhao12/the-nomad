@@ -54,6 +54,9 @@ function TopNav() {
           <Navbar.Item href="/login">
             Login
           </Navbar.Item>
+          <Navbar.Item href= "/logout">
+            Log Out
+          </Navbar.Item>
           <Navbar.Item href="/register">
             Register
           </Navbar.Item>
