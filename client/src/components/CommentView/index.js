@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import propTypes from 'prop-types';
 
-import {Section, Box, Media, Content, Level, Button} from 'react-bulma-components';
+import { Media, Content, Level, Button} from 'react-bulma-components';
 
 import api from '../../utils/api';
 
