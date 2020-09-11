@@ -7,7 +7,7 @@ const CheckInSchema = new Schema({
     ref: 'User',
   },
   lat: {
-    type: String,
+    type: Number,
     required: true,
   },
   long: {
