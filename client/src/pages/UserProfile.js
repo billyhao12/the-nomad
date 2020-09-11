@@ -4,6 +4,7 @@ import api from '../utils/api';
 
 import {Container, Heading, Hero, Box} from 'react-bulma-components';
 import UserArticle from '../components/UserArticle';
+import CheckinDisplay from '../components/CheckinDisplay';
 
 function UserProfile() {
   const [user, setUser] = useState();
@@ -22,8 +23,9 @@ function UserProfile() {
     else
       console.log('undef');
   }
-
+  
   if(user) {
+    console.log(user);
     return (
       <div>
         <Box>
@@ -60,6 +62,14 @@ function UserProfile() {
           </Container>
           <Container>
             My Check-Ins:
+            {
+              user.checkIns.length > 0 &&
+              user.checkIns.map((checkIn, index) => (
+                <div key={index}>
+                  <CheckinDisplay checkInId={checkIn} key={index} />
+                </div>
+              ))
+            }
           </Container>
         </Box>
       </div>
