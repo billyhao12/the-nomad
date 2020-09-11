@@ -11,7 +11,7 @@ const routes = require('./routes');
 // Middleware defined
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+//app.set('query parser', 'extended')
 
 app.use(passport.initialize());
 require('./config/passport')(passport);

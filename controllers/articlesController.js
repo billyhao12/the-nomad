@@ -1,32 +1,38 @@
-const db = require('../models')
+const db = require('../models');
+const QueryString = require('querystring');
 
 module.exports = {
   findAll: function(req, res) {
-    console.log(req.user)
     db.Article
       .find(req.query)
       .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err))
-  },
-  create: function(req, res) {
-    db.Article.create({...req.body, user: req.user._id} )
-        .then((dbModel) => {
-          User.findOneAndUpdate(req.user._id, {$push: {articles: dbModel._id}})
-          .then(()=> res.json(dbModel));
-        })
+      .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  update: function(req, res) {
-    db.Article
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err))
+  create: function(req, res) {
+    console.log(req.user._id);
+    db.Article.create({...req.body, user: req.user._id} )
+      .then((dbModel) => {
+        db.User.updateOne({_id: req.user._id}, {$push: {articles: dbModel._id}})
+          .then(()=> res.json(dbModel));
+      })
+      .catch((err) => res.status(422).json(err));
   },
-  findById: function(req, res) {
+  update: function (req, res) {
+    db.Article.findOneAndUpdate({ _id: req.params.id }, req.body)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  findById: function (req, res) {
+    db.Article.findById(req.params.id)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  findByCat: function(req, res) {
+    const {array} = QueryString.parse(req.params.cat);
     db.Article
-      .findById(req.params.id)
-      .then(dbModel=> res.json(dbModel))
+      .find({category: { $in: [...array]}})
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
   remove: function(req, res) {
@@ -36,5 +42,4 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
-  
-}
+};

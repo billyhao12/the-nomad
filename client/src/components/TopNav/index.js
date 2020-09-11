@@ -14,7 +14,7 @@ function TopNav() {
 
   return (
 
-    <Navbar>
+    <Navbar className='is-primary'>
 
       <Navbar.Brand>
         <Navbar.Item renderAs="a" href="/">
@@ -56,6 +56,9 @@ function TopNav() {
           </Navbar.Item>
           <Navbar.Item href="/register">
             Register
+          </Navbar.Item>
+          <Navbar.Item href='/user'>
+            <img src={require('../../icons/nomadIcon5.png')} />
           </Navbar.Item>
         </Navbar.Container>
 

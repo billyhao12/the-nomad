@@ -10,7 +10,7 @@ function Map(props){
   
   const [state, setState] = useState({lng: -122.51, lat: 47.62, zoom: 7.89});
  
-  const mapContainerRef = useRef()
+  const mapContainerRef = useRef();
 
   useEffect(() =>{
     if(!props.userLatitude || !props.articlesCoordinates){
@@ -38,6 +38,7 @@ function Map(props){
       zoom: 8
     });
 
+    //track current user location
     map.addControl(new mapboxgl.GeolocateControl({
       positionOptions: {
         enableHighAccuracy: true
@@ -117,7 +118,7 @@ function Map(props){
         .setLngLat({lon: props.userLongitude, lat: props.userLatitude})
         .addTo(map)
 
-     
+      //heatmap layer
       map.addLayer(
         {
           'id': 'articles-heat',
@@ -260,16 +261,11 @@ function Map(props){
       );
     });
    
-  
-    // When a click event occurs on a feature in
-    // the unclustered-point layer, open a popup at
-    // the location of the feature, with
-    // description HTML from its properties.
-    // this will link an article to an on click event
+    // Popup of article with title and image
 
     const popup = new mapboxgl.Popup({
-      closeButton: false,
-      closeOnClick: false
+      closeButton: true,
+      closeOnClick: true
     });
 
     map.on('mouseenter', 'unclustered-point', function(event) {
@@ -293,7 +289,7 @@ function Map(props){
 
     });
 
-    map.on('mouseleave', 'unclustered-point', function() {
+    map.on('click', 'unclustered-point', function() {
       map.getCanvas().style.cursor = '';
       popup.remove();
     });
@@ -317,9 +313,8 @@ function Map(props){
       });
     
     });
-
+   
   },[props])
-
 
   return(
     <div className="map_box_container">

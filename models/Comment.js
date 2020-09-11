@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const CommentSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
   },
   article: {
     type: Schema.Types.ObjectId,
-    ref: "Article",
+    ref: 'Article',
   },
   content: {
     type: String,
@@ -17,7 +17,13 @@ const CommentSchema = new Schema({
   like: [
     {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
+    },
+  ],
+  dislike: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
     },
   ],
   date: {

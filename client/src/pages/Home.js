@@ -5,17 +5,21 @@ import Map from '../components/Map';
 import Categories from '../components/Categories';
 import api from '../utils/api';
 import propTypes from 'prop-types';
-// import {Feature} from 'react-mapbox-gl';
+import { useHistory } from 'react-router-dom';
+import UserCheckIn from '../components/UserCheckIn';
 
-function Home(){
+import { Columns } from 'react-bulma-components';
+
+function Home() {
   const [articles, setArticles] = useState([]);
   const [position, setPosition] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     loadArticles()
     loadPosition()
-  },[])
-  
+  },[]);
+
   function loadArticles() {
     api.getArticles()
       .then(res =>
@@ -34,48 +38,65 @@ function Home(){
     }
   }
 
+  // Constructed React router url link to article from mapbox popup
+  window.goToArticle = (event, articleId) =>{
+    event.preventDefault()
+    history.push(`/article/${articleId}`)
+  }
+
+  //Article Feature portion of GeoJSON obj
   const articlesCoordinates= articles.map((article) => (
     { 'type': 'Feature',
       'properties': {
         'id': article._id,
-        'details': '<strong>'+ article.title + '</strong> <br><img src="'+ article.image +'" width="100">'
+        'details': '<strong><a href="#" onclick="goToArticle(event,\''+ article._id +'\')">'+ article.title + '</strong><br><img src="'+ article.image +'" width="100">'
       },
-      'geometry':
-      {
+      'geometry': {
         'type': 'Point',
         'coordinates': [article.long, article.lat, 0],
       }
     }
-  ))
- 
-  //User GPS location
-  
+  ));
+
   return (
+
     <div>
+    
+      <UserCheckIn 
+        userLatitude={position.latitude}
+        userLongitude={position.longitude}
+      />
+    
       <Map 
         userLatitude={position.latitude}
         userLongitude={position.longitude}
         articlesCoordinates={articlesCoordinates}
       />
 
-      <Categories />
+      <Columns>
+    
+        <Columns.Column size={3}>
+          <Categories />
+        </Columns.Column>
+    
+        <Columns.Column size={9}>
+          {
+            articles.map((article, index) => (
+              <ArticlePreview article={article} key={index}/>
+            ))
+          }
+        </Columns.Column>
 
-      {/** Start with a basic list of cards */}
-      {
-        articles.map((article, index) => (
-          // eslint-disable-next-line react/jsx-key
-          <ArticlePreview article={article} key={index}/>
+      </Columns>
 
-        ))
-
-      }
-              
     </div>
-  )}
+
+  )
+  
+}
 
 Home.propTypes = {
   children: propTypes.node,
-};
+}
 
-
-export default Home; 
+export default Home;

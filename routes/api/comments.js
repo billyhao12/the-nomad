@@ -1,17 +1,17 @@
 const router = require('express').Router();
 const commentsController = require('../../controllers/commentsController');
-const passport = require("passport");
+const passport = require('passport');
 
 //Matches with "/api/comments"
 router
-  .route("/")
+  .route('/')
   .get(commentsController.findAll)
   .post(
-    passport.authenticate("jwt", { session: false }),
+    passport.authenticate('jwt', { session: false }),
     commentsController.create
   );
 
-//Matches with "/api/posts/:id"
+//Matches with "/api/comments/:id"
 router
   .route('/:id')
   .get(commentsController.findById)
