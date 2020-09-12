@@ -27,9 +27,6 @@ function Map(props){
       },
       'features':props.articlesCoordinates
     }
-   
-
-    console.log(articlesGeoJSON)
   
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
@@ -196,7 +193,6 @@ function Map(props){
           'source': 'articles',
           'minzoom': 7,
           'paint': {
-            // Size circle radius by earthquake magnitude and zoom level
             'circle-radius': [
               'interpolate',
               ['linear'],
