@@ -126,30 +126,31 @@ function ArticleDetailView(props) {
                     <Box>
                       <Box>
                         <Level renderAs="nav">
-                          <Level.Side align="left">
+                          
                             <Level.Item>
                               <Heading size={5} subtitle>
                               Categories: 
                               </Heading>
-                            </Level.Item>
-
-                            {
+                              {
                               article.category.map((category, index) => (
                                 <Level.Item renderAs="button" key={index}>
                                   <Link to='/'>{category}</Link>
                                 </Level.Item>
                               ))
                             }
+                            </Level.Item>
 
-                            <LikeDislikeBar favor={article.favor} onLike={handleLike}/>
+                            
 
-                          </Level.Side>
+                              <LikeDislikeBar favor={article.favor} onLike={handleLike}/>
 
-                          <Level.Side align="right">
+                          
+
+                          
                             <Level.Item><Heading size={5} subtitle><strong>Published: </strong>{date}</Heading></Level.Item>
                             <Level.Item><Heading size={5} subtitle><strong>Lat: </strong>{article.lat}</Heading></Level.Item>
                             <Level.Item><Heading size={5} subtitle><strong>Long: </strong>{article.long}</Heading></Level.Item>
-                          </Level.Side>
+                          
                         </Level>
                       </Box>
                       

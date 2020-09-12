@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useStoreContext} from '../../store';
 
-import {Container, Level, Button, Progress } from 'react-bulma-components';
+import './style.css'
+import {Container, Columns, Button, Progress, Level } from 'react-bulma-components';
 
 import propTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 function LikeDislikeBar(props) {
   const [{userAuth}] = useStoreContext();  
@@ -48,23 +51,26 @@ function LikeDislikeBar(props) {
   if(isLiked);
 
   return (
-    <Container fluid>
-      <Level renderAs='nav'>
-        <Level.Item>
-          <Button onClick={handleLike}>
-            like
-          </Button>
-        </Level.Item>
-        <Level.Item>
-          <Progress max={100} value={15} color='primary' background-color='danger' size='small'/>
-        </Level.Item>
-        <Level.Item>
-          <Button onClick={handleDislike}>
-            dislike
-          </Button>
-        </Level.Item>
-      </Level>
-    </Container>
+    <Level.Item>
+
+      <Level.Item>
+        <Button fullwidth onClick={handleLike}>
+          <FontAwesomeIcon icon="arrow-up" />
+        </Button>
+      </Level.Item>
+
+      <Level.Item>
+        <Progress style={{width: '10em'}} max={100} value={15} color='primary' background-color='danger' size='large'/>
+      </Level.Item>
+
+      <Level.Item>
+        <Button fullwidth onClick={handleDislike}>
+          <FontAwesomeIcon icon="arrow-down" />
+        </Button>
+      </Level.Item>
+
+    </Level.Item>
+    
   );
 }
 
