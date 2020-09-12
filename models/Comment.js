@@ -14,18 +14,10 @@ const CommentSchema = new Schema({
     type: String,
     required: true,
   },
-  like: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-    },
-  ],
-  dislike: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-    },
-  ],
+  favor: {
+    type: Schema.Types.Map,
+    of: Boolean
+  },
   date: {
     type: Date,
     default: Date.now,

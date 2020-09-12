@@ -25,18 +25,22 @@ const articleSchema = new Schema({
     type: String,
     required: true,
   },
-  like: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-    },
-  ],
-  dislike: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-    },
-  ],
+  favor: {
+    type: Schema.Types.Map,
+    of: Boolean
+  },
+  // like: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'User',
+  //   },
+  // ],
+  // dislike: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'User',
+  //   },
+  // ],
   comments: [{
     type: Schema.Types.ObjectId,
     ref: 'Comment',
