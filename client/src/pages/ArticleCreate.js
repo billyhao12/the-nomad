@@ -2,24 +2,28 @@ import React, {/*useState,*/ Component} from 'react';
 
 import api from '../utils/api';
 import {Redirect} from 'react-router';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Link, BrowserRouter, Route} from 'react-router-dom';
 // example image url that is free and won't cause an error linking to it: https://images.unsplash.com/photo-1598143167992-f211e206b2d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80
 
 import {Form, Button, Container, Box, Hero, Image, Heading, Section, Level, Content} from 'react-bulma-components';
 
 import ArticleDetailView from './ArticleDetailView';
+const QueryString = require('querystring')
 
 class ArticleCreate extends Component {
-  state = {
-    articleTitle: '',
-    categories: [],
-    articleBody: '',
-    image: '',
-    byLine: '',
-    created: false,
-    newArticleId: '',
-  };
-
+  constructor(props) {
+    super(props)
+    this.state = {
+      articleTitle: '',
+      categories: [],
+      articleBody: '',
+      image: '',
+      byLine: '',
+      created: false,
+      newArticleId: '',
+      checkin: QueryString.parse(props.match.params.checkin)
+    };
+  }
   handleFormSubmit = event => {
     event.preventDefault();
     console.log(event);
@@ -31,7 +35,7 @@ class ArticleCreate extends Component {
     console.log(`Categories: ${this.state.categories}`);
     console.log(`Body: ${this.state.articleBody}`);
 
-    api.createArticle({title: this.state.articleTitle, byline: this.state.byLine, category: this.state.categories, body: this.state.articleBody, image: this.state.image})
+    api.createArticle({title: this.state.articleTitle, byline: this.state.byLine, category: this.state.categories, body: this.state.articleBody, image: this.state.image, lat:this.state.checkin.lat, long:this.state.checkin.long, date:this.state.checkin.date})
       .then(res =>
         this.setState({newArticleId: res.data._id}, () => {
           this.setState({created: true}, () => {
@@ -186,9 +190,9 @@ class ArticleCreate extends Component {
                     </Level.Side>
 
                     <Level.Side align="right">
-                      <Level.Item><Heading size={5} subtitle><strong>Published: </strong></Heading></Level.Item>
-                      <Level.Item><Heading size={5} subtitle><strong>Lat: </strong></Heading></Level.Item>
-                      <Level.Item><Heading size={5} subtitle><strong>Long: </strong></Heading></Level.Item>
+                      <Level.Item><Heading size={5} subtitle><strong>Published: {this.state.checkin.date}</strong></Heading></Level.Item>
+                      <Level.Item><Heading size={5} subtitle><strong>Lat: {this.state.checkin.lat}</strong></Heading></Level.Item>
+                      <Level.Item><Heading size={5} subtitle><strong>Long: {this.state.checkin.long} </strong></Heading></Level.Item>
                     </Level.Side>
                   </Level>
                 </Box>
