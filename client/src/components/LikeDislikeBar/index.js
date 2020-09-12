@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useStoreContext} from '../../store';
 
 import './style.css'
-import {Container, Columns, Button, Progress, Level } from 'react-bulma-components';
+import {Button, Progress, Level } from 'react-bulma-components';
 
 import propTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import propTypes from 'prop-types';
 
-import { Media, Content, Level, Button} from 'react-bulma-components';
+import { Media, Content, Level} from 'react-bulma-components';
 
 import api from '../../utils/api';
+import LikeDislikeBar from '../LikeDislikeBar';
 
 function CommentView(props) {
 
@@ -20,6 +21,10 @@ function CommentView(props) {
       })
   }
 
+  function handleLike() {
+
+  }
+
   if(comment) {
     return (
       <Media>
@@ -33,8 +38,7 @@ function CommentView(props) {
           </Content>
           <Level breakpoint='mobile'>
             <Level.Side align='left'>
-              <Button>Like</Button> +{comment.like.length}
-              <Button>Dislike</Button> -{comment.dislike.length}
+              <LikeDislikeBar favor={comment.favor} onLike={handleLike} />
             </Level.Side>
           </Level>
         </Media.Item>
