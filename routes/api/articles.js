@@ -8,12 +8,10 @@ router.route('/')
   .post(passport.authenticate('jwt', { session: false }), articlesController.create);
 
 //Matches with"/api/articles/:id"
-router
-  .route('/:id')
+router.route('/:id')
   .get(articlesController.findById)
   .put(articlesController.update)
   .delete(articlesController.remove);
-
 
 router.route('/categorySingle/:category')
   .get(articlesController.findByCategorySingle);
@@ -21,5 +19,8 @@ router.route('/categorySingle/:category')
 router.route('/categoryArray/:categories')
   .get(articlesController.findByCategoryArray);
 // Potentially make the comment a subroute of the article
+
+router.route('/search/:title')
+  .get(articlesController.findByTitle);
 
 module.exports = router;

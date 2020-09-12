@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Navbar } from 'react-bulma-components';
-import { Form } from 'react-bulma-components';
-import { Button } from 'react-bulma-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './style.css';
 import { useIsAuthenticated, useLogout } from '../../utils/auth';
 
-
-
-const { Field, Control, Input } = Form;
-
 function TopNav() {
+
   const isAuthorizedUser = useIsAuthenticated();
-  const [search, setSearch] = useState();
-  const logOut= useLogout();
+  const logOut = useLogout();
 
   return (
 
@@ -29,27 +22,6 @@ function TopNav() {
       </Navbar.Brand>
 
       <Navbar.Menu>
-
-        <Navbar.Container>
-          <Navbar.Item renderAs='div'>
-            <Field className="has-addons">
-              <Control className="is-expanded">
-                <Input
-                  className="is-info is-fullwidth"
-                  placeholder="Search"
-                  type="text"
-                  value={search}
-                  onChange={e => setSearch(e.target.value)}
-                />
-              </Control>
-              <Control>
-                <Button className="is-info" type="primary">
-                  <FontAwesomeIcon icon="search" />
-                </Button>
-              </Control>
-            </Field>
-          </Navbar.Item>
-        </Navbar.Container>
 
         <Navbar.Container position="end">
           <Navbar.Item href="/createArticle">
