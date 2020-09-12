@@ -42,6 +42,15 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
+  findByTitle: function(req, res) {
+    db.Article
+      .find({
+        title: {
+          $regex: req.params.title, 
+          $options: 'i'}})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
+  },
   remove: function(req, res) {
     db.Article
       .findById({ _id: req.params.id })

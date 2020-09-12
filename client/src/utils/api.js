@@ -37,6 +37,10 @@ export default {
     return axios.get('/api/articles/' + id);
   },
 
+  searchArticleTitles(title) {
+    return axios.get('/api/articles/search/' + title);
+  },
+
   getArticleCategoriesArray(categories) {
     return axios.get('/api/articles/categoryArray/' + categories);
   },
