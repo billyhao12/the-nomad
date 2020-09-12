@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import Related from '../components/Related';
 import CommentCreate from '../components/CommentCreate';
 import CommentView from '../components/CommentView';
+import LikeDislikeBar from '../components/LikeDislikeBar';
 const QueryString = require('querystring');
 
 ArticleDetailView.propTypes = {
@@ -92,6 +93,10 @@ function ArticleDetailView(props) {
     setComments(oldComments.concat([commentId]));
   }
 
+  function handleLike(id, value) {
+    console.log(`handleLike ID: ${id}, Value: ${value}`);
+  }
+
   if(article)
   {
     let date;
@@ -136,7 +141,8 @@ function ArticleDetailView(props) {
                               ))
                             }
 
-                        
+                            <LikeDislikeBar favor={article.favor} onLike={handleLike}/>
+
                           </Level.Side>
 
                           <Level.Side align="right">
