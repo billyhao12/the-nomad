@@ -18,29 +18,25 @@ import {
   Content,
   Dropdown
 } from 'react-bulma-components';
-
+import PropTypes from 'prop-types';
 import ArticleDetailView from './ArticleDetailView';
+const QueryString = require('querystring')
 
 class ArticleCreate extends Component {
-  state = {
-    articleTitle: '',
-    categories: [],
-    articleBody: '',
-    image: '',
-    byLine: '',
-    created: false,
-    newArticleId: '',
-  };
-
-  // componentDidMount() {
-  //   var dropdown = document.querySelector('.dropdown');
-  //   dropdown.addEventListener('click', function (event) {
-  //     event.stopPropagation();
-  //     dropdown.classList.toggle('is-active');
-  //   });
-  // };
-
-  handleFormSubmit = (event) => {
+  constructor(props) {
+    super(props)
+    this.state = {
+      articleTitle: '',
+      categories: [],
+      articleBody: '',
+      image: '',
+      byLine: '',
+      created: false,
+      newArticleId: '',
+      checkin: QueryString.parse(props.match.params.checkin)
+    };
+  }
+  handleFormSubmit = event => {
     event.preventDefault();
     console.log(event);
 
@@ -51,19 +47,12 @@ class ArticleCreate extends Component {
     console.log(`Categories: ${this.state.categories}`);
     console.log(`Body: ${this.state.articleBody}`);
 
-    api
-      .createArticle({
-        title: this.state.articleTitle,
-        byline: this.state.byLine,
-        category: this.state.categories,
-        body: this.state.articleBody,
-        image: this.state.image,
-      })
-      .then((res) =>
-        this.setState({ newArticleId: res.data._id }, () => {
-          this.setState({ created: true }, () => {
-            console.log(`Success! ${res.data._id}, ${this.state.newArticleId}`);
-          });
+    api.createArticle({title: this.state.articleTitle, byline: this.state.byLine, category: this.state.categories, body: this.state.articleBody, image: this.state.image, lat:this.state.checkin.lat, long:this.state.checkin.long, date:this.state.checkin.date})
+      .then(res =>
+        this.setState({newArticleId: res.data._id}, () => {
+          this.setState({created: true}, () => {
+            console.log(`Success! ${res.data._id}, ${this.state.newArticleId}`)}
+          )
         })
       )
       .catch((err) => console.log(err));
@@ -266,22 +255,10 @@ class ArticleCreate extends Component {
                       ))}
                     </Level.Side>
 
-                    <Level.Side align='right'>
-                      <Level.Item>
-                        <Heading size={5} subtitle>
-                          <strong>Published: </strong>
-                        </Heading>
-                      </Level.Item>
-                      <Level.Item>
-                        <Heading size={5} subtitle>
-                          <strong>Lat: </strong>
-                        </Heading>
-                      </Level.Item>
-                      <Level.Item>
-                        <Heading size={5} subtitle>
-                          <strong>Long: </strong>
-                        </Heading>
-                      </Level.Item>
+                    <Level.Side align="right">
+                      <Level.Item><Heading size={5} subtitle><strong>Published: {this.state.checkin.date}</strong></Heading></Level.Item>
+                      <Level.Item><Heading size={5} subtitle><strong>Lat: {this.state.checkin.lat}</strong></Heading></Level.Item>
+                      <Level.Item><Heading size={5} subtitle><strong>Long: {this.state.checkin.long} </strong></Heading></Level.Item>
                     </Level.Side>
                   </Level>
                 </Box>
@@ -304,5 +281,7 @@ const categoriesList = [
   'Entertainment',
   'Location',
 ];
-
+ArticleCreate.propTypes = {
+  match: PropTypes.object
+}
 export default withRouter(ArticleCreate);

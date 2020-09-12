@@ -3,7 +3,8 @@ import api from '../../utils/api';
 import PropTypes from 'prop-types';
 import { Card, Media, Content } from 'react-bulma-components';
 import Minimap from '../Minimap';
-
+import {Link} from 'react-router-dom';
+const QueryString = require('querystring');
 
 function CheckinDisplay(props) {
   const [location, setLocation] = useState();
@@ -11,7 +12,7 @@ function CheckinDisplay(props) {
   useEffect(() => {
     loadCheckin(props.checkInId)
   },[props]);
-
+  console.log(props)
   function loadCheckin(id) {
     console.log(id)
     api.getCheckIn(id)
@@ -57,7 +58,10 @@ function CheckinDisplay(props) {
           </Media>
         </Card.Content>
         <Card.Footer>
-          <Card.Footer.Item renderAs="a" href="#Yes">Write Article?</Card.Footer.Item>
+          <Card.Footer.Item>
+            <Link to={{pathname:`/createArticle/${QueryString.stringify({lat:location.lat, long: location.long, date: location.date})}`}}>Write Article Now?</Link>
+
+          </Card.Footer.Item>
           <Card.Footer.Item renderAs="button" className="button is-danger" onClick={deleteCheckin}>Remove Check-in?</Card.Footer.Item>
         </Card.Footer>
       </Card>

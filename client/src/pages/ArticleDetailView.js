@@ -94,7 +94,7 @@ function ArticleDetailView(props) {
 
   if(article)
   {
-    let date;
+    let date = article.date;
     if(date) {
       date = article.date.split('T')
       date = date[0];

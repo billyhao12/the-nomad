@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Container, Section, Button, Modal} from 'react-bulma-components';
 import './style.css';
 import API from '../../utils/api';
+const QueryString = require('querystring');
 
 function UserCheckIn(props) {
   
@@ -38,7 +39,7 @@ function UserCheckIn(props) {
           <Section >
             <Container className='has-text-centered'>
               <Button onClick={storeCoordinates} className='is-large' rounded={true} color='success'>Save Location for Later</Button>
-              <a href='/createArticle' className='is-success is-large is-rounded button'>Write Article Now</a>
+              <a href={`/createArticle/${QueryString.stringify({lat:props.userLatitude, long: props.userLongitude})}`} className='is-success is-large is-rounded button'>Write Article Now</a>
             </Container>
           </Section>
         </Modal.Content>
