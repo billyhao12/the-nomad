@@ -44,7 +44,10 @@ module.exports = {
   },
   findByTitle: function(req, res) {
     db.Article
-      .find({title: req.params.title})
+      .find({
+        title: {
+          $regex: req.params.title, 
+          $options: 'i'}})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
