@@ -1,12 +1,23 @@
-import React, {/*useState,*/ Component} from 'react';
+import React, { /*useState,*/ Component } from 'react';
 
 import api from '../utils/api';
-import {Redirect} from 'react-router';
-import {withRouter} from 'react-router-dom';
-import DropDown from '../components/DropDown';
-// example image url that is free and won't cause an error linking to it: https://images.unsplash.com/photo-1598143167992-f211e206b2d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80
+import { Redirect } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
-import {Form, Button, Container, Box, Hero, Image, Heading, Section, Level, Content, Dropdown} from 'react-bulma-components';
+// example image url that is free and won't cause an error linking to it: https://images.unsplash.com/photo-1598143167992-f211e206b2d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80
+import {
+  Form,
+  Button,
+  Container,
+  Box,
+  Hero,
+  Image,
+  Heading,
+  Section,
+  Level,
+  Content,
+  Dropdown
+} from 'react-bulma-components';
 
 import ArticleDetailView from './ArticleDetailView';
 
@@ -21,7 +32,15 @@ class ArticleCreate extends Component {
     newArticleId: '',
   };
 
-  handleFormSubmit = event => {
+  // componentDidMount() {
+  //   var dropdown = document.querySelector('.dropdown');
+  //   dropdown.addEventListener('click', function (event) {
+  //     event.stopPropagation();
+  //     dropdown.classList.toggle('is-active');
+  //   });
+  // };
+
+  handleFormSubmit = (event) => {
     event.preventDefault();
     console.log(event);
 
@@ -32,36 +51,51 @@ class ArticleCreate extends Component {
     console.log(`Categories: ${this.state.categories}`);
     console.log(`Body: ${this.state.articleBody}`);
 
-    api.createArticle({title: this.state.articleTitle, byline: this.state.byLine, category: this.state.categories, body: this.state.articleBody, image: this.state.image})
-      .then(res =>
-        this.setState({newArticleId: res.data._id}, () => {
-          this.setState({created: true}, () => {
-            console.log(`Success! ${res.data._id}, ${this.state.newArticleId}`)}
-          )
+    api
+      .createArticle({
+        title: this.state.articleTitle,
+        byline: this.state.byLine,
+        category: this.state.categories,
+        body: this.state.articleBody,
+        image: this.state.image,
+      })
+      .then((res) =>
+        this.setState({ newArticleId: res.data._id }, () => {
+          this.setState({ created: true }, () => {
+            console.log(`Success! ${res.data._id}, ${this.state.newArticleId}`);
+          });
         })
       )
-      .catch(err => console.log(err));
-  }
+      .catch((err) => console.log(err));
+  };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const id = event.target.name;
     const value = event.target.value;
 
     console.log(event.target.id);
     console.log(`value: ${event.target.value}`);
 
-    if(id === 'title') {
-      this.setState({articleTitle: value}, () => console.log(`Article Title: ${this.state.articleTitle}`));
-    } else if(id === 'image') {
-      this.setState({image: value}, () => console.log(`Image URL: ${this.state.image}`));
-    } else if(id === 'byline') {
-      this.setState({byLine: value}, () => console.log(`Byline: ${this.state.byLine}`))
+    if (id === 'title') {
+      this.setState({ articleTitle: value }, () =>
+        console.log(`Article Title: ${this.state.articleTitle}`)
+      );
+    } else if (id === 'image') {
+      this.setState({ image: value }, () =>
+        console.log(`Image URL: ${this.state.image}`)
+      );
+    } else if (id === 'byline') {
+      this.setState({ byLine: value }, () =>
+        console.log(`Byline: ${this.state.byLine}`)
+      );
     } else {
-      this.setState({articleBody: value}, () => console.log(`Body: ${this.state.articleBody}`));
+      this.setState({ articleBody: value }, () =>
+        console.log(`Body: ${this.state.articleBody}`)
+      );
     }
-  }
+  };
 
-  handleSelectChange = event => {
+  handleSelectChange = (event) => {
     const value = event.target.value;
     const checked = event.target.checked;
 
@@ -70,28 +104,42 @@ class ArticleCreate extends Component {
     console.log(event.target.value);
     console.log(event.target.checked);
 
-    if(checked === true) {
-      if(!this.state.categories.includes(`${value}`)) { // if this.state.categories doesn't contain the clicked category
+    if (checked === true) {
+      if (!this.state.categories.includes(`${value}`)) {
+        // if this.state.categories doesn't contain the clicked category
         const newCategories = this.state.categories.concat(`${value}`); // new array (can't push or pop the state directly)
-        this.setState({categories: newCategories}, () => console.log('added to categories: ' + this.state.categories)); // assign the new array to state
+        this.setState({ categories: newCategories }, () =>
+          console.log('added to categories: ' + this.state.categories)
+        ); // assign the new array to state
       } else {
         return;
       }
-    } else { //same as above but opposite for removing values from the categories array
-      if(this.state.categories.includes(`${value}`)) {
-        let newCategores = this.state.categories.filter(category => category !== value);
-        this.setState({categories: newCategores}, () => console.log('removed from categories: ' + this.state.categories))
+    } else {
+      //same as above but opposite for removing values from the categories array
+      if (this.state.categories.includes(`${value}`)) {
+        let newCategores = this.state.categories.filter(
+          (category) => category !== value
+        );
+        this.setState({ categories: newCategores }, () =>
+          console.log('removed from categories: ' + this.state.categories)
+        );
       } else {
         return;
       }
     }
-  }
+  };
 
   render() {
-    
-    if(this.state.created) {
-      console.log(`created: ${this.state.created}, articleId: ${this.state.newArticleId}`);
-      return <Redirect to={`/article/${this.state.newArticleId}`} component={ArticleDetailView}/>
+    if (this.state.created) {
+      console.log(
+        `created: ${this.state.created}, articleId: ${this.state.newArticleId}`
+      );
+      return (
+        <Redirect
+          to={`/article/${this.state.newArticleId}`}
+          component={ArticleDetailView}
+        />
+      );
     }
 
     return (
@@ -176,15 +224,14 @@ class ArticleCreate extends Component {
             <Form.Field>
               <Form.Label>Article Radius</Form.Label>
               <Form.Control>
-                <Dropdown trigger='Open Dropdown' >
-                  <a className='dropdown-item'>1 Mile</a>
-                  <a className='dropdown-item'>5 Miles</a>
-                  <a className='dropdown-item'>25 Miles</a>
-                  <a className='dropdown-item'>50 Miles</a>
+                <Dropdown  >
+                  <Dropdown.Item value='item'>1 Mile</Dropdown.Item>
+                  <Dropdown.Item value='other'>5 Miles</Dropdown.Item>
+                  <Dropdown.Item value='active'>25 Miles</Dropdown.Item>
+                  <Dropdown.Item value='other 2'>50 Miles</Dropdown.Item>
                 </Dropdown>
               </Form.Control>
             </Form.Field>
-
             <Form.Field>
               <Form.Control>
                 <Button type='light' onClick={this.handleFormSubmit}>
@@ -255,7 +302,7 @@ const categoriesList = [
   'Tech/Science',
   'Politics',
   'Entertainment',
-  'Location'
+  'Location',
 ];
 
 export default withRouter(ArticleCreate);
