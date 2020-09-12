@@ -37,8 +37,12 @@ export default {
     return axios.get('/api/articles/' + id);
   },
 
-  getArticleCat(cat) {
-    return axios.get('/api/articles/category/' + cat);
+  getArticleCategoriesArray(categories) {
+    return axios.get('/api/articles/categoryArray/' + categories);
+  },
+
+  getArticleCategoriesSingle(category) {
+    return axios.get('/api/articles/categorySingle/' + category);
   },
 
   createArticle(data) {
