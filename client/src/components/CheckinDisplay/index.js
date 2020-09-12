@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../utils/api';
 import PropTypes from 'prop-types';
-import { Card, Media, Content, Image } from 'react-bulma-components';
+import { Card, Media, Content } from 'react-bulma-components';
+import Minimap from '../Minimap';
 
 
 function CheckinDisplay(props) {
@@ -9,8 +10,8 @@ function CheckinDisplay(props) {
 
   useEffect(() => {
     loadCheckin(props.checkInId)
-  },[]);
-  console.log(location)
+  },[props]);
+
   function loadCheckin(id) {
     api.getCheckIn(id)
       .then(res =>
@@ -18,13 +19,29 @@ function CheckinDisplay(props) {
       )
       .catch(err=> console.log(err))
   }
+
   if(location){
+    const checkInGeoJSON = {
+      'type': 'FeatureCollection',
+      'features':{
+        'type': 'Feature',
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [location.long, location.lat, 0],
+        },
+        'properties': {
+          'title': 'Check In'
+        }
+      }
+    }
     return (
       <Card>
         <Card.Content>
           <Media>
             <Media.Item renderAs="figure" position="left">
-              <Image size={64} alt="64x64" src="http://bulma.io/images/placeholders/128x128.png" />
+              <Minimap 
+                checkInCoordinates={checkInGeoJSON} 
+              />
             </Media.Item>
             <Content>
               <p> <strong>Location</strong> Latitude: {location.lat}  Longitude: {location.long}</p>
@@ -44,7 +61,7 @@ function CheckinDisplay(props) {
 }
 
 CheckinDisplay.propTypes = {
-  checkInId: PropTypes.object
+  checkInId: PropTypes.string
 };
 
 export default CheckinDisplay;
