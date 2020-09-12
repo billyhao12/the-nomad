@@ -2,11 +2,11 @@ import React, {/*useState,*/ Component} from 'react';
 
 import api from '../utils/api';
 import {Redirect} from 'react-router';
-import {withRouter, Link, BrowserRouter, Route} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 // example image url that is free and won't cause an error linking to it: https://images.unsplash.com/photo-1598143167992-f211e206b2d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80
 
 import {Form, Button, Container, Box, Hero, Image, Heading, Section, Level, Content} from 'react-bulma-components';
-
+import PropTypes from 'prop-types';
 import ArticleDetailView from './ArticleDetailView';
 const QueryString = require('querystring')
 
@@ -218,5 +218,7 @@ const categoriesList = [
   'Entertainment',
   'Location'
 ];
-
+ArticleCreate.propTypes = {
+  match: PropTypes.object
+}
 export default withRouter(ArticleCreate);

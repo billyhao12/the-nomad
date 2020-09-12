@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {Container, Section, Button, Modal} from 'react-bulma-components';
 import './style.css';
 import API from '../../utils/api';
-import {Link} from 'react-router-dom';
 const QueryString = require('querystring');
 
 function UserCheckIn(props) {

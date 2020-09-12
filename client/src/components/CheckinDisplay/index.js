@@ -12,7 +12,7 @@ function CheckinDisplay(props) {
   useEffect(() => {
     loadCheckin(props.checkInId)
   },[props]);
-console.log(props)
+  console.log(props)
   function loadCheckin(id) {
     console.log(id)
     api.getCheckIn(id)
@@ -59,7 +59,7 @@ console.log(props)
         </Card.Content>
         <Card.Footer>
           <Card.Footer.Item>
-          <Link to={{pathname:`/createArticle/${QueryString.stringify({lat:location.lat, long: location.long, date: location.date})}`}}>Write Article Now?</Link>
+            <Link to={{pathname:`/createArticle/${QueryString.stringify({lat:location.lat, long: location.long, date: location.date})}`}}>Write Article Now?</Link>
 
           </Card.Footer.Item>
           <Card.Footer.Item renderAs="button" className="button is-danger" onClick={deleteCheckin}>Remove Check-in?</Card.Footer.Item>
