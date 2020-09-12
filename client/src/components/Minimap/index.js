@@ -8,8 +8,6 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXNqbTA5MyIsImEiOiJja2VkZHFsMjIwMnRrMnBud
 
 function Minimap (props){
  
-  // const [state, setState] = useState({})
-
   const minimapContainerRef = useRef();
   
   useEffect(() =>{
@@ -21,31 +19,11 @@ function Minimap (props){
       zoom: 17
     });
     
-    // map.on('load', function() {
-    //   map.addSource('checkin', {
-    //     type: 'geojson',
-    //     data: props.checkInCoordinates
-    //   })
-    // });
-    
     new mapboxgl.Marker()
       .setLngLat({lon: props.checkInCoordinates.features.geometry.coordinates[0], lat: props.checkInCoordinates.features.geometry.coordinates[1]})
       .addTo(map);
-    // map.addLayer({
-    //   'id': 'checkin-point',
-    //   'type': 'Point',
-    //   'source': 'checkin',
-    //   'text-field': 'Check-In',
-    //   'text-font': [
-    //     'Open Sans Semibold',
-    //     'Arial Unicode MS Bold'
-    //   ],
-    //   'text-offset': [0, 1.25],
-    //   'text-anchor': 'top'
-      
-    // })
-  }, [props]);
 
+  }, [props]);
 
   return(
     <div className="map_box_container">

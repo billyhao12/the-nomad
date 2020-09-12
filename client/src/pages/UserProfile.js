@@ -12,12 +12,12 @@ function UserProfile() {
   const [{userAuth}] = useStoreContext();
 
   useEffect(() => {
-    loadUser(userAuth);
+    if(userAuth){loadUser()}
   },[userAuth]);
 
-  function loadUser(auth) {
-    if(auth) {
-      api.getUser(auth.id)
+  function loadUser() {
+    if(userAuth) {
+      api.getUser(userAuth.id)
         .then(res => setUser(res.data))
         .catch(err => console.log(err));
     }
@@ -64,7 +64,7 @@ function UserProfile() {
               user.checkIns.length > 0 &&
               user.checkIns.map((checkIn, index) => (
                 <div key={index}>
-                  <CheckinDisplay checkInId={checkIn} key={index} />
+                  <CheckinDisplay loadUser={loadUser} checkInId={checkIn} key={index} />
                 </div>
               ))
             }

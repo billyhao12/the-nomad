@@ -7,12 +7,13 @@ import Minimap from '../Minimap';
 
 function CheckinDisplay(props) {
   const [location, setLocation] = useState();
-
+  console.log(props.checkInId)
   useEffect(() => {
     loadCheckin(props.checkInId)
   },[props]);
 
   function loadCheckin(id) {
+    console.log(id)
     api.getCheckIn(id)
       .then(res =>
         setLocation(res.data)
@@ -20,6 +21,13 @@ function CheckinDisplay(props) {
       .catch(err=> console.log(err))
   }
 
+  function deleteCheckin() {
+    api.deleteCheckIn(props.checkInId)
+      .then(props.loadUser)
+      .catch(err => console.log(err))
+  }
+
+  console.log(location)
   if(location){
     const checkInGeoJSON = {
       'type': 'FeatureCollection',
@@ -50,6 +58,7 @@ function CheckinDisplay(props) {
         </Card.Content>
         <Card.Footer>
           <Card.Footer.Item renderAs="a" href="#Yes">Write Article?</Card.Footer.Item>
+          <Card.Footer.Item renderAs="button" className="button is-danger" onClick={deleteCheckin}>Remove Check-in?</Card.Footer.Item>
         </Card.Footer>
       </Card>
     )
