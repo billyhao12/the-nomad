@@ -5,12 +5,16 @@ import { Form } from 'react-bulma-components';
 import { Button } from 'react-bulma-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './style.css';
+import { useIsAuthenticated, useLogout } from '../../utils/auth';
+
+
 
 const { Field, Control, Input } = Form;
 
 function TopNav() {
-
+  const isAuthorizedUser = useIsAuthenticated();
   const [search, setSearch] = useState();
+  const logOut= useLogout();
 
   return (
 
@@ -51,9 +55,15 @@ function TopNav() {
           <Navbar.Item href="/createArticle">
             Create Article
           </Navbar.Item>
-          <Navbar.Item href="/login">
+          {isAuthorizedUser ? (
+            <Navbar.Item onClick={logOut}>
+          Logout
+            </Navbar.Item>
+          ) : (
+            <Navbar.Item href="/login">
             Login
-          </Navbar.Item>
+            </Navbar.Item>
+          )}
           <Navbar.Item href="/register">
             Register
           </Navbar.Item>
