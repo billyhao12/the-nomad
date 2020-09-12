@@ -1,5 +1,6 @@
 import React, { useEffect, useState} from 'react';
 
+import SearchForm from '../components/SearchForm';
 import ArticlePreview from '../components/ArticlePreview';
 import Map from '../components/Map';
 import Categories from '../components/Categories';
@@ -66,6 +67,8 @@ function Home() {
         userLatitude={position.latitude}
         userLongitude={position.longitude}
       />
+
+      <SearchForm setArticles={setArticles}/>
     
       <Map 
         userLatitude={position.latitude}
