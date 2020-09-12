@@ -17,6 +17,25 @@ const userSeed = [
   },
 ];
 
+const CheckInSeed = [
+  {
+    lat: 47.6,
+    lon: 122.23,
+  },
+  {
+    lat: 45,
+    lon: 123,
+  },
+  {
+    lat: 48,
+    lon: 122.3,
+  },
+  {
+    lat: 47,
+    lon: 122,
+  },
+];
+
 const articleSeed = [
   {
     title: 'Seattle police clear CHOP protest zone',
@@ -148,15 +167,10 @@ const commentSeed = [
   },
 ];
 
-// on the user.then function create the createSeedArticles
-// runseedfunction
-
-// Clear
-// Get
-// Insert
 
 function createUserSeed() {
   db.User.remove({})
+  db.CheckIn.remove({})
     .then(() => db.User.collection.insertMany(userSeed))
     .then((data) => {
       console.log(data.result.n + ' records inserted!');
@@ -172,6 +186,7 @@ function createUserSeed() {
     });
 }
 createUserSeed();
+
 
 async function createSeedArticles() {
   const users = await db.User.find({});

@@ -2,8 +2,12 @@ import React from 'react';
 
 import { Navbar } from 'react-bulma-components';
 import './style.css';
+import { useIsAuthenticated, useLogout } from '../../utils/auth';
 
 function TopNav() {
+
+  const isAuthorizedUser = useIsAuthenticated();
+  const logOut = useLogout();
 
   return (
 
@@ -23,9 +27,15 @@ function TopNav() {
           <Navbar.Item href="/createArticle">
             Create Article
           </Navbar.Item>
-          <Navbar.Item href="/login">
+          {isAuthorizedUser ? (
+            <Navbar.Item onClick={logOut}>
+          Logout
+            </Navbar.Item>
+          ) : (
+            <Navbar.Item href="/login">
             Login
-          </Navbar.Item>
+            </Navbar.Item>
+          )}
           <Navbar.Item href="/register">
             Register
           </Navbar.Item>

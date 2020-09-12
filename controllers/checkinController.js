@@ -23,9 +23,11 @@ module.exports = {
   },
   remove: function(req, res) {
     db.CheckIn
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err))
+      .findByIdAndDelete(req.params.id)
+      .then((dbModel) => {
+        db.User.updateOne({ _id: dbModel.user }, { $pull: { checkIns: dbModel._id } }
+        ).then(() => res.json(dbModel));
+      })
+      .catch(err => console.log(err))
   }
 }
