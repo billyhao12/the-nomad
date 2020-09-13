@@ -14,4 +14,8 @@ router
   .put(profilesController.update)
   .delete(profilesController.remove);
 
+router
+  .route('/likedArticles/:articles')
+  .put(profilesController.updateLikedArticles);
+
 module.exports = router;

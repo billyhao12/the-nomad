@@ -51,6 +51,14 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
+  setFavor: function(req, res) {
+    console.log(req.params.values)
+    const values = QueryString.parse(req.params.values);
+    console.log('inside setFavor with values: likes: ' + values.likes + ' dislikes: ' + values.dislikes);
+    db.Article.updateOne({_id: values.articleId}, {$set: {likes: values.likes, dislikes: values.dislikes}})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   remove: function(req, res) {
     db.Article
       .findById({ _id: req.params.id })
@@ -59,3 +67,4 @@ module.exports = {
       .catch(err => res.status(422).json(err))
   },
 };
+//5f5d99213d932f7da01f245c
