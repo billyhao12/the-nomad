@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../utils/api';
 import PropTypes from 'prop-types';
-import { Card, Media, Content } from 'react-bulma-components';
+import { Card, Media, Content, Button } from 'react-bulma-components';
 import Minimap from '../Minimap';
 import {Link} from 'react-router-dom';
+import './style.css'
 const QueryString = require('querystring');
 
 function CheckinDisplay(props) {
@@ -43,8 +44,17 @@ function CheckinDisplay(props) {
         }
       }
     }
+    let date = location.date;
+    if(date) {
+      date = location.date.split('T')
+      date = date[0]
+    } else {
+      date = 'no date';
+    }
+
+
     return (
-      <Card>
+      <Card className='checkinCard'>
         <Card.Content>
           <Media>
             <Media.Item renderAs="figure" position="left">
@@ -52,23 +62,28 @@ function CheckinDisplay(props) {
                 checkInCoordinates={checkInGeoJSON} 
               />
             </Media.Item>
-            <Content>
-              <p> <strong>Location</strong> Latitude: {location.lat}  Longitude: {location.long}</p>
-            </Content>
+            <Media.Item>
+              <Content className='coords'>
+                <p> <span className='location'>Location:</span> Latitude: {location.lat}  Longitude: {location.long} <span className='location'>Date:</span> {date}</p>
+              </Content>
+            </Media.Item>
           </Media>
         </Card.Content>
         <Card.Footer>
           <Card.Footer.Item>
-            <Link to={{pathname:`/createArticle/${QueryString.stringify({lat:location.lat, long: location.long, date: location.date})}`}}>Write Article Now?</Link>
-
+            <Link className='button is-success writeButton' to={{pathname:`/createArticle/${QueryString.stringify({lat:location.lat, long: location.long, date: location.date})}`}}>Write Article Now?
+            </Link>
           </Card.Footer.Item>
-          <Card.Footer.Item renderAs="button" className="button is-danger" onClick={deleteCheckin}>Remove Check-in?</Card.Footer.Item>
+          <Card.Footer.Item>
+            <Button className="is-danger" onClick={deleteCheckin}>Remove Check-in?
+            </Button>
+          </Card.Footer.Item>
         </Card.Footer>
       </Card>
     )
   } else {
     return(
-      <p>Check-in to a location to write an article later!</p>
+      <p>Check in error!</p>
     )
   }
 }
