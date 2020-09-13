@@ -6,18 +6,31 @@ import { Media, Content, Level} from 'react-bulma-components';
 import api from '../../utils/api';
 import LikeDislikeBar from '../LikeDislikeBar';
 
+
 function CommentView(props) {
 
   const [comment, setComment] = useState();
+  const [user, setUser] = useState();
+
 
   useEffect(() => {
     getComment(props.commentId);
   },[]);
 
+  function loadUser(comment) {
+    if (comment) {
+      api.getUser(comment.user)
+        .then(res=> {
+          setUser(res.data)
+          setComment(comment)} )
+        .catch(err => console.log(err))
+    }
+  }
+
   function getComment(id) {
     api.getComment(id)
       .then(res => {
-        setComment(res.data);
+        loadUser(res.data);
       })
   }
 
@@ -31,7 +44,7 @@ function CommentView(props) {
         <Media.Item>
           <Content>
             <p>
-              <strong>commenter name (_id): {comment.user}</strong> <small>Commented: {comment.date}</small>
+              <strong>{user.name} says:</strong> <small>Commented: {comment.date}</small>
               <br />
               {comment.content}
             </p>
