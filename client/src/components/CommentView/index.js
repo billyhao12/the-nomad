@@ -44,7 +44,7 @@ function CommentView(props) {
         <Media.Item>
           <Content>
             <p>
-              <strong>{user.name} says:</strong> <small>Commented: {comment.date}</small>
+              <strong>{user.name}</strong> <small>Commented: {comment.date}</small>
               <br />
               {comment.content}
             </p>
