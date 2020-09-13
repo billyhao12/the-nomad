@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import ArticleDetailView from './pages/ArticleDetailView';
 import ArticleCreate from './pages/ArticleCreate';
 import TopNav from './components/TopNav';
+import BottomFooter from './components/BottomFooter';
 import UserProfile from './pages/UserProfile';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route exact path="/createArticle" component={ArticleCreate} />
             <Route path="/user" component={UserProfile} />
           </Switch>
+          <BottomFooter />
         </div>
       </Router>
     </div>
