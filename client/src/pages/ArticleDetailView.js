@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 
@@ -158,7 +159,7 @@ function ArticleDetailView(props) {
                             }
                           </Level.Item>
 
-                          <LikeDislikeBar likes={articleLikes} dislikes={articleDislikes} articleId={article._id} onLike={handleLike}/>
+                          {/* <LikeDislikeBar likes={articleLikes} dislikes={articleDislikes} articleId={article._id} onLike={handleLike}/> */}
 
                           <Level.Item><Heading size={5} subtitle><strong>Published: </strong>{date}</Heading></Level.Item>
                           <Level.Item><Heading size={5} subtitle><strong>Lat: </strong>{article.lat}</Heading></Level.Item>
