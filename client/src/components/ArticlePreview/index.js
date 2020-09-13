@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
+import api from '../../utils/api';
+
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -17,6 +20,18 @@ import './style.css';
 
 function ArticlePreview({article}) {
 
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    loadUser(article.user)
+  }, []);
+
+  function loadUser(userId) {
+    api.getUser(userId)
+      .then(res => setUser(res.data))
+      .catch(err => console.log(err));
+  }
+
   return (
     <Section>
       <Box>
@@ -30,9 +45,9 @@ function ArticlePreview({article}) {
           <Media.Item>
             <Content>
               <p>
-                <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
+                <strong>{user ? user.name : 'NA'}</strong> <small>{article.date}</small>
                 <br />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+                {article.byline}
               </p>
             </Content>
             <Level breakpoint="mobile">
