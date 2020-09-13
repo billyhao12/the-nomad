@@ -79,7 +79,7 @@ function Home() {
       <Columns>
     
         <Columns.Column size={3}>
-          <Categories />
+          <Categories setArticles={setArticles}/>
         </Columns.Column>
     
         <Columns.Column size={9}>
