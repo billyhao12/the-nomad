@@ -1,0 +1,22 @@
+.checkinCard{
+  height: 145px;
+  border: 1px solid #0C516E;
+  margin-bottom: 5px;
+}
+
+.coords{
+ text-align: center;
+}
+
+.location{
+  font-weight: bolder;
+  font-style: italic;
+  text-decoration: underline;
+  
+}
+
+
+
+.writeButton {
+  width: 165.83px;
+}
