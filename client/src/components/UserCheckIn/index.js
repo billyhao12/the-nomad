@@ -4,17 +4,17 @@ import {Container, Section, Button, Modal} from 'react-bulma-components';
 import './style.css';
 import API from '../../utils/api';
 const QueryString = require('querystring');
-
+const  {useIsAuthenticated} = require('../../utils/auth');
 function UserCheckIn(props) {
   
-  const[modalState, setModalState] = useState({show: false});
-  const[successState, setSuccessState] =useState({show: false});
-
-  function open(){  setModalState({ show: true })}
-  function close() { setModalState({ show: false })}
+  const[successState, setSuccessState] = useState({show: false});
+  const[failState, setFailState]= useState({show: false})
   
   function success(){ setSuccessState({ show: true }) }
   function closeSuccess(){ setSuccessState({ show: false })}
+
+  function failModal(){ setFailState({ show: true }) }
+  function closeFailModal(){ setFailState({ show: false })}
 
   function storeCoordinates( event ){
     event.preventDefault();
@@ -23,32 +23,42 @@ function UserCheckIn(props) {
       long: props.userLongitude,
       date: Date.now
     })
-      .then(() => close())
       .then(success)
       .then(setTimeout(closeSuccess, 2000))
-      .catch( err => console.log(err))
+      .catch( err => {if(err){
+        failModal()
+      }})
+  }
+  //if user is authenticated, then they can write an article
+  const isAuthorizedUser = useIsAuthenticated();
+  let button;
+  if(isAuthorizedUser){
+    button = <a href={`/createArticle/${QueryString.stringify({lat:props.userLatitude, long: props.userLongitude})}`} className='is-success is-large is-rounded button'>Write Article Now</a>
+  } else {
+    button = <div><a className='button is-danger' href="/login">Login</a><a className='button ml-2 is-danger' href="/register">Register</a></div>
   }
 
   return (
     <div>
       <Container className='checkinContainer has-text-centered '>
-        <Button className='is-large checkinButton' color='danger' onClick={open}>Check In!</Button>
+        <Button onClick={storeCoordinates} className='is-large' rounded={true} color='success'>Save Location for Later</Button>
+        {button}      
       </Container>
-      <Modal show={modalState.show} onClose={close}>
-        <Modal.Content>
-          <Section >
-            <Container className='has-text-centered'>
-              <Button onClick={storeCoordinates} className='is-large' rounded={true} color='success'>Save Location for Later</Button>
-              <a href={`/createArticle/${QueryString.stringify({lat:props.userLatitude, long: props.userLongitude})}`} className='is-success is-large is-rounded button'>Write Article Now</a>
-            </Container>
-          </Section>
-        </Modal.Content>
-      </Modal>
       <Modal show={successState.show} >
         <Modal.Content>
           <Section style={{backgroundColor: 'yellow'}}>
             <Container className='has-text-centered'>
-              <p className='successMessage'>Location successfully stored!</p>
+              <p className='alertMessage'>Location successfully stored!</p>
+            </Container>
+          </Section>
+        </Modal.Content>
+      </Modal>
+      <Modal show={failState.show} onClose={closeFailModal}>
+        <Modal.Content>
+          <Section style={{backgroundColor: 'yellow'}}>
+            <Container className='has-text-centered'>
+              <p className='alertMessage'>Create an account or log in!</p>
+              <a className='button is-danger' href="/login">Login</a><a className='button ml-2 is-danger' href="/register">Register</a>
             </Container>
           </Section>
         </Modal.Content>
