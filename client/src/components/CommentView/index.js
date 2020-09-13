@@ -17,11 +17,13 @@ function CommentView(props) {
   },[]);
 
   function loadUser(comment) {
-    api.getUser(comment.user)
-      .then(res=> {
-        setUser(res.data)
-        setComment(comment)} )
-      .catch(err => console.log(err))
+    if (comment) {
+      api.getUser(comment.user)
+        .then(res=> {
+          setUser(res.data)
+          setComment(comment)} )
+        .catch(err => console.log(err))
+    }
   }
 
   function getComment(id) {
