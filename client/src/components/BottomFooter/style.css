@@ -2,18 +2,11 @@ div.footer {
     background-color: #0C516E;
 }
 
-div.content strong {
+div.footer * {
     color: white;
 }
 
-div.content p {
+div.footer a:hover {
     color: white;
-}
-
-div.content a {
-    color: white;
-}
-
-div.content a:hover {
     text-decoration: underline;
 }
