@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 
@@ -28,7 +29,13 @@ function ArticleDetailView(props) {
   useEffect(() => {
     
   })
-  
+
+  const [{articleLikes, articleDislikes}, setLikes] = useState({articleLikes: 0, articleDislikes: 0});
+
+  useEffect(() => {
+
+  })
+
   const [article, setArticle] = useState();
 
   const pathname = props.location.pathname;
@@ -48,6 +55,7 @@ function ArticleDetailView(props) {
   
           setArticle(res.data);
           setComments(res.data.comments);
+          setLikes({articleLikes: res.data.likes, articleDislikes: res.data.dislikes});
         })
         .catch(err => console.log(err));
     }
@@ -93,8 +101,16 @@ function ArticleDetailView(props) {
     setComments(oldComments.concat([commentId]));
   }
 
-  function handleLike(id, value) {
-    console.log(`handleLike ID: ${id}, Value: ${value}`);
+  function handleLike(numLikes, numDislikes) {
+    //api call to update the new number of likes and dislikes
+    console.log(`inside handle likes with values: likes:${numLikes} dislikes:${numDislikes}`);
+    api.updateFavor(QueryString.stringify({likes: numLikes, dislikes: numDislikes, articleId: idString}))
+      .then(() => {
+        //set the values of likes and dislikes
+        setLikes({articleLikes: numLikes, articleDislikes: numDislikes});
+  
+      })
+      .catch(err => console.log(err));
   }
 
   if(article)
@@ -106,6 +122,9 @@ function ArticleDetailView(props) {
     } else {
       date = 'no date';
     }
+
+    console.log('rendering article: ', article);
+
     return (
       <div>
         <Tile kind="ancestor">
@@ -126,13 +145,11 @@ function ArticleDetailView(props) {
                     <Box>
                       <Box>
                         <Level renderAs="nav">
-                          <Level.Side align="left">
-                            <Level.Item>
-                              <Heading size={5} subtitle>
-                              Categories: 
-                              </Heading>
-                            </Level.Item>
-
+                          
+                          <Level.Item>
+                            <Heading size={5} subtitle>
+                            Categories: 
+                            </Heading>
                             {
                               article.category.map((category, index) => (
                                 <Level.Item renderAs="button" key={index}>
@@ -140,16 +157,14 @@ function ArticleDetailView(props) {
                                 </Level.Item>
                               ))
                             }
+                          </Level.Item>
 
-                            <LikeDislikeBar favor={article.favor} onLike={handleLike}/>
+                          {/* <LikeDislikeBar likes={articleLikes} dislikes={articleDislikes} articleId={article._id} onLike={handleLike}/> */}
 
-                          </Level.Side>
-
-                          <Level.Side align="right">
-                            <Level.Item><Heading size={5} subtitle><strong>Published: </strong>{date}</Heading></Level.Item>
-                            <Level.Item><Heading size={5} subtitle><strong>Lat: </strong>{article.lat}</Heading></Level.Item>
-                            <Level.Item><Heading size={5} subtitle><strong>Long: </strong>{article.long}</Heading></Level.Item>
-                          </Level.Side>
+                          <Level.Item><Heading size={5} subtitle><strong>Published: </strong>{date}</Heading></Level.Item>
+                          <Level.Item><Heading size={5} subtitle><strong>Lat: </strong>{article.lat}</Heading></Level.Item>
+                          <Level.Item><Heading size={5} subtitle><strong>Long: </strong>{article.long}</Heading></Level.Item>
+                        
                         </Level>
                       </Box>
                       

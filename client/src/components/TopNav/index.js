@@ -24,9 +24,6 @@ function TopNav() {
       <Navbar.Menu>
 
         <Navbar.Container position="end">
-          <Navbar.Item href="/createArticle">
-            Create Article
-          </Navbar.Item>
           {isAuthorizedUser ? (
             <Navbar.Item onClick={logOut}>
           Logout

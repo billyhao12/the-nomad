@@ -25,9 +25,13 @@ const articleSchema = new Schema({
     type: String,
     required: true,
   },
-  favor: {
-    type: Schema.Types.Map,
-    of: Boolean
+  likes: {
+    type: Number,
+    default: 0
+  },
+  dislikes: {
+    type: Number,
+    default: 0
   },
   // like: [
   //   {

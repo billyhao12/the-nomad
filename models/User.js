@@ -15,6 +15,17 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref:'Comment'
   }],
+  likedArticles:[
+    {
+      articleId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Article'
+      },
+      value: {
+        type: Boolean
+      }
+    }
+  ],
   email: {
     type: String,
     required: true,

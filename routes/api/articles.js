@@ -23,4 +23,7 @@ router.route('/categoryArray/:categories')
 router.route('/search/:title')
   .get(articlesController.findByTitle);
 
+router.route('/favor/:values')
+  .put(articlesController.setFavor);
+
 module.exports = router;

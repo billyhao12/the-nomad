@@ -1,6 +1,14 @@
 import axios from 'axios';
 
 export default {
+  updateLikedArticles(articles) {
+    return axios.put('/api/profiles/likedArticles/' + articles);
+  },
+
+  updateFavor(values) {
+    return axios.put('/api/articles/favor/' + values);
+  },
+
   getComments() {
     return axios.get('/api/comments');
   },
