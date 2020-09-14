@@ -68,8 +68,6 @@ function Home() {
         userLongitude={position.longitude}
       />
 
-      <SearchForm setArticles={setArticles}/>
-    
       <Map 
         userLatitude={position.latitude}
         userLongitude={position.longitude}
@@ -83,6 +81,7 @@ function Home() {
         </Columns.Column>
     
         <Columns.Column size={9}>
+          <SearchForm setArticles={setArticles}/>
           {
             articles.map((article, index) => (
               <ArticlePreview article={article} key={index}/>

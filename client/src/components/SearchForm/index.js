@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 
 import api from '../../utils/api';
 
-import { Form, Button } from 'react-bulma-components';
+import { Section, Box, Form, Button } from 'react-bulma-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const { Field, Control, Input } = Form;
@@ -34,26 +34,29 @@ function SearchForm({ setArticles }) {
   }
 
   return (
-    <Field className="has-addons">
-      <Control className="is-expanded">
-        <Input
-          className="is-info is-fullwidth"
-          placeholder="Search by Title"
-          type="text"
-          value={searchInput}
-          onChange={e => setSearchInput(e.target.value)}
-        />
-      </Control>
-      <Control>
-        <Button 
-          className="is-info"
-          type="primary"
-          onClick={handleSubmit}>
-          <FontAwesomeIcon icon="search" />
-        </Button>
-      </Control>
-    </Field>
-
+    <Section>
+      <Box>
+        <Field className="has-addons">
+          <Control className="is-expanded">
+            <Input
+              className="is-info is-fullwidth"
+              placeholder="Search by Title"
+              type="text"
+              value={searchInput}
+              onChange={e => setSearchInput(e.target.value)}
+            />
+          </Control>
+          <Control>
+            <Button 
+              className="is-info"
+              type="primary"
+              onClick={handleSubmit}>
+              <FontAwesomeIcon icon="search" />
+            </Button>
+          </Control>
+        </Field>
+      </Box>
+    </Section>
   )
 }
 
