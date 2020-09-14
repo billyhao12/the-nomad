@@ -35,7 +35,7 @@ function UserCheckIn(props) {
   if(isAuthorizedUser){
     button = <a href={`/createArticle/${QueryString.stringify({lat:props.userLatitude, long: props.userLongitude})}`} className='is-success is-large is-rounded button'>Write Article Now</a>
   } else {
-    button = <div><a className='button is-danger' href="/login">Login</a><a className='button ml-2 is-danger' href="/register">Register</a></div>
+    button = <Button onClick={()=>failModal()} className='is-large' rounded={true} color='success'>Write Article</Button>
   }
 
   return (
