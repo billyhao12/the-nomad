@@ -39,8 +39,8 @@ function ArticlePreview({article}) {
           <Heading className='mb-3'>{article.title}</Heading>
         </Link>
         <Media>
-          <Media.Item renderAs="figure" position="left">
-            <Image size={128} alt="128x128" src={article.image} />
+          <Media.Item  renderAs="figure" position="left">
+            <Image  size={128} alt="128x128" src={article.image} />
           </Media.Item>
           <Media.Item>
             <Content>

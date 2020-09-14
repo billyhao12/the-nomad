@@ -1,3 +1,9 @@
 a:hover {
   text-decoration: none;
 }
+
+img {
+  max-width: 128px;
+  max-height: 128px;
+  object-fit: contain;
+}
