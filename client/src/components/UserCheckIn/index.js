@@ -40,7 +40,7 @@ function UserCheckIn(props) {
 
   return (
     <div>
-      <Container className='checkinContainer has-text-centered '>
+      <Container className='checkinContainer mt-1 has-text-centered '>
         <Button onClick={storeCoordinates} className='is-large' rounded={true} color='success'>Save Location for Later</Button>
         {button}      
       </Container>
