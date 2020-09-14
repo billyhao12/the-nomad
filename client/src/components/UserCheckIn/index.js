@@ -46,19 +46,19 @@ function UserCheckIn(props) {
       </Container>
       <Modal show={successState.show} >
         <Modal.Content>
-          <Section style={{backgroundColor: 'yellow'}}>
+          <Section style={{backgroundColor: '#0C516E'}}>
             <Container className='has-text-centered'>
-              <p className='alertMessage'>Location successfully stored!</p>
+              <p className='alertMessage has-text-light'>Location successfully stored!</p>
             </Container>
           </Section>
         </Modal.Content>
       </Modal>
       <Modal show={failState.show} onClose={closeFailModal}>
         <Modal.Content>
-          <Section style={{backgroundColor: 'yellow'}}>
-            <Container className='has-text-centered'>
-              <p className='alertMessage'>Create an account or log in!</p>
-              <a className='button is-danger' href="/login">Login</a><a className='button ml-2 is-danger' href="/register">Register</a>
+          <Section style={{backgroundColor: '#0C516E'}}>
+            <Container className='has-text-centered '>
+              <p className='alertMessage has-text-light'>Create an account or log in!</p>
+              <a className='button is-success is-inverted' href="/login">Login</a><a className='button ml-2 is-primary is-inverted' href="/register">Register</a>
             </Container>
           </Section>
         </Modal.Content>

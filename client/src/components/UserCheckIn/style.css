@@ -1,5 +1,6 @@
 .section{
   padding: 2rem 0.5rem !important;
+  border-radius: 25px;
 }
 
 .alertMessage{
@@ -11,3 +12,4 @@
 .checkinContainer {
   margin-top: 2px;
 }
+

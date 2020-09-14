@@ -28,6 +28,7 @@
         opacity: 50%;
         font-size: 14px;
         margin-top: 16px;
+        border-radius: 70px;
         }
 
 .mapboxgl-papup {
