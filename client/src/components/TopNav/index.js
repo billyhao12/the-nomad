@@ -16,6 +16,7 @@ function TopNav() {
       <Navbar.Brand>
         <Navbar.Item renderAs="a" href="/">
           The Nomad
+          <img className="brand" src={require('../../icons/urbanNomad.png')} />
         </Navbar.Item>
         <Navbar.Burger>
         </Navbar.Burger>
