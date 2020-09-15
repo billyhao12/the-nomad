@@ -27,7 +27,7 @@ function SearchForm({ setArticles }) {
           lat: item.lat,
           long: item.long,
           user: item.user,
-          id: item._id
+          _id: item._id
         })))
       )
       .catch(err => console.log(err));
