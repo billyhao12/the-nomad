@@ -38,7 +38,7 @@ module.exports = {
   },
   findByCategorySingle: function(req, res) {
     db.Article
-      .find({category: [req.params.category]})
+      .find({category: req.params.category})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },
