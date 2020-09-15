@@ -3,3 +3,7 @@ a.navbar-item:hover {
   /* color: #4a4a4a !important;
   background-color: white !important; */
 }
+
+.brand {
+  padding-left: 2px;
+}
