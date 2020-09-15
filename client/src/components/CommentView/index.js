@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import { Media, Content, Level} from 'react-bulma-components';
 
 import api from '../../utils/api';
-import LikeDislikeBar from '../LikeDislikeBar';
+// import LikeDislikeBar from '../LikeDislikeBar';
 
 
 function CommentView(props) {
@@ -34,9 +34,9 @@ function CommentView(props) {
       })
   }
 
-  function handleLike() {
+  // function handleLike() {
 
-  }
+  // }
 
   if(comment) {
     return (

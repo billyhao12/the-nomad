@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import api from '../../utils/api';
 
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { 
   Section, 
   Box,
   Media,
-  Image, 
+  // Image, 
   Content,
-  Button,
+  // Button,
   Level,
   Heading } from 'react-bulma-components';
 
