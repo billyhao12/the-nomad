@@ -2,7 +2,7 @@ a:hover {
   text-decoration: none;
 }
 
-img {
+ .articlePreviewImg {
   max-width: 128px;
   max-height: 128px;
   object-fit: contain;

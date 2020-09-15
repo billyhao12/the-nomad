@@ -38,6 +38,7 @@ class ArticleCreate extends Component {
   }
   handleFormSubmit = event => {
     event.preventDefault();
+    const imgURL = this.state.image !== '' ? this.state.image : 'https://via.placeholder.com/450';
     console.log(event);
 
     // awaiting proper API push to create article. Receive _ID and then link to the new article.
@@ -47,7 +48,7 @@ class ArticleCreate extends Component {
     console.log(`Categories: ${this.state.categories}`);
     console.log(`Body: ${this.state.articleBody}`);
 
-    api.createArticle({title: this.state.articleTitle, byline: this.state.byLine, category: this.state.categories, body: this.state.articleBody, image: this.state.image, lat:this.state.checkin.lat, long:this.state.checkin.long, date:this.state.checkin.date})
+    api.createArticle({title: this.state.articleTitle, byline: this.state.byLine, category: this.state.categories, body: this.state.articleBody, image: imgURL, lat:this.state.checkin.lat, long:this.state.checkin.long, date:this.state.checkin.date})
       .then(res =>
         this.setState({newArticleId: res.data._id}, () => {
           this.setState({created: true}, () => {
@@ -237,7 +238,7 @@ class ArticleCreate extends Component {
                   <Heading>{this.state.articleTitle}</Heading>
                 </Hero.Body>
               </Hero>
-              <Image src={this.state.image} />
+              <Image src={ this.state.image !== '' ? this.state.image : 'https://via.placeholder.com/450'} />
               <Box>
                 <Box>
                   <Level renderAs='nav'>
@@ -276,10 +277,10 @@ const categoriesList = [
   'Food',
   'Sports',
   'Travel',
-  'Tech/Science',
+  'Technology',
+  'Science',
   'Politics',
-  'Entertainment',
-  'Location',
+  'Entertainment'
 ];
 ArticleCreate.propTypes = {
   match: PropTypes.object
