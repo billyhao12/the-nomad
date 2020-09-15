@@ -12,7 +12,6 @@ function Categories({ setArticles }) {
   function handleClick(e) {
     api.getArticleCategoriesSingle(e.target.text)
       .then(result => {
-        console.log(result);
         setArticles(result.data.map( item => ({
           title: item.title,
           image: item.image,
