@@ -12,6 +12,7 @@ function Categories({ setArticles }) {
   function handleClick(e) {
     api.getArticleCategoriesSingle(e.target.text)
       .then(result => {
+        console.log(result);
         setArticles(result.data.map( item => ({
           title: item.title,
           image: item.image,
@@ -24,7 +25,7 @@ function Categories({ setArticles }) {
           long: item.long,
           user: item.user,
           _id: item._id
-        })))
+        })));
       })
       .catch(err => console.log(err));
   }
