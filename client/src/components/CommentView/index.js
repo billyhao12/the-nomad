@@ -51,7 +51,7 @@ function CommentView(props) {
           </Content>
           <Level breakpoint='mobile'>
             <Level.Side align='left'>
-              <LikeDislikeBar favor={comment.favor} onLike={handleLike} />
+              {/* <LikeDislikeBar favor={comment.favor} onLike={handleLike} /> */}
             </Level.Side>
           </Level>
         </Media.Item>
