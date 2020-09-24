@@ -20,8 +20,9 @@ There is an increasing distrust in mainstream media, with consumers of media bec
 
 To start the app locally, first run `npm install` in the root directory to install all the necessary dependencies. Then launch the application by running `npm start`.
 
-## User Stories
+## Usage
 
+User Stories:
 ```
 AS AN ordinary person present at a significant event
 I WANT to write an article on my perspective of the event
@@ -35,6 +36,9 @@ AS A member of a community
 I WANT to post and view location-based articles
 SO THAT I can stay engaged in my community and explore other communities
 ```
+
+Screenshot of the home page:
+![Screenshot of Application](screenshots/The-Nomad-screenshot.png)
 
 ## Credits
 
