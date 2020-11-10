@@ -35,7 +35,7 @@ app.get('*', function(req, res) {
 //Connection to MongoDB
 mongoose
   .connect(
-    process.env.MONGODB_URI || 'mongodb://localhost/nomad',
+    process.env.DB_URI || 'mongodb://localhost/nomad',
     { useNewUrlParser: true }
   )
   .then(() => console.log('MongoDB successfully connected'))
