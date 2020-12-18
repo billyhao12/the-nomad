@@ -2,7 +2,7 @@ import React, {useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import ArticlePreview from '../ArticlePreview';
-import { Button, Section, Box } from 'react-bulma-components';
+import { Button } from 'react-bulma-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 

@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { 
-  Card, 
   Box,
   Media,
   Tile, 
