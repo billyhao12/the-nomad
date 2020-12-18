@@ -50,7 +50,7 @@ function UserProfile() {
             }
           </Container>
           <Container>
-            Your Comments:
+            My Comments:
             {
               user.comments.length > 0 &&
               user.comments.map((comment, index) => (
@@ -75,7 +75,7 @@ function UserProfile() {
   }
   else {
     return (
-      <p>User Profile Page</p>
+      <p>Please Login to view your profile.</p>
     );
   }
 }

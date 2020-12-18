@@ -1,9 +1,8 @@
 import React, {useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-
 import ArticlePreview from '../ArticlePreview';
-import { Button } from 'react-bulma-components';
+import { Button, Section, Box } from 'react-bulma-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -88,6 +87,7 @@ function Related(props) {
             <ArticlePreview article={article} key={index} />
           ))
         }
+         
       </div>
     )
   }

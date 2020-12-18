@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 // import ReactMapboxGl, {Layer} from 'react-mapbox-gl';
 // import {Feature} from 'react-mapbox-gl';
 import api from '../utils/api';
-import {Container, Image, Box, Hero, Heading, Tile, Level, Content, Media} from 'react-bulma-components';
+import {Container, Image, Box, Hero, Heading, Tile, Level, Content, Media, Section} from 'react-bulma-components';
 import PropTypes from 'prop-types';
 
 import Related from '../components/Related';
@@ -126,28 +126,32 @@ function ArticleDetailView(props) {
     console.log('rendering article: ', article);
 
     return (
+      // Main article container
       <div>
         <Tile kind="ancestor">
-          <Tile size={9} vertical>
+          <Tile vertical>
             <Tile>
               <Tile kind="parent">
                 <Tile renderAs="article" kind="child">
                   <Container>
+                    {/* article title */}
                     <Hero style={{textAlign: 'center'}} color={colors.light}>
                       <Hero.Body>
-                        <Heading>
+                        <Heading size={1}>
 
                           {article.title}
                         </Heading>
                       </Hero.Body>
                     </Hero>
-                    <Image src={article.image} />
+                    {/* Article image */}
+                    <Image className="articleImage" src={article.image} />
                     <Box>
                       <Box>
                         <Level renderAs="nav">
                           
                           <Level.Item>
                             <Heading size={5} subtitle>
+                              {/* article category buttons */}
                             Categories: 
                             </Heading>
                             {
@@ -197,26 +201,25 @@ function ArticleDetailView(props) {
               </Tile>
             </Tile>
           </Tile>
-          <Tile kind="parent">
-            <Tile renderAs="article" kind="child" >
-              <Container>
-                <Box>
-                  <div className="content">
-                    <Heading subtitle>Related</Heading>
-
-                    { related.length > 0 &&
-                      <div>
-                        <Related articles={related} thisArticleId={idString} />
-                      </div>
-                    }
-
-                    <div className="content" />
-                  </div>
-                </Box>
-              </Container>
-            </Tile>
-          </Tile>
         </Tile>
+
+        {/* related article container */}
+   
+        <Container>
+          <Box>
+            <div className="content">
+              <Heading subtitle>Related</Heading>
+ 
+              { related.length > 0 &&
+                <div>
+                  <Related articles={related} thisArticleId={idString} />
+                </div>
+              }
+ 
+            </div>
+          </Box>
+        </Container>
+       
 
       </div>
     );

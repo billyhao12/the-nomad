@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { 
-  Section, 
+  Card, 
   Box,
   Media,
-  // Image, 
+  Tile, 
   Content,
   // Button,
   Level,
@@ -33,41 +33,43 @@ function ArticlePreview({article}) {
   }
 
   return (
-    <Section>
-      <Box>
-        <Link to={`/article/${article._id}`}>
-          <Heading className='mb-3'>{article.title}</Heading>
-        </Link>
-        <Media>
-          <Media.Item  renderAs="figure" position="left">
-            {/* <Image className="articlePreviewImg" style={{maxWidth: '128px', maxHeight: '128px', objectFit: 'contain'}} size={128} alt="128x128" src={article.image} /> */}
-            <figure className="image is-128x128">
-              <img className="articlePreviewImg" src={article.image} alt="128x128" />
-            </figure>
-          </Media.Item>
-          <Media.Item>
-            <Content>
-              <p>
-                <strong>{user ? user.name : 'NA'}</strong> <small>{article.date}</small>
-                <br />
-                {article.byline}
-              </p>
-            </Content>
-            <Level breakpoint="mobile">
-              <Level.Side align="left">
-                {/* <Button className='mr-2'>
+    <Tile kind="parent">
+      <Tile >
+        <Box>
+          <Media>
+            <Media.Item  renderAs="figure" position="left">
+              {/* <Image className="articlePreviewImg" style={{maxWidth: '128px', maxHeight: '128px', objectFit: 'contain'}} size={128} alt="128x128" src={article.image} /> */}
+              <figure className="image articlePreviewImg">
+                <img  src={article.image} alt="128x128" />
+              </figure>
+            </Media.Item>
+            <Media.Item>
+              <Level breakpoint="mobile">
+                <Level.Side align="left">
+                  {/* <Button className='mr-2'>
                   <FontAwesomeIcon icon="arrow-up" />
                 </Button>
                 <p>net upvotes</p>
                 <Button className='ml-2'>
                   <FontAwesomeIcon icon="arrow-down" />
                 </Button> */}
-              </Level.Side>
-            </Level>
-          </Media.Item>
-        </Media>
-      </Box>
-    </Section>
+                </Level.Side>
+              </Level>
+            </Media.Item>
+          </Media>
+          <Link to={`/article/${article._id}`}>
+            <Heading size={4} className='mb-3'>{article.title}</Heading>
+          </Link>
+          <Content>
+            <p>
+              <strong>{user ? user.name : 'NA'}</strong> <small>{article.date}</small>
+              <br />
+              {/* {article.byline} */}
+            </p>
+          </Content>
+        </Box>
+      </Tile>
+    </Tile>
   )
 }
 
