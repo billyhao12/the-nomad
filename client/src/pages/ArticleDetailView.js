@@ -113,6 +113,14 @@ function ArticleDetailView(props) {
       .catch(err => console.log(err));
   }
 
+  function ScrollToTopOnMount() {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+
+    return null;
+  }
+
   if(article)
   {
     let date = article.date;
@@ -128,6 +136,7 @@ function ArticleDetailView(props) {
     return (
       // Main article container
       <div>
+        <ScrollToTopOnMount />
         <Tile kind="ancestor">
           <Tile vertical>
             <Tile>

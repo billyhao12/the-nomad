@@ -9,7 +9,6 @@ import './style.css';
 function ArticlePreviewGrid({article}){
 
   const [user, setUser] = useState();
-
   useEffect( ()=> {
     loadUser(article.user)
   }, []);
@@ -22,6 +21,7 @@ function ArticlePreviewGrid({article}){
 
   return(
     <Tile  kind="parent">
+     
       <Tile className="relatedArticleTile" kind="child">
         <Box paddingless={Boolean('paddingless', true)}>
           <Media>
