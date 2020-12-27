@@ -213,9 +213,9 @@ function ArticleDetailView(props) {
               <Heading subtitle>Related</Heading>
  
               { related.length > 0 &&
-                
+                <div>
                   <Related articles={related} thisArticleId={idString} />
-                
+                </div>
               }
  
             </div>
