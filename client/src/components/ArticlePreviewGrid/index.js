@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import api from '../../utils/api'
 import { Link } from 'react-router-dom';
+import Date from '../Date';
 
 import {Tile, Heading, Box, Media} from 'react-bulma-components';
 import './style.css';
@@ -34,7 +35,7 @@ function ArticlePreviewGrid({article}){
           <Link to={`/article/${article._id}`}>
             <Heading size={6} className='mb-3'>{article.title}</Heading>
           </Link>
-          <Heading subtitle size={7} renderAs="h2">By: {user ? user.name: 'Anonymous'} {article.date}</Heading>
+          <Heading subtitle size={7} renderAs="h2">By: {user ? user.name: 'Anonymous'} <Date date={article.date} /></Heading>
         
         </Box>
       </Tile>
