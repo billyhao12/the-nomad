@@ -2,12 +2,6 @@
 import React, { useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 
-// import Col from 'react-bootstrap/Col';
-// import Row from 'react-bootstrap/Row';
-// import ListGroup from 'react-bootstrap/ListGroup';
-// import Card from 'react-bootstrap/Card';
-// import ReactMapboxGl, {Layer} from 'react-mapbox-gl';
-// import {Feature} from 'react-mapbox-gl';
 import api from '../utils/api';
 import {Container, Image, Box, Hero, Heading, Tile, Level, Content, Media} from 'react-bulma-components';
 import PropTypes from 'prop-types';
@@ -85,7 +79,6 @@ function ArticleDetailView(props) {
         api.getArticleCategoriesArray(QueryString.stringify({array: [...art.category]}))
           .then(res => {
             setRelated(res.data);
-            //console.log('res: ', res);
           })
           .catch(err => console.log(err));
       }
@@ -220,9 +213,9 @@ function ArticleDetailView(props) {
               <Heading subtitle>Related</Heading>
  
               { related.length > 0 &&
-                <div>
+                
                   <Related articles={related} thisArticleId={idString} />
-                </div>
+                
               }
  
             </div>
@@ -236,7 +229,7 @@ function ArticleDetailView(props) {
   return (
     <div>
       
-      <p>ArticleDetailView</p>
+      <p>No Article Available</p>
     </div>
   );
   
