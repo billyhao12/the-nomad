@@ -35,7 +35,7 @@ function ArticlePreviewGrid({article}){
           <Link to={`/article/${article._id}`}>
             <Heading size={6} className='mb-3'>{article.title}</Heading>
           </Link>
-          <Heading subtitle size={7} renderAs='h2'>By: {user ? user.name: 'Anonymous'} <Date date={article.date} /></Heading>
+          <p>By: {user ? user.name: 'Anonymous'} <Date date={article.date} /></p>
         
         </Box>
       </Tile>

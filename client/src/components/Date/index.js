@@ -16,9 +16,9 @@ const Date = ( { date, format = 'toRelative', className, ...props } ) => {
   const dateTime = DateTime.fromISO(date);
 
   return (
-    <div className={classes.join(' ')} {...props}>
+    <span className={classes.join(' ')} {...props}>
       { formats[format] ? formats[format](dateTime) : formats.default(dateTime, format) }
-    </div>
+    </span>
   )
 
 }
