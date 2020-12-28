@@ -82,7 +82,7 @@ function Related(props) {
             <FontAwesomeIcon icon={faArrowRight} />
           </Button>
         </Button.Group>
-        <Tile kind="ancestor">
+        <Tile kind='ancestor'>
           {
             pageToDisplay.map((article, index) => (
               <ArticlePreviewGrid article={article} key={index} />

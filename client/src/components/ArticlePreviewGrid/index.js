@@ -21,21 +21,21 @@ function ArticlePreviewGrid({article}){
   }
 
   return(
-    <Tile  kind="parent">
+    <Tile  kind='parent'>
      
-      <Tile className="relatedArticleTile" kind="child">
+      <Tile className='relatedArticleTile' kind='child'>
         <Box paddingless={Boolean('paddingless', true)}>
           <Media>
-            <Media.Item renderAs="figure" className="is-marginless">
-              <figure className="image relatedImg is-marginless">
-                <img src={article.image} alt="128x128"/>
+            <Media.Item renderAs='figure' className='is-marginless'>
+              <figure className='image relatedImg is-marginless'>
+                <img src={article.image} alt='128x128'/>
               </figure>
             </Media.Item>
           </Media>
           <Link to={`/article/${article._id}`}>
             <Heading size={6} className='mb-3'>{article.title}</Heading>
           </Link>
-          <Heading subtitle size={7} renderAs="h2">By: {user ? user.name: 'Anonymous'} <Date date={article.date} /></Heading>
+          <Heading subtitle size={7} renderAs='h2'>By: {user ? user.name: 'Anonymous'} <Date date={article.date} /></Heading>
         
         </Box>
       </Tile>

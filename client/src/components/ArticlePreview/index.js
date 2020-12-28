@@ -38,10 +38,10 @@ function ArticlePreview({article}) {
           <Heading className='mb-3'>{article.title}</Heading>
         </Link>
         <Media>
-          <Media.Item  renderAs="figure" position="left">
+          <Media.Item  renderAs='figure' position='left'>
             {/* <Image className="articlePreviewImg" style={{maxWidth: '128px', maxHeight: '128px', objectFit: 'contain'}} size={128} alt="128x128" src={article.image} /> */}
-            <figure className="image is-128x128">
-              <img className="articlePreviewImg" src={article.image} alt="128x128" />
+            <figure className='image is-128x128'>
+              <img className='articlePreviewImg' src={article.image} alt='128x128' />
             </figure>
           </Media.Item>
           <Media.Item>
@@ -52,8 +52,8 @@ function ArticlePreview({article}) {
                 {article.byline}
               </p>
             </Content>
-            <Level breakpoint="mobile">
-              <Level.Side align="left">
+            <Level breakpoint='mobile'>
+              <Level.Side align='left'>
                 {/* <Button className='mr-2'>
                   <FontAwesomeIcon icon="arrow-up" />
                 </Button>
