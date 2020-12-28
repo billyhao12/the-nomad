@@ -13,7 +13,7 @@ Related.propTypes = {
   thisArticleId: PropTypes.string
 };
 
-const numRelatedToDisplay = 5;
+const numRelatedToDisplay = 3;
 
 function Related(props) {
   const relatedArticles = props.articles.filter(article => article._id !== props.thisArticleId);
