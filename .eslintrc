@@ -29,10 +29,5 @@
             "error",
             "single"
         ]
-    },
-    "settings": {
-        "react": {
-            "version": "latest"
-        }
     }
 }
