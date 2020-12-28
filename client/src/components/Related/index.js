@@ -2,8 +2,8 @@ import React, {useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 
-import ArticlePreview from '../ArticlePreview';
-import { Button } from 'react-bulma-components';
+import ArticlePreviewGrid from '../ArticlePreviewGrid';
+import { Button, Tile } from 'react-bulma-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -82,12 +82,13 @@ function Related(props) {
             <FontAwesomeIcon icon={faArrowRight} />
           </Button>
         </Button.Group>
-        
-        {
-          pageToDisplay.map((article, index) => (
-            <ArticlePreview article={article} key={index} />
-          ))
-        }
+        <Tile kind="ancestor">
+          {
+            pageToDisplay.map((article, index) => (
+              <ArticlePreviewGrid article={article} key={index} />
+            ))
+          }
+        </Tile>
       </div>
     )
   }

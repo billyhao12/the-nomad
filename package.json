@@ -37,6 +37,7 @@
     "if-env": "^1.0.4",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
+    "luxon": "^1.25.0",
     "mapbox-gl": "^1.12.0",
     "mongoose": "^5.10.0",
     "passport": "^0.4.1",

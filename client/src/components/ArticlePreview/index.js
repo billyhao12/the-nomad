@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
 import api from '../../utils/api';
-
 import { Link } from 'react-router-dom';
+import Date from '../Date';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { 
@@ -48,7 +47,7 @@ function ArticlePreview({article}) {
           <Media.Item>
             <Content>
               <p>
-                <strong>{user ? user.name : 'NA'}</strong> <small>{article.date}</small>
+                <strong>{user ? user.name : 'NA'}</strong> <small><Date date={article.date} /></small>
                 <br />
                 {article.byline}
               </p>

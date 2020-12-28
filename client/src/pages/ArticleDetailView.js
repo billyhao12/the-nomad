@@ -113,6 +113,14 @@ function ArticleDetailView(props) {
       .catch(err => console.log(err));
   }
 
+  function ScrollToTopOnMount() {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+
+    return null;
+  }
+
   if(article)
   {
     let date = article.date;
@@ -126,28 +134,33 @@ function ArticleDetailView(props) {
     console.log('rendering article: ', article);
 
     return (
+      // Main article container
       <div>
+        <ScrollToTopOnMount />
         <Tile kind="ancestor">
-          <Tile size={9} vertical>
+          <Tile vertical>
             <Tile>
               <Tile kind="parent">
                 <Tile renderAs="article" kind="child">
                   <Container>
+                    {/* article title */}
                     <Hero style={{textAlign: 'center'}} color={colors.light}>
                       <Hero.Body>
-                        <Heading>
+                        <Heading size={1}>
 
                           {article.title}
                         </Heading>
                       </Hero.Body>
                     </Hero>
-                    <Image src={article.image} />
+                    {/* Article image */}
+                    <Image className="articleImage" src={article.image} />
                     <Box>
                       <Box>
                         <Level renderAs="nav">
                           
                           <Level.Item>
                             <Heading size={5} subtitle>
+                              {/* article category buttons */}
                             Categories: 
                             </Heading>
                             {
@@ -197,26 +210,25 @@ function ArticleDetailView(props) {
               </Tile>
             </Tile>
           </Tile>
-          <Tile kind="parent">
-            <Tile renderAs="article" kind="child" >
-              <Container>
-                <Box>
-                  <div className="content">
-                    <Heading subtitle>Related</Heading>
-
-                    { related.length > 0 &&
-                      <div>
-                        <Related articles={related} thisArticleId={idString} />
-                      </div>
-                    }
-
-                    <div className="content" />
-                  </div>
-                </Box>
-              </Container>
-            </Tile>
-          </Tile>
         </Tile>
+
+        {/* related article container */}
+   
+        <Container>
+          <Box>
+            <div className="content">
+              <Heading subtitle>Related</Heading>
+ 
+              { related.length > 0 &&
+                <div>
+                  <Related articles={related} thisArticleId={idString} />
+                </div>
+              }
+ 
+            </div>
+          </Box>
+        </Container>
+       
 
       </div>
     );
