@@ -65,10 +65,15 @@ function ArticleDetailView(props) {
   }
   
   const [related, setRelated] = useState([]);
-
+  
   useEffect(() => {
     getArticleCategories(article)
   }, [article])
+
+  function clearRelated(){
+    setRelated([])
+    return
+  }
 
   function getArticleCategories(art) {
     if(art) {
@@ -77,15 +82,16 @@ function ArticleDetailView(props) {
       if(art.category.length === 1) {
         api.getArticleCategoriesSingle(art.category[0])
           .then(res => {
-            setRelated(res.data);
+            clearRelated()
+            setRelated(res.data.reverse());
           })
           .catch(err => console.log(err));
       }
       else if(art.category.length >= 1) {
         api.getArticleCategoriesArray(QueryString.stringify({array: [...art.category]}))
           .then(res => {
-            setRelated(res.data);
-            //console.log('res: ', res);
+            clearRelated()
+            setRelated(res.data.reverse());
           })
           .catch(err => console.log(err));
       }
@@ -94,7 +100,7 @@ function ArticleDetailView(props) {
       }
     }
   }
-
+  
   function handleNewComment(commentId) {
     const oldComments = comments;
     console.log('new comment:commentId', commentId);
@@ -116,6 +122,7 @@ function ArticleDetailView(props) {
   function ScrollToTopOnMount() {
     useEffect(() => {
       window.scrollTo(0, 0);
+      
     }, []);
 
     return null;
@@ -130,8 +137,6 @@ function ArticleDetailView(props) {
     } else {
       date = 'no date';
     }
-
-    console.log('rendering article: ', article);
 
     return (
       // Main article container
