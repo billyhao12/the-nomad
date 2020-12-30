@@ -1,13 +1,12 @@
 import React from 'react';
 import { DateTime } from 'luxon';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const formats = {
   toRelative: dateTime => dateTime.toRelative(),
   default: (dateTime, format) => dateTime.toFormat(format)
 }
 
-// eslint-disable-next-line react/prop-types
 const Date = ( { date, format = 'toRelative', className, ...props } ) => {
 
   const classes = [ 'date' ];
@@ -23,9 +22,11 @@ const Date = ( { date, format = 'toRelative', className, ...props } ) => {
 
 }
 
-// TBD
-// Date.propTypes = {
-//     date: PropTypes.
-// }
+Date.propTypes = {
+  date: PropTypes.instanceOf(Date),
+  format: PropTypes.string,
+  className: PropTypes.string,
+  props: PropTypes.string
+}
 
 export default Date;
